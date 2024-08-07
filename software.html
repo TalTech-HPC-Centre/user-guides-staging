@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Software packages &mdash; HPC user-guides 2024 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="_static/css/extra.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Available MPI versions (and comparison)" href="mpi.html" />
+    <link rel="prev" title="Module environment (lmod)" href="modules.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #E4067E" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            HPC user-guides
+              <img src="_static/TalTech_Gradient-200px.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="lumi.html">LUMI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cloud.html">Quickstart: Cloud</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart: Cluster</a></li>
+<li class="toctree-l1"><a class="reference internal" href="learning.html">Courses and introductions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">Module environment (lmod)</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Software packages</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#engineering">Engineering</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#cad-mesh-tools">CAD &amp; Mesh-Tools</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#freecad">FreeCAD</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#salome">Salome</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#gmsh">Gmsh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#netgen">Netgen</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#finite-element-analysis-fea">Finite Element Analysis (FEA)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#elmerfem">ElmerFEM</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#calculix">CalculiX</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#freefem">FreeFEM</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#deal-ii">deal.II</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mfem">MFEM</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#abaqus">Abaqus</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#comsol">Comsol</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lsdyna">LSDyna</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#star-ccm">Star-CCM+</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#computational-fluid-dynamics-cfd">Computational Fluid Dynamics (CFD)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#openfoam">OpenFOAM</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#su2">SU2</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#water-wave-modelling">Water Wave Modelling</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#wam">WAM</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#swan">Swan</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#chemistry-biology-and-physics">Chemistry, biology and physics</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#conformational-search-sampling">Conformational search &amp; sampling</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#xtb-crest">xtb-CREST</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#general-purpose-computational-chemistry-biology-and-physics">General purpose computational chemistry, biology and physics</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#gaussian"><em>Gaussian</em></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#orca"><em>ORCA</em></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#nwchem"><em>NWChem</em></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#turbomole-tmolex"><em>TURBOMOLE &amp; TmoleX</em></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#wavefunction-analysis">Wavefunction analysis</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#multiwfn"><em>Multiwfn</em></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#visualization-software-for-computational-chemistry-biology-and-physics">Visualization software for computational chemistry, biology and physics</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#data-analysis">Data analysis</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#gnu-r">GNU R</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#julia"><em>Julia</em></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#octave-matlab"><em>Octave/Matlab</em></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gnuplot"><em>GNUplot</em></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#python"><em>Python</em></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#jupyterlab"><em>JupyterLab</em></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#visualization-software">Visualization software</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="mpi.html">Available MPI versions (and comparison)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="performance.html">Performance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="profiling.html">Profiling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="visualization.html">Visualization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gpu.html">GPU-servers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="singularity.html">Containers (Singularity &amp; Docker)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acknowledgement.html">Acknowledgement</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #E4067E" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">HPC user-guides</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Software packages</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/software.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="software-packages">
+<h1>Software packages<a class="headerlink" href="#software-packages" title="Permalink to this heading"></a></h1>
+<br>
+<span style="font-size:20px"><b>
+Software on our systems is installed in the following ways:
+</b></span> 
+<br>
+<br><ol>
+<li><p>as packages from the Linux distribution (free open-source software when available and recent enough) – <strong>no modules needed</strong></p></li>
+<li><p>through the SPACK package manager (free open-source software when available in SPACK) - load the <code class="docutils literal notranslate"><span class="pre">*-spack</span></code> modules by command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="n">module</span> <span class="n">load</span> <span class="n">rocky8</span><span class="o">-</span><span class="n">spack</span>
+</pre></div>
+</div>
+</li>
+<li><p>manually (mostly non-free software (not GPL/BSD license) - load the <code class="docutils literal notranslate"><span class="pre">*/all</span></code> modules by command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="n">module</span> <span class="n">load</span> <span class="n">rocky8</span><span class="o">/</span><span class="nb">all</span>	
+</pre></div>
+</div>
+</li>
+</ol>
+<br>
+<span style="font-size:20px"><b>
+Here is a list of important software for special purpose:</b>
+</b></span> 
+<br>
+<br><ul class="simple">
+<li><p>CAD &amp; Meshing software  —
+FreeCAD, Salome, Gmsh and netgen; see <a class="reference internal" href="engineering/cad-mesh.html"><span class="doc">CAD-Mesh</span></a></p></li>
+<li><p>Finite element software for multiphysical problems —
+<a class="reference internal" href="engineering/elmerfem.html"><span class="doc">ElmerFEM</span></a>, CalculiX, Abaqus</p></li>
+<li><p>Computational Fluid Dynamics – <a class="reference internal" href="engineering/openfoam.html"><span class="doc">OpenFOAM</span></a>, SU2</p></li>
+<li><p>Conformational search  —
+<a class="reference internal" href="chemistry/crest.html"><span class="doc">xtb-CREST</span></a></p></li>
+<li><p>General purpose computational chemistry, biology and physics software packages —
+<a class="reference internal" href="chemistry/gaussian.html"><span class="doc">Gaussian</span></a>, <a class="reference internal" href="chemistry/orca.html"><span class="doc">ORCA</span></a>, <a class="reference external" href="chemistry/nwchem.html">NWChem</a>, <a class="reference internal" href="chemistry/turbomole.html"><span class="doc">TURBOMOLE</span></a>, xTB, CP2K</p></li>
+<li><p>Wavefunction analysis —
+<a class="reference internal" href="chemistry/multiwfn.html"><span class="doc">Multiwfn</span></a></p></li>
+<li><p>Visualization software for computational chemistry, biology and physics —
+<a class="reference external" href="https://hpc.pages.taltech.ee/user-guides/chemistry/visualization.html#molden">Molden</a>, <a class="reference external" href="https://hpc.pages.taltech.ee/user-guides/chemistry/visualization.html#avogadro">Avogadro</a>, <a class="reference external" href="https://hpc.pages.taltech.ee/user-guides/chemistry/visualization.html#jmol">JMol</a>, <a class="reference external" href="https://hpc.pages.taltech.ee/user-guides/chemistry/visualization.html#vmd">VMD</a>, <a class="reference external" href="https://hpc.pages.taltech.ee/user-guides/chemistry/visualization.html#rasmol">RasMol</a></p></li>
+<li><p>Interactive and non-interactive <a class="reference internal" href="data-analysis/jupyter.html"><span class="doc">Jupyter</span></a> notebooks for Julia, Python, <a class="reference internal" href="data-analysis/octave.html"><span class="doc">Octave</span></a></p></li>
+<li><p>Matlab-compatible computation environment —
+<a class="reference internal" href="data-analysis/octave.html"><span class="doc">Octave</span></a></p></li>
+<li><p>Data analysis —
+R, Matlab, <a class="reference internal" href="data-analysis/octave.html"><span class="doc">Octave</span></a>, Julia, awk, Python, GNUplot</p></li>
+<li><p>Visualization software —
+MayaVi2, ParaView, VisIt, COVISE, OpenDX, GNUplot</p></li>
+</ul>
+<br><p><span style="font-size:16px"><b>
+A more detailed description of available softwares, as well as a division by area of use, is given below.</p>
+<p>If software you want to use is missing in the list above, it means that it is not installed, but can be installed by your request to hpcsupport&#64;taltech.ee or create a ticket in <a class="reference external" href="https://helpdesk.taltech.ee/login.jsp">Helpdesk Portal</a>. In the case of licensed software, the user must provide the license himself and the corresponding program will be installed.
+</b></span>
+<br>
+<br></p>
+<hr style="margin: 4px 0px; border:2px solid  #d9d9d9 "></hr>
+<hr style="margin: 4px 0px; border:1px solid  #d9d9d9 "></hr><section id="engineering">
+<h2>Engineering<a class="headerlink" href="#engineering" title="Permalink to this heading"></a></h2>
+<hr class="docutils" />
+<section id="cad-mesh-tools">
+<h3>CAD &amp; Mesh-Tools<a class="headerlink" href="#cad-mesh-tools" title="Permalink to this heading"></a></h3>
+<p>Computer-aided design (CAD) is software for building models in a virtual space, that allows to visualize various properties of an object, such as height, width, distance, material, etc. This category contains software that is essential for the pre-processing of many simulations: CAD and mesh generation.
+More about CAD and meshing options on our HPC can be found <a class="reference internal" href="engineering/cad-mesh.html"><span class="doc">here</span></a>.</p>
+<section id="freecad">
+<h4>FreeCAD<a class="headerlink" href="#freecad" title="Permalink to this heading"></a></h4>
+<p><a class="reference external" href="https://www.freecadweb.org/features.php">FreeCAD</a> is a CAD software, which uses <a class="reference external" href="https://hpc.pages.taltech.ee/user-guides/engineering/cad-mesh.html#gmsh">Gmsh</a> or <a class="reference external" href="https://hpc.pages.taltech.ee/user-guides/engineering/cad-mesh.html#netgen-ngsolve">Netgen</a> for meshing. It can also serve as a frontend for CalculiX and <a class="reference internal" href="engineering/elmerfem.html"><span class="doc">ElmerFEM</span></a>, thus providing similar functionality as SolidWorks. More about FreeCAD on our HPC can be found <a class="reference internal" href="engineering/cad-mesh.html"><span class="doc">here</span></a>.</p>
+</section>
+<section id="salome">
+<h4>Salome<a class="headerlink" href="#salome" title="Permalink to this heading"></a></h4>
+<p><a class="reference external" href="https://salome-platform.org/">Salome</a> is a CAD program with interfaces to meshing software. It can be used by a GUI or python scripts. More about Salome on our HPC can be found <a class="reference external" href="https://hpc.pages.taltech.ee/user-guides/engineering/cad-mesh.html#salome">here</a>.</p>
+</section>
+<section id="gmsh">
+<h4>Gmsh<a class="headerlink" href="#gmsh" title="Permalink to this heading"></a></h4>
+<p><a class="reference external" href="https://gmsh.info/">Gmsh</a> is an open source 3D finite element mesh generator with a built-in CAD engine and post-processor. More about Gmsh on our HPC can be found <a class="reference external" href="https://hpc.pages.taltech.ee/user-guides/engineering/cad-mesh.html#gmsh">here</a>.</p>
+</section>
+<section id="netgen">
+<h4>Netgen<a class="headerlink" href="#netgen" title="Permalink to this heading"></a></h4>
+<p><a class="reference external" href="https://ngsolve.org/">Netgen</a> is a part of the NGsolve suite. Netgen is a  automatic 3d tetrahedral mesh generator containing modules for mesh optimization and hierarchical mesh refinement. More about Netgen on our HPC can be found <a class="reference external" href="https://hpc.pages.taltech.ee/user-guides/engineering/cad-mesh.html#netgen-ngsolve">here</a>.</p>
+</section>
+</section>
+<section id="finite-element-analysis-fea">
+<h3>Finite Element Analysis (FEA)<a class="headerlink" href="#finite-element-analysis-fea" title="Permalink to this heading"></a></h3>
+<p>The Finite Element Method (FEM) is an general numerical method for solving partial differential equations in two or three space variables perfommed by dividing a large system into smaller parts (finite elements). The method is used for numerically solving differential equations in engineering and mathematical modeling.</p>
+<p>See also under <a class="reference external" href="https://hpc.pages.taltech.ee/user-guides/software.html#computational-fluid-dynamics-cfd">computational-fluid-dynamics-CFD</a>.</p>
+<section id="elmerfem">
+<h4>ElmerFEM<a class="headerlink" href="#elmerfem" title="Permalink to this heading"></a></h4>
+<p><a class="reference external" href="http://www.elmerfem.org/blog/">Elmer</a> is a multi-physics simulation software developed by CSC. It can perform coupled mechanical, thermal, fluid, electro-magnetic simulations and can be extended by own equations. Elmer manuals and tutorials can be found <a class="reference external" href="https://www.nic.funet.fi/pub/sci/physics/elmer/doc">here</a> and for more details and example job scripts go <a class="reference internal" href="engineering/elmerfem.html"><span class="doc">here</span></a>.</p>
+</section>
+<section id="calculix">
+<h4>CalculiX<a class="headerlink" href="#calculix" title="Permalink to this heading"></a></h4>
+<p>CalculiX is a finite-element analysis application. The two programs that form CalculiX are <code class="docutils literal notranslate"><span class="pre">cgx</span></code> and <code class="docutils literal notranslate"><span class="pre">ccx</span></code>, where <code class="docutils literal notranslate"><span class="pre">cgx</span></code> is a graphical frontend (pre- and post-processing) and <code class="docutils literal notranslate"><span class="pre">ccx</span></code> is the solver doing the actual numerics.
+CalculiX can be used for grid data generation or mech data generation. It can be applied in such areas as mechanical analysis, heat transfer, electromagnetic calculations, computational fluid dynamics, etc. For more detais see <a class="reference external" href="http://www.dhondt.de/ov_calcu.htm">overview</a> of the finite element capabilities of CalculiX Version 2.18.
+Solver makes use of the Abaqus input format.</p>
+</section>
+<section id="freefem">
+<h4>FreeFEM<a class="headerlink" href="#freefem" title="Permalink to this heading"></a></h4>
+<p><a class="reference external" href="https://freefem.org/">FreeFEM</a> is a software focused on solving partial differential equations using the finite element method. Can be used for linear, non-linear elasticity, thermal diffusion/convection/radiation, magnetostatics, electrostatics, CFD, fluid structure interaction; continuous and discontinuous Galerkin method.
+Allows to implement own physics modules using the FreeFEM language.</p>
+</section>
+<section id="deal-ii">
+<h4>deal.II<a class="headerlink" href="#deal-ii" title="Permalink to this heading"></a></h4>
+<p><a class="reference external" href="https://www.dealii.org/">deal.II</a> - an open source finite element library</p>
+</section>
+<section id="mfem">
+<h4>MFEM<a class="headerlink" href="#mfem" title="Permalink to this heading"></a></h4>
+<p><a class="reference external" href="https://mfem.org/">MFEM</a> is a free, lightweight, scalable C++ library for finite element methods.</p>
+<!---
+#### FeNICs
+
+#### MoFEM
+
+[MoFEM](http://mofem.eng.gla.ac.uk/mofem/html/index.html) is an open source C++ finite element library. It is capable of dealing with complex multi-physics problems with arbitrary levels of approximation and refinement.
+---></section>
+<section id="abaqus">
+<h4>Abaqus<a class="headerlink" href="#abaqus" title="Permalink to this heading"></a></h4>
+<p>Abaqus is a commercial software suite for finite element analysis and computer-aided engineering. The Abaqus products use Python for scripting and customization. User modules can be written in Fortran or C/C++, our installation is configured to use gcc-10.3.0. Abaqus versions 2018 and 2021 are installed. The number of concurrent processes is limited and managed by flexlm.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">load</span> <span class="n">rocky8</span>
+<span class="n">module</span> <span class="n">load</span> <span class="n">abaqus</span>
+</pre></div>
+</div>
+<p>To use Abaqus’ PlatformMPI, SLURM’s Global Task ID needs to be cleared</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">unset</span> <span class="n">SLURM_GTIDS</span>
+</pre></div>
+</div>
+</section>
+<section id="comsol">
+<h4>Comsol<a class="headerlink" href="#comsol" title="Permalink to this heading"></a></h4>
+<p>Commercial multi-physics finite element simulation software. License belongs to a research group.</p>
+</section>
+<section id="lsdyna">
+<h4>LSDyna<a class="headerlink" href="#lsdyna" title="Permalink to this heading"></a></h4>
+<p>License belongs to a research group.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">load</span> <span class="n">rocky8</span>
+<span class="n">module</span> <span class="n">load</span> <span class="n">LSDyna</span><span class="o">/</span><span class="n">SMP</span><span class="o">-</span><span class="mf">13.0.0</span><span class="o">-</span><span class="n">D</span>
+</pre></div>
+</div>
+</section>
+<section id="star-ccm">
+<h4>Star-CCM+<a class="headerlink" href="#star-ccm" title="Permalink to this heading"></a></h4>
+<p>Commercial software. System wide installation, <em>bring your own license</em>.
+Star-CCM+ can be used with PowerOnDemand (PoD) keys. Power on demand (PoD) licensing for STAR-CCM+ is essentially cloud licensing. To use PoD licensing, a PoD key must be copied from the Star-CCM+ support center and put into the STAR-CCM+ interface.</p>
+<div class="simple1">
+More information about licenses:<ul class="simple">
+<li><p><a href="https://www.dex.siemens.com/plm/simcenter-on-the-cloud/simcenter-star-ccm-power-on-demand">Simcenter STAR-CCM+ demand</a></p></li>
+<li><p><a href="https://community.sw.siemens.com/s/article/How-faculty-members-in-academic-institutions-can-get-access-to-Simcenter-STAR-CCM">How faculty members in academic institutions can get access to Simcenter STAR-CCM+</a></p></li>
+<li><p><a href="https://blogs.sw.siemens.com/simcenter/guide-for-students-to-run-simcenter-star-ccm-from-home-or-elsewhere/">Guide for students to run Simcenter STAR-CCM+</a></p></li>
+</ul>
+</div>
+<br><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">load</span> <span class="n">rocky8</span>
+<span class="n">module</span> <span class="n">load</span> <span class="n">STAR</span><span class="o">-</span><span class="n">CCM</span><span class="o">+/</span><span class="mf">18.04.009</span><span class="o">-</span><span class="n">R8</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="computational-fluid-dynamics-cfd">
+<h3>Computational Fluid Dynamics (CFD)<a class="headerlink" href="#computational-fluid-dynamics-cfd" title="Permalink to this heading"></a></h3>
+<p>See also under <a class="reference external" href="https://hpc.pages.taltech.ee/user-guides/software.html#finite-element-analysis-fea">FEA</a>.</p>
+<section id="openfoam">
+<h4>OpenFOAM<a class="headerlink" href="#openfoam" title="Permalink to this heading"></a></h4>
+<p><a class="reference external" href="https://openfoam.org/">OpenFOAM</a> is an open source software for computational fluid dynamics (CFD). OpenFOAM has a wide range of  tools for modelling  complex fluid flows and can be used for solving such problems as chemical reactions, turbulence and heat transfer, to acoustics, solid mechanics and electromagnetics. More about OpenFOAM on our HPC can be found <a class="reference internal" href="engineering/openfoam.html"><span class="doc">here</span></a>.</p>
+</section>
+<section id="su2">
+<h4>SU2<a class="headerlink" href="#su2" title="Permalink to this heading"></a></h4>
+<p><a class="reference external" href="https://su2code.github.io/">SU2</a> is a computational analysis and design package that has been developed to solve multiphysics analysis and optimization tasks using unstructured mesh topologies. SU2 is intalled through SPACK.</p>
+<!---
+Albany https://github.com/sandialabs/Albany
+%Converge https://convergecfd.com/
+Flexi https://www.flexi-project.org/
+Nek5000 https://nek5000.mcs.anl.gov/
+spectre-code
+---></section>
+</section>
+<section id="water-wave-modelling">
+<h3>Water Wave Modelling<a class="headerlink" href="#water-wave-modelling" title="Permalink to this heading"></a></h3>
+<section id="wam">
+<h4>WAM<a class="headerlink" href="#wam" title="Permalink to this heading"></a></h4>
+<p><a class="reference external" href="https://github.com/mywave/WAM">WAM</a> is a third generation wave model, developed and maintained by GKSS. It describes the evolution of the wave spectrum by solving the wave energy transfer equation. WAM predicts directional spectra and wave properties (such as wave height, direction and frequency, swell height and mean direction), wind stress fields etc. WAM can be coupled to a range of other models (NEMO, RegCM, SEAOM, etc.). More info how to use it on HPC see <a class="reference external" href="engineering/wam.html">here</a>.</p>
+</section>
+<section id="swan">
+<h4>Swan<a class="headerlink" href="#swan" title="Permalink to this heading"></a></h4>
+<p><a class="reference external" href="https://www.tudelft.nl/citg/over-faculteit/afdelingen/hydraulic-engineering/sections/environmental-fluid-mechanics/research/swan">SWAN</a> is a third generation wave model for obtaining realistic estimates of wave parameters in coastal areas, lakes and estuaries from given wind, bottom and current conditions, developed and maintained by TU Delft. The model is based on the wave action balance equation with sources and sinks. SWAN allows to use two types of grids (structured and unstructured) and nesting approach. More info how to use it on HPC see <a class="reference external" href="engineering/swan.html">here</a>.</p>
+<br><hr style="margin: 4px 0px; border:2px solid  #cccccc "></hr>
+<hr style="margin: 4px 0px; border:1px solid  #d9d9d9 "></hr></section>
+</section>
+</section>
+<section id="chemistry-biology-and-physics">
+<h2>Chemistry, biology and physics<a class="headerlink" href="#chemistry-biology-and-physics" title="Permalink to this heading"></a></h2>
+<hr class="docutils" />
+<section id="conformational-search-sampling">
+<h3>Conformational search &amp; sampling<a class="headerlink" href="#conformational-search-sampling" title="Permalink to this heading"></a></h3>
+<section id="xtb-crest">
+<h4>xtb-CREST<a class="headerlink" href="#xtb-crest" title="Permalink to this heading"></a></h4>
+<p>Conformer–Rotamer Ensemble Sampling Tool <a class="reference external" href="https://xtb-docs.readthedocs.io/en/latest/crest.html">(xtb-CREST)</a> is designed as conformer sampling program by Grimme’s group. CREST uses meta-dynamics, regular MD simulations and Genetic Z-matrix crossing (GC) algorithms with molecular mechanics or semiempirical methods (GFNn-xTB). Conformational search can be done in gas or solvent (using several continuum models). More about xtb-CREST on our HPC can be found <a class="reference internal" href="chemistry/crest.html"><span class="doc">here</span></a>.</p>
+</section>
+</section>
+<section id="general-purpose-computational-chemistry-biology-and-physics">
+<h3>General purpose computational chemistry, biology and physics<a class="headerlink" href="#general-purpose-computational-chemistry-biology-and-physics" title="Permalink to this heading"></a></h3>
+<section id="gaussian">
+<h4><em>Gaussian</em><a class="headerlink" href="#gaussian" title="Permalink to this heading"></a></h4>
+<p><a class="reference external" href="https://gaussian.com/g16main/">Gaussian</a> is a general purpose package for calculation of electronic structures. It can calculate properties of molecules (structures, energies, spectroscopic and thermochemical properties, atomic charges, electron affinities and ionization potentials, electrostatic potentials and electron densities etc.) and reactions properties (such as reaction pathways, IRC)sing different methods (such as Molecular mechanics,  Semi-empirical methods,  Hartree-Fock,  Density functional, Møller-Plesset perturbation theory, coupled cluster). More about Gaussian on HPC can be found <a class="reference internal" href="chemistry/gaussian.html"><span class="doc">here</span></a>.</p>
+</section>
+<section id="orca">
+<h4><em>ORCA</em><a class="headerlink" href="#orca" title="Permalink to this heading"></a></h4>
+<p><a class="reference external" href="https://orcaforum.kofo.mpg.de/app.php/portal">ORCA</a> is a multi-purpose quantum-chemical software package developed in the research group of Frank Neese. ORCA includes a wide variety of methods (semi-empirical, density functional theory, many-body perturbation, coupled cluster, multireference, nudged elastic band (NEB) methods). In ORCA, molecules’ and  spectroscopic properties calculations are available, and environmental (MD (including ab initio), QM/MM, Crystal-QMMM) as well as relativistic effects can be taken into account. ORCA is parallelized, and uses the resolution of the identity (RI) approximation and domain based local pair natural orbital (DLPNO) methods, which significantly speed calculations. More about ORCA on HPC can be found <a class="reference internal" href="chemistry/orca.html"><span class="doc">here</span></a></p>
+</section>
+<section id="nwchem">
+<h4><em>NWChem</em><a class="headerlink" href="#nwchem" title="Permalink to this heading"></a></h4>
+<p>The North West computational chemistry (<a class="reference external" href="https://nwchemgit.github.io/">NWChem</a>) is an ab initio computational chemistry software package which includes quantum chemical ( HF, DFT, MP2, MCSCF,  and CC, including the tensor contraction engine (TCE)) and molecular dynamics (using either force fields (AMBER or CHARMM) or DFT) functionality. In NWChem, ab initio methods can be coupled with the classical MD to perform mixed quantum-mechanics and molecular-mechanics simulations (QM/MM). Various molecular response properties, solvent models, nudged elastic band (NEB) method, relativistic and resolution of the identity (RI) approaches are also available.</p>
+<p>NWChem was developed to enable large scale calculations by  using many CPUs and has  parallel scalability and performance. Additionally,  python programs may be embedded into the NWChem input and used to control the execution of NWChem.</p>
+</section>
+<section id="turbomole-tmolex">
+<h4><em>TURBOMOLE &amp; TmoleX</em><a class="headerlink" href="#turbomole-tmolex" title="Permalink to this heading"></a></h4>
+<p>License belongs to a research group.
+More about Turbomole on HPC can be found <a class="reference internal" href="chemistry/turbomole.html"><span class="doc">here</span></a>.</p>
+<!---
+[Turbomole](https://www.turbomole.org/turbomole/turbomole-documentation/) is a software for quantum chemical calculations of molecules, clusters, periodic systems, and solutions. Turbomole specializes in electronic structure methods with such as density functional theory, second–order Møller-Plesset and coupled cluster theory. Aside from energies and structures, Turbomole is capable for calculations of optical, electrical, and magnetic properties of metter. [More about Turbomole on HPC can be found here](chemistry/turbomole.md). [TmoleX](https://www.turbomole.org/turbomole/turbomole-documentation/) is a graphical user interface for Turbomole. 
+---></section>
+</section>
+<section id="wavefunction-analysis">
+<h3>Wavefunction analysis<a class="headerlink" href="#wavefunction-analysis" title="Permalink to this heading"></a></h3>
+<section id="multiwfn">
+<h4><em>Multiwfn</em><a class="headerlink" href="#multiwfn" title="Permalink to this heading"></a></h4>
+<p><a class="reference external" href="http://sobereva.com/multiwfn/">Multiwfn</a> it is an interactive program that performs almost all important wavefunction analyzes. In addition, Multiwfn is able to display plots of the predicted spectra. More about Multiwfn on HPC can be found <a class="reference internal" href="chemistry/multiwfn.html"><span class="doc">here</span></a>.</p>
+</section>
+</section>
+<section id="visualization-software-for-computational-chemistry-biology-and-physics">
+<h3>Visualization software for computational chemistry, biology and physics<a class="headerlink" href="#visualization-software-for-computational-chemistry-biology-and-physics" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://hpc.pages.taltech.ee/user-guides/chemistry/visualization.html#molden">Molden</a></p></li>
+<li><p><a class="reference external" href="https://hpc.pages.taltech.ee/user-guides/chemistry/visualization.html#avogadro">Avogadro</a></p></li>
+<li><p><a class="reference external" href="https://hpc.pages.taltech.ee/user-guides/chemistry/visualization.html#jmol">JMol</a></p></li>
+<li><p><a class="reference external" href="https://hpc.pages.taltech.ee/user-guides/chemistry/visualization.html#vmd">VMD</a></p></li>
+<li><p><a class="reference external" href="https://hpc.pages.taltech.ee/user-guides/chemistry/visualization.html#rasmol">RasMol</a></p></li>
+</ul>
+<br>
+<br><hr style="margin: 4px 0px; border:2px solid  #cccccc "></hr>
+<hr style="margin: 4px 0px; border:1px solid  #d9d9d9 "></hr></section>
+</section>
+<section id="data-analysis">
+<h2>Data analysis<a class="headerlink" href="#data-analysis" title="Permalink to this heading"></a></h2>
+<hr class="docutils" />
+<section id="gnu-r">
+<h3>GNU R<a class="headerlink" href="#gnu-r" title="Permalink to this heading"></a></h3>
+<p><a class="reference external" href="https://www.r-project.org/">GNU R</a>, often called “GNU S” is an open-source implementation of the S statistics language. R offers many build-in features for data analysis, has a large collection of well maintained packages in CRAN (the Comprehensive R Archive Network) and most importantly produces high-quality graphics. While the plots may not look fancy at first sight, they are well layed out with font sizes and they are vector graphics. Another feature is that R integrates well with LaTeX2e documents using Sweave (comes with R) or knitr. That makes it possible to write the data analysis using R code within LaTeX2e documents and have R create figures and tables automatically.</p>
+<p>CRAN Packages can be installed by the users themselves from inside R</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">install</span><span class="o">.</span><span class="n">packages</span><span class="p">(</span><span class="s2">&quot;packagename&quot;</span><span class="p">,</span><span class="n">lib</span><span class="o">=</span><span class="n">paste</span><span class="p">(</span><span class="n">Sys</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;HOME&quot;</span><span class="p">),</span><span class="s2">&quot;/.R/library&quot;</span><span class="p">,</span><span class="n">sep</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">),</span><span class="n">repos</span><span class="o">=</span><span class="s2">&quot;http://cran.r-project.org&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The package will be placed inside the user’s $HOME directory (installation into system directories will not be allowed).</p>
+</section>
+<section id="julia">
+<h3><em>Julia</em><a class="headerlink" href="#julia" title="Permalink to this heading"></a></h3>
+<p><a class="reference external" href="https://julialang.org/">Julia</a> is an easy to learn and high-performance interactive language. Julia is as easy (or easier) to learn as Python, but with the speed of C or Fortran for numerics.</p>
+</section>
+<section id="octave-matlab">
+<h3><em>Octave/Matlab</em><a class="headerlink" href="#octave-matlab" title="Permalink to this heading"></a></h3>
+<p><a class="reference external" href="https://octave.sourceforge.io/">Octave</a> is software featuring a high-level programming language, intended for prototyping numerical computations. Octave solves linear and nonlinear problems, and for performing other numerical experiments using a language that is mostly compatible with MATLAB. It may also be used as a batch-oriented language. More information about Matlab and Octave on HPC can be found <a class="reference internal" href="data-analysis/octave.html"><span class="doc">here</span></a>.</p>
+</section>
+<section id="gnuplot">
+<h3><em>GNUplot</em><a class="headerlink" href="#gnuplot" title="Permalink to this heading"></a></h3>
+<p><a class="reference external" href="http://www.gnuplot.info/">GNUplot</a> is a very capable and portable command-line driven graphing utility for Linux and other operating systems.</p>
+</section>
+<section id="python">
+<h3><em>Python</em><a class="headerlink" href="#python" title="Permalink to this heading"></a></h3>
+<p>Different versions are available as spack modules.
+Packages for Python can be installed by the users themselves using pip (python2) or pip3 (python3)</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">user</span> <span class="n">packagename</span>
+</pre></div>
+</div>
+<p>or</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip3</span> <span class="n">install</span> <span class="o">--</span><span class="n">user</span> <span class="n">packagename</span>
+</pre></div>
+</div>
+<p>the option <code class="docutils literal notranslate"><span class="pre">--user</span></code> will install the package into the user’s $HOME directory (installation into system directories will not be allowed).</p>
+</section>
+<section id="jupyterlab">
+<h3><em>JupyterLab</em><a class="headerlink" href="#jupyterlab" title="Permalink to this heading"></a></h3>
+<p><a class="reference external" href="https://jupyter.org/">JupyterLab</a> notebook is an open-source web application that allows creation and sharing documents containing live code, equations, visualizations, and  text. Jupyter notebooks allow data transformation, numerical simulation, statistical modeling, data visualization, machine learning, etc. using Julia, Python and Octave. More about Jupyter on our HPC is <a class="reference internal" href="data-analysis/jupyter.html"><span class="doc">here</span></a>.</p>
+<br>
+<br>
+<hr style="margin: 4px 0px; border:2px solid  #cccccc "></hr>
+<hr style="margin: 4px 0px; border:1px solid  #d9d9d9 "></hr></section>
+</section>
+<section id="visualization-software">
+<h2>Visualization software<a class="headerlink" href="#visualization-software" title="Permalink to this heading"></a></h2>
+<hr class="docutils" />
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.paraview.org/">ParaView</a> (<strong>all nodes</strong>: native install, just run <code class="docutils literal notranslate"><span class="pre">paraview</span></code>, to use GPU run <code class="docutils literal notranslate"><span class="pre">vglrun</span> <span class="pre">paraview</span></code>)</p></li>
+<li><p><a class="reference external" href="https://visit-dav.github.io/visit-website/">VisIt</a> (<strong>viz</strong>: run <code class="docutils literal notranslate"><span class="pre">/usr/local/VisIt/bin/visit</span></code>)</p></li>
+<li><p><a class="reference external" href="https://www.hlrs.de/solutions/types-of-computing/visualization/covise">COVISE</a> (<strong>viz</strong>: run <code class="docutils literal notranslate"><span class="pre">/usr/local/covise/bin/covise</span></code>)</p></li>
+<li><p><a class="reference external" href="http://mayavi.sourceforge.net/">MayaVi</a> (<strong>all nodes:</strong> spack module py-mayavi; <strong>viz:</strong> native install, just run <code class="docutils literal notranslate"><span class="pre">mayavi2</span></code>)</p></li>
+<li><p>GNUplot  (<strong>all nodes</strong>: native install, just run <code class="docutils literal notranslate"><span class="pre">gnuplot</span></code>)</p></li>
+<li><p><a class="reference external" href="http://www.opendx.org/">OpenDX</a> (<strong>viz</strong>: native install, just run <code class="docutils literal notranslate"><span class="pre">dx</span></code>)</p></li>
+<li><p>Software for computational chemistry:</p>
+<ul>
+<li><p><a class="reference external" href="https://www.theochem.ru.nl/molden/">Molden</a></p></li>
+<li><p><a class="reference external" href="https://avogadro.cc/">Avogadro</a></p></li>
+<li><p><a class="reference external" href="http://jmol.sourceforge.net/">JMol</a></p></li>
+<li><p><a class="reference external" href="http://www.ks.uiuc.edu/Research/vmd/">VMD</a></p></li>
+<li><p><a class="reference external" href="http://www.openrasmol.org/">RasMol</a> (<strong>viz</strong>: native install, just run <code class="docutils literal notranslate"><span class="pre">rasmol</span></code> or <code class="docutils literal notranslate"><span class="pre">rasmol-gtk</span></code>)</p></li>
+</ul>
+</li>
+</ul>
+<br>
+<br><p>See also the <a class="reference internal" href="visualization.html"><span class="doc">visualization</span></a> page on how to use the visualization node <strong>viz</strong>.</p>
+<br>
+<br></section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="modules.html" class="btn btn-neutral float-left" title="Module environment (lmod)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="mpi.html" class="btn btn-neutral float-right" title="Available MPI versions (and comparison)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright COPYRIGHT.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

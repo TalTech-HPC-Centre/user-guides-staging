@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LUMI &mdash; HPC user-guides 2024 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/extra.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #E4067E" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            HPC user-guides
+              <img src="../_static/TalTech_Gradient-200px.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../lumi.html">LUMI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cloud.html">Quickstart: Cloud</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Quickstart: Cluster</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../learning.html">Courses and introductions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules.html">Module environment (lmod)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software.html">Software packages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mpi.html">Available MPI versions (and comparison)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../performance.html">Performance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../profiling.html">Profiling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../visualization.html">Visualization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gpu.html">GPU-servers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../singularity.html">Containers (Singularity &amp; Docker)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../acknowledgement.html">Acknowledgement</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #E4067E" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">HPC user-guides</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">LUMI</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/lumi/start.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="lumi">
+<h1>LUMI<a class="headerlink" href="#lumi" title="Permalink to this heading"></a></h1>
+<br>
+<hr style="margin-right: 0px; margin-bottom: 4px; margin-left: 0px; margin-top: -24px; border:2px solid  #d9d9d9 "></hr>
+<hr style="margin: 4px 0px; border:1px solid  #d9d9d9 "></hr><section id="getting-started-on-lumi">
+<h2>Getting Started on LUMI<a class="headerlink" href="#getting-started-on-lumi" title="Permalink to this heading"></a></h2>
+<hr class="docutils" />
+<p><span style="color:blue"><em><strong>If you face any problems during registration to LUMI give us know by email “hpcsupport&#64;taltech.ee” or in Teams in  “HPC Support Chat”.</strong></em>  </span></p>
+<ol>
+<li><p>Login to <a class="reference external" href="https://minu.etais.ee/login/">minu.etais.ee</a> with MyAccessID.</p>
+ <div style="width:65%; height:!65%; margin-left: auto; margin-right: auto;"> 	<p><img alt="etais" src="../_images/etais.png" /></p>
+ </div></li>
+<li><p>Choose your affiliation (ttu.ee)</p>
+ <div style="width:45%; height:!45%; margin-left: auto; margin-right: auto;"> <p><img alt="MyAccessID" src="../_images/MyAccessID1.png" /></p>
+ </div></li>
+<li><p>Identify yourself with <strong>Uni-ID (six letters taken from the user’s full name),</strong> but for longtime employees it could be name.surname.</p>
+ <div style="width:75%; height:!75%; margin-left: auto; margin-right: auto;"> <p><img alt="etais" src="../_images/etais-2.png" /></p>
+ </div></li>
+<li><p>Agree with all propositions and press button to continue.</p>
+ <div style="width:75%; height:!75%; margin-left: auto; margin-right: auto;"> <p><img alt="etais" src="../_images/etais-3-1.png" /></p>
+ </div></li>
+<li><p>After notification of successful account creation <strong>you need to open a new tab</strong> and go to <a class="reference external" href="https://mms.myaccessid.org/profile/">mms.myaccessid.org</a>.</p>
+<p><img alt="MyAccessID" src="../_images/MyAccessID-1.png" /></p>
+<p>After filling in fields needed and agreement with use policy and terms of use, press button <strong>“Submit”.</strong></p>
+</li>
+<li><p>Register your SSH key in MyAccessID. To do this click to <code class="docutils literal notranslate"><span class="pre">Manage</span> <span class="pre">SSH</span> <span class="pre">key</span></code>.</p>
+<p><img alt="ssh-key-1" src="../_images/ssh-key-1.png" /></p>
+<p>Then add your SSH key into corresponding field. In Linux and Mac public SSH key can be found in <code class="docutils literal notranslate"><span class="pre">.ssh/id_rsa.pub</span></code> file. Windows by default saves public SSH key at <code class="docutils literal notranslate"><span class="pre">C:\Users\your_username/.ssh/id_rsa.pub</span></code>. How to generate SSH keys can be found <a class="reference internal" href="../ssh.html"><span class="doc">here</span></a>.</p>
+<p><img alt="ssh-key-2" src="../_images/ssh-key-2.png" /></p>
+<p>It is important to add your SSH key immediately after account creation, since this SSH key will be automatic transfer to LUMI and used for user authentication during first and subsequent connection to LUMI.</p>
+</li>
+<li><p>If <strong>you are a project leader</strong> – Contact to Resource Allocator (<code class="docutils literal notranslate"><span class="pre">hpcsupport&#64;taltech.ee</span></code>). HPC Centre will add LUMI resources to your account. If name of the project is already known add it as well.  </br> If <strong>you are a team member,</strong> – contact your project leader (or course teacher) to be added to a project.</p>
+<p><em><strong>NB!</strong></em> <em>Just adding HPC-LUMI resources to an existing project will not work.</em></p>
+</li>
+<li><p>After you receive an answer from HPC Centre, login to <a class="reference external" href="https://minu.etais.ee/">minu.etais.ee</a> account.</p></li>
+<li><p>The corresponding project appears in your ETAIS account.</p>
+<p><img alt="workspace" src="lumi/workspace1.png" /></p>
+</li>
+<li><p>In short time you will receive a letter from <code class="docutils literal notranslate"><span class="pre">info-noreply&#64;csc.fi</span></code> where you will be given your user name for LUMI.</p></li>
+<li><p>Try to connect to LUMI with received user name by the command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="n">ssh</span> <span class="n">LUMI</span><span class="o">-</span><span class="n">user</span><span class="o">-</span><span class="n">name</span><span class="o">@</span><span class="nd">@lumi</span><span class="o">.</span><span class="n">csc</span><span class="o">.</span><span class="n">fi</span>
+</pre></div>
+</div>
+<p><em><strong>NB!</strong></em> <em>Synchronization may take some time, so if you have problems with connection with SSH key, it should wait longer and try again.</em></p>
+</li>
+<li><p>Read the documentation on the LUMI homepage <a class="reference external" href="https://docs.lumi-supercomputer.eu/firststeps/getstarted/">https://docs.lumi-supercomputer.eu/firststeps/getstarted/</a>. Especially check the different filesystems and their prices, since LUMI charges TB/hour, as well as the guide for containerization of python environments (pip, conda).</p></li>
+</ol>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright COPYRIGHT.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

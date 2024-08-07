@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CFD &mdash; HPC user-guides 2024 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="_static/css/extra.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #E4067E" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            HPC user-guides
+              <img src="_static/TalTech_Gradient-200px.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="lumi.html">LUMI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cloud.html">Quickstart: Cloud</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart: Cluster</a></li>
+<li class="toctree-l1"><a class="reference internal" href="learning.html">Courses and introductions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">Module environment (lmod)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="software.html">Software packages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mpi.html">Available MPI versions (and comparison)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="performance.html">Performance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="profiling.html">Profiling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="visualization.html">Visualization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gpu.html">GPU-servers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="singularity.html">Containers (Singularity &amp; Docker)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acknowledgement.html">Acknowledgement</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #E4067E" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">HPC user-guides</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">CFD</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/cfd.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <p><span style="color:red">not changed to rocky yet</span></p>
+<section id="cfd">
+<h1>CFD<a class="headerlink" href="#cfd" title="Permalink to this heading"></a></h1>
+<p><strong>Computational Fluid Dynamics</strong></p>
+<p>The following software is available:</p>
+<ul class="simple">
+<li><p>OpenFOAM</p></li>
+<li><p>STAR-CCM+ (commercial)</p></li>
+<li><p>code_saturne (upcoming)</p></li>
+</ul>
+<p>The following software is under consideration:</p>
+<ul class="simple">
+<li><p>CONVERGE (commercial, free academic license, free training) https://convergecfd.com/</p></li>
+</ul>
+<section id="openfoam">
+<h2>OpenFOAM<a class="headerlink" href="#openfoam" title="Permalink to this heading"></a></h2>
+<section id="example-use-of-openfoam-on-the-base-cluster">
+<h3><em>Example use of OpenFOAM on the BASE cluster</em><a class="headerlink" href="#example-use-of-openfoam-on-the-base-cluster" title="Permalink to this heading"></a></h3>
+<p>For the example we will use one of the tutorial cases.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">load</span> <span class="n">mpi</span><span class="o">/</span><span class="n">openmpi</span><span class="o">-</span><span class="n">x86_64</span>
+<span class="n">source</span> <span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">apps</span><span class="o">/</span><span class="n">HPC2</span><span class="o">/</span><span class="n">OpenFOAM</span><span class="o">/</span><span class="n">OpenFOAM</span><span class="o">-</span><span class="n">v1912</span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">bashrc</span>
+</pre></div>
+</div>
+<p>First time users need to create their <code class="docutils literal notranslate"><span class="pre">$WM_PROJECT_USER_DIR</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>mkdir $WM_PROJECT_USER_DIR --parent
+</pre></div>
+</div>
+<p>copy the damBreak tutorial case into the <code class="docutils literal notranslate"><span class="pre">$WM_PROJECT_USER_DIR</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>cp -r /share/apps/HPC2/OpenFOAM/OpenFOAM-v1912/tutorials/multiphase/interFoam/laminar/damBreak/damBreak $WM_PROJECT_USER_DIR/
+cd $WM_PROJECT_USER_DIR/damBreak
+pwd
+</pre></div>
+</div>
+<p>Now we can run the OpenFOAM case step-by-step or as a batch job.</p>
+<p>NB: Do <em>not</em> use the <code class="docutils literal notranslate"><span class="pre">Allrun</span></code> script(s) of the tutorials, as these may try to launch parallel jobs without requesting resources.</p>
+<section id="interactive-single-process">
+<h4><em>Interactive single process</em><a class="headerlink" href="#interactive-single-process" title="Permalink to this heading"></a></h4>
+<p>For a non-parallel run of the tutorial case, the <code class="docutils literal notranslate"><span class="pre">decomposeParDict</span></code> needs to be removed:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mv</span> <span class="n">system</span><span class="o">/</span><span class="n">decomposeParDict</span> <span class="n">system</span><span class="o">/</span><span class="n">decomposeParDict</span><span class="o">-</span><span class="n">save</span>
+</pre></div>
+</div>
+<p>Running the damBreak case step-by-step interactively:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>srun --partition=common -t 2:10:00 -−pty bash 
+source /share/apps/HPC2/OpenFOAM/OpenFOAM-v1912/etc/bashrc
+blockMesh
+setFields
+interFoam
+</pre></div>
+</div>
+</section>
+<section id="batch-job-non-interactive-parallel-job">
+<h4><em>Batch-job (non-interactive) parallel job</em><a class="headerlink" href="#batch-job-non-interactive-parallel-job" title="Permalink to this heading"></a></h4>
+<p>Alternatively, we can run the job in parallel as a batch job:
+(If you removed/renamed the <code class="docutils literal notranslate"><span class="pre">decomposeParDict</span></code> before, copy  it back: <code class="docutils literal notranslate"><span class="pre">cp</span> <span class="pre">system/decomposeParDict-save</span> <span class="pre">system/decomposeParDict</span></code>)</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">openfoam.slurm</span></code> script:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash -l</span>
+
+<span class="c1">#SBATCH -n 4</span>
+<span class="c1">#SBATCH -t 00:10:00  </span>
+<span class="c1">#SBATCH -J openfoam-damBreak</span>
+<span class="c1"># #SBATCH --partition=green-ib</span>
+
+<span class="c1">#the following 2 lines are only needed if not done manually in command-line</span>
+<span class="n">module</span> <span class="n">load</span> <span class="n">mpi</span><span class="o">/</span><span class="n">openmpi</span><span class="o">-</span><span class="n">x86_64</span>
+<span class="n">source</span> <span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">apps</span><span class="o">/</span><span class="n">HPC2</span><span class="o">/</span><span class="n">OpenFOAM</span><span class="o">/</span><span class="n">OpenFOAM</span><span class="o">-</span><span class="n">v1912</span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">bashrc</span>
+
+<span class="n">blockMesh</span>
+<span class="n">decomposePar</span>
+<span class="n">setFields</span>
+<span class="n">mpirun</span> <span class="n">interFoam</span> <span class="o">-</span><span class="n">parallel</span>
+<span class="n">reconstructPar</span>
+</pre></div>
+</div>
+<p>and then run in the command-line (<code class="docutils literal notranslate"><span class="pre">module</span></code> and <code class="docutils literal notranslate"><span class="pre">source</span></code> are only needed if not in sbatch script):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">load</span> <span class="n">mpi</span><span class="o">/</span><span class="n">openmpi</span><span class="o">-</span><span class="n">x86_64</span>
+<span class="n">source</span> <span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">apps</span><span class="o">/</span><span class="n">HPC2</span><span class="o">/</span><span class="n">OpenFOAM</span><span class="o">/</span><span class="n">OpenFOAM</span><span class="o">-</span><span class="n">v1912</span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">bashrc</span>
+<span class="n">sbatch</span> <span class="n">openfoam</span><span class="o">.</span><span class="n">slurm</span>
+</pre></div>
+</div>
+</section>
+<section id="pre-processing-geometry-and-mesh-generation">
+<h4>Pre-processing (geometry and mesh generation)<a class="headerlink" href="#pre-processing-geometry-and-mesh-generation" title="Permalink to this heading"></a></h4>
+<p>The geometry and mesh can be either hand-coded using <strong>blockMesh</strong> or with <strong>Gmsh</strong>, <strong>FreeCAD</strong> or <strong>Salome</strong>. When using Gmsh, be sure to save the mesh in v2 ASCII format (see separate page on <a class="reference external" href="cad-mesh">CAD-mesh</a>. This creates a volume mesh</p>
+<p>To convert a Gmsh volume .msh file for OpenFOAM, use</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gmshToFoam</span> <span class="n">meshfile</span><span class="o">.</span><span class="n">msh</span>
+</pre></div>
+</div>
+<p>Another possibility is to use CAD for a surface mesh and use the snappyHexMesh utility to adapt a blockMesh volume mesh to the surface (see OpenFOAM motorcycle tutorial).</p>
+</section>
+<section id="visualizing-the-results-post-processing">
+<h4>Visualizing the results (post-processing)<a class="headerlink" href="#visualizing-the-results-post-processing" title="Permalink to this heading"></a></h4>
+<p>Login to viz, change to the case directory, create an empty .foam file for the case</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">touch</span> <span class="n">damBreak</span><span class="o">.</span><span class="n">foam</span>
+</pre></div>
+</div>
+<p>and then use the regular ParaView</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">paraview</span>
+</pre></div>
+</div>
+<p>and open the .foam file from the menu</p>
+</section>
+<section id="comparison-of-the-execution-time">
+<h4>Comparison of the execution time<a class="headerlink" href="#comparison-of-the-execution-time" title="Permalink to this heading"></a></h4>
+<p>It is educational to check the runtime of the code using the <code class="docutils literal notranslate"><span class="pre">time</span></code> command, e.g. for the single-thread</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">time</span> <span class="n">interFoam</span>
+</pre></div>
+</div>
+<p>and for the parallel run (in the <code class="docutils literal notranslate"><span class="pre">openfoam.slurm</span></code> script)</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>time mpirun -n $SLURM_NTASKS interFoam -parallel
+</pre></div>
+</div>
+<p>As the damBreak case is quite small, it is likely that the parallel run is not faster than the sequential, due to the communication overhead.</p>
+<p>In a testrun, the resuls have been as follows:</p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>time type</th>
+<th>sequential</th>
+<th>parallel</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>real</td>
+<td>0m8.319s</td>
+<td>0m39.463s</td>
+</tr>
+<tr>
+<td>user</td>
+<td>0m6.927s</td>
+<td>1m1.755s</td>
+</tr>
+<tr>
+<td>sys</td>
+<td>0m0.432s</td>
+<td>0m2.922s</td>
+</tr>
+</tbody>
+</table><p>Lesson to be learned: Parallel computation is only useful for sufficiently large jobs.</p>
+<p><strong>NOTE: Parallel does not (necessarily) mean faster!!!</strong> Parallel execution introduces overhead (starting threads, communication)! For optimal execution time and optimal use of resources one needs to test and find the sweet spot.</p>
+<p><img alt="sweet spot" src="of-timing.png" /><img alt="sweet spot" src="of-timing2.png" /><img alt="sweet spot" src="of-timing4.png" /></p>
+<p>The division into the areas is a combined decision taking into account “real” (wall clock) and “user” (summed time of all threads) time (from the <code class="docutils literal notranslate"><span class="pre">time</span></code> command). “Wall clock” (real) time is the time one needs to wait till the job is finished, “Summed thread time” (user) is the sum of the times that all individual threads needed, it should be roughly user = numtreads x real. For parallel programs, one can expect that “user” time of the parallel run is larger than for the sequential, due to communication overhead, if it is smaller, that probably means the individual threads could make better use of cache.</p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>area</th>
+<th>why</th>
+<th>explanation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sweet spot</td>
+<td>minimal "user" time</td>
+<td>= minimal heat production, optimal use of resources</td>
+</tr>
+<tr>
+<td>good range</td>
+<td>linear speedup for "real", with constant or slightly increasing "user"</td>
+<td></td>
+</tr>
+<tr>
+<td>OK range</td>
+<td>slightly less than linear speedup for "real", and slightly increasing "user"</td>
+<td></td>
+</tr>
+<tr>
+<td>avoid</td>
+<td>ascending slope in the diagram for "real" and "user"</td>
+<td>one actually needs to wait longer compared to the case with fewer cores</td>
+</tr>
+</tbody>
+</table><p>Recommended in <em>this</em> case would be to request 8 threads <code class="docutils literal notranslate"><span class="pre">-n</span> <span class="pre">8</span> <span class="pre">--ntasks-per-node</span> <span class="pre">8</span></code> but use <code class="docutils literal notranslate"><span class="pre">mpirun</span> <span class="pre">-n</span> <span class="pre">4</span></code>. OpenFOAM does not seem to benefit from hyperthreading.</p>
+</section>
+</section>
+</section>
+<section id="star-ccm">
+<h2>STAR-CCM+<a class="headerlink" href="#star-ccm" title="Permalink to this heading"></a></h2>
+<p>Commercial license belonging to …</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright COPYRIGHT.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

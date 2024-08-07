@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Visualization software for computational chemistry, biology and physics &mdash; HPC user-guides 2024 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/extra.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #E4067E" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            HPC user-guides
+              <img src="../_static/TalTech_Gradient-200px.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../lumi.html">LUMI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cloud.html">Quickstart: Cloud</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Quickstart: Cluster</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../learning.html">Courses and introductions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules.html">Module environment (lmod)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software.html">Software packages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mpi.html">Available MPI versions (and comparison)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../performance.html">Performance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../profiling.html">Profiling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../visualization.html">Visualization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gpu.html">GPU-servers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../singularity.html">Containers (Singularity &amp; Docker)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../acknowledgement.html">Acknowledgement</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #E4067E" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">HPC user-guides</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Visualization software for computational chemistry, biology and physics</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/chemistry/visualization.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <p><span style="color:red">not changed to rocky yet</span></p>
+<section id="visualization-software-for-computational-chemistry-biology-and-physics">
+<h1>Visualization software for computational chemistry, biology and physics<a class="headerlink" href="#visualization-software-for-computational-chemistry-biology-and-physics" title="Permalink to this heading"></a></h1>
+<p>Visualization mostly should be done on <strong>viz</strong> (<a class="reference external" href="https://hpc.pages.taltech.ee/user-guides/chemistry/visualization.html#molden">Molden</a>, <a class="reference external" href="https://hpc.pages.taltech.ee/user-guides/chemistry/visualization.html#avogadro">Avogadro</a>, <a class="reference external" href="https://hpc.pages.taltech.ee/user-guides/chemistry/visualization.html#jmol">JMol</a> or <a class="reference external" href="https://hpc.pages.taltech.ee/user-guides/chemistry/visualization.html#vmd">VMD</a>), but also short-time geometry checks are possible on <strong>base</strong> (<a class="reference external" href="https://hpc.pages.taltech.ee/user-guides/chemistry/visualization.html#molden">Molden</a>, <a class="reference external" href="https://hpc.pages.taltech.ee/user-guides/chemistry/visualization.html#avogadro">Avogadro</a> or <a class="reference external" href="https://hpc.pages.taltech.ee/user-guides/chemistry/visualization.html#jmol">JMol</a>).</p>
+<br>
+<br>
+<hr style="margin-right: 0px; margin-bottom: 4px; margin-left: 0px; margin-top: -24px; border:2px solid  #d9d9d9 "></hr>
+<hr style="margin: 4px 0px; border:1px solid  #d9d9d9 "></hr><section id="short-introduction">
+<h2>Short introduction<a class="headerlink" href="#short-introduction" title="Permalink to this heading"></a></h2>
+<hr class="docutils" />
+<ol>
+<li><p>Accesse <strong>viz</strong> by <a class="reference internal" href="../visualization.html"><span class="doc">remote access programs</span></a> (more preferable) or by ssh protocol (less preferable):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="n">ssh</span> <span class="o">-</span><span class="n">X</span> <span class="o">-</span><span class="n">Y</span> <span class="o">-</span><span class="n">J</span>  <span class="n">UNI</span><span class="o">-</span><span class="n">ID</span><span class="nd">@base</span><span class="o">.</span><span class="n">hpc</span><span class="o">.</span><span class="n">taltech</span><span class="o">.</span><span class="n">ee</span> <span class="n">UNI</span><span class="o">-</span><span class="n">ID</span><span class="nd">@viz</span>
+</pre></div>
+</div>
+</li>
+<li><p>Load enviroment (gray or gray/spack/):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="n">module</span> <span class="n">load</span> <span class="n">viz</span><span class="o">-</span><span class="n">spack</span>
+ <span class="n">module</span> <span class="n">load</span> <span class="n">jmol</span>
+</pre></div>
+</div>
+</li>
+<li><p>Run visualization program (<code class="docutils literal notranslate"><span class="pre">jmol</span></code>, <code class="docutils literal notranslate"><span class="pre">molden</span></code>, <code class="docutils literal notranslate"><span class="pre">avogadro</span></code>, <code class="docutils literal notranslate"><span class="pre">vmd</span></code> or  <code class="docutils literal notranslate"><span class="pre">rasmol</span></code>):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="n">jmol</span> <span class="n">job</span><span class="o">.</span><span class="n">xyz</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+</section>
+<section id="visualization-long-version">
+<h1>Visualization long version<a class="headerlink" href="#visualization-long-version" title="Permalink to this heading"></a></h1>
+<br>
+<hr style="margin-right: 0px; margin-bottom: 4px; margin-left: 0px; margin-top: -24px; border:2px solid  #d9d9d9 "></hr>
+<hr style="margin: 4px 0px; border:1px solid  #d9d9d9 "></hr><section id="molden">
+<h2>Molden<a class="headerlink" href="#molden" title="Permalink to this heading"></a></h2>
+<hr class="docutils" />
+<p><a class="reference external" href="https://www.theochem.ru.nl/molden/">Molden</a> is a nice program for visualization the results of quantum chemical calculations.</p>
+<div class="simple1">
+Molden is a quite universal:<ul class="simple">
+<li><p>reads various input and output formats,</p></li>
+<li><p>can be used as a Z-matrix editor,</p></li>
+<li><p>shows optimization paths,</p></li>
+<li><p>animates reaction paths and molecular vibrations,</p></li>
+<li><p>displays molecular orbitals and electron densities.</p></li>
+</ul>
+</div>
+<br><section id="environment">
+<h3>Environment<a class="headerlink" href="#environment" title="Permalink to this heading"></a></h3>
+<p>On <strong>viz</strong> environment is set up by the commands:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">load</span> <span class="n">viz</span><span class="o">-</span><span class="n">spack</span>
+<span class="n">module</span> <span class="n">load</span> <span class="n">molden</span>
+</pre></div>
+</div>
+<p>On <strong>base</strong> environment is set up by the commands:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">load</span> <span class="n">green</span><span class="o">/</span><span class="nb">all</span>
+<span class="n">module</span> <span class="n">load</span> <span class="n">molden</span>
+</pre></div>
+</div>
+</section>
+<section id="running-molden">
+<h3>Running Molden<a class="headerlink" href="#running-molden" title="Permalink to this heading"></a></h3>
+<p>Molden is executed by command <code class="docutils literal notranslate"><span class="pre">molden</span></code> and reads <code class="docutils literal notranslate"><span class="pre">.xyz</span></code>, Gaussian and ORCA outputs, etc.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">molden</span> <span class="n">job</span><span class="o">.</span><span class="n">out</span>
+</pre></div>
+</div>
+<div class="simple1">
+Some useful links:<ul class="simple">
+<li><p><a class="reference external" href="https://www.theochem.ru.nl/molden/">Molden manual</a></p></li>
+<li><p>Building molecule <a class="reference external" href="https://www.youtube.com/watch?v=t-Lf2ti6fxE">video</a></p></li>
+<li><p>Calculation results visualization <a class="reference external" href="https://www.youtube.com/watch?v=sRvuJno1zW4">video</a> (includes showing optimization path and molecular vibrations)</p></li>
+</ul>
+</div>
+<br><p><img alt="molden" src="../_images/molden.png" /></p>
+</section>
+<section id="how-to-cite">
+<h3>How to cite:<a class="headerlink" href="#how-to-cite" title="Permalink to this heading"></a></h3>
+<div class="simple1">
+Molden 6.7:<ul class="simple">
+<li><p><a class="reference external" href="https://link.springer.com/article/10.1007/s10822-017-0042-5">DOI:10.1007/s10822-017-0042-5</a></p></li>
+<li><p><a class="reference external" href="https://link.springer.com/article/10.1023/A:1008193805436">DOI:10.1023/A:1008193805436</a></p></li>
+</ul>
+</div>
+<br>
+<br> 
+<br>
+<hr style="margin-right: 0px; margin-bottom: 4px; margin-left: 0px; margin-top: -24px; border:2px solid  #d9d9d9 "></hr>
+<hr style="margin: 4px 0px; border:1px solid  #d9d9d9 "></hr></section>
+</section>
+<section id="avogadro">
+<h2>Avogadro<a class="headerlink" href="#avogadro" title="Permalink to this heading"></a></h2>
+<hr class="docutils" />
+<p><a class="reference external" href="https://avogadro.cc/docs/">Avogadro</a> is an advanced molecule editor and visualizer designed for computational chemistry, molecular modeling, bioinformatics, materials science, and related areas.</p>
+<div class="simple1">
+Avogado has many useful options:<ul class="simple">
+<li><p>construction of molecules from fragments,</p></li>
+<li><p>Z-matrix generation,</p></li>
+<li><p>geometry optimization,</p></li>
+<li><p>measurements,</p></li>
+<li><p>performing a conformational search,</p></li>
+<li><p>reading various input and output formats,</p></li>
+<li><p>showing of molecular orbitals and electron density,</p></li>
+<li><p>animation of reaction paths and molecular vibrations,</p></li>
+<li><p>construction of IR spectra.</p></li>
+</ul>
+</div>
+<br><section id="id1">
+<h3>Environment<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h3>
+<p>On <strong>viz</strong> there is a native install of Avogadro (no modules needed).</p>
+<p>On <strong>base</strong> environment is set up by the commands:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">load</span> <span class="n">green</span><span class="o">/</span><span class="nb">all</span>
+<span class="n">module</span> <span class="n">load</span> <span class="n">Avogadro</span>
+</pre></div>
+</div>
+</section>
+<section id="running-avogadro">
+<h3>Running Avogadro<a class="headerlink" href="#running-avogadro" title="Permalink to this heading"></a></h3>
+<p>Avogadro is executed by command <code class="docutils literal notranslate"><span class="pre">avogadro</span></code> and reads various input and output formats.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="n">avogadro</span> <span class="n">job</span><span class="o">.</span><span class="n">log</span>
+</pre></div>
+</div>
+<div class="simple1">
+Some useful links:<ul class="simple">
+<li><p><a class="reference external" href="avogadro.pdf">Avogadro manual</a></p></li>
+<li><p>Building molecule <a class="reference external" href="https://www.youtube.com/watch?v=LOZswm07j0U">video I</a>, <a class="reference external" href="https://www.youtube.com/watch?v=UWR4hPbtrHE">video II</a>, <a class="reference external" href="https://www.youtube.com/watch?v=fA3odPmkV-U">video III</a>, <a class="reference external" href="https://www.youtube.com/watch?v=6O4DEoETAnU">changing molecule</a> (including optimization)</p></li>
+<li><p>Orbitals visualization <a class="reference external" href="https://www.youtube.com/watch?v=WpyqqDwspoo">video</a></p></li>
+<li><p>Molecular vibrations &amp; IR spectra <a class="reference external" href="https://www.youtube.com/watch?v=AScn1OuyBoY">video</a></p></li>
+</ul>
+</div>
+<br> <p><img alt="Avogadro" src="../_images/avogadro.png" /></p>
+</section>
+<section id="id2">
+<h3>How to cite:<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>Avogadro 1.2.0 available at <a class="reference external" href="http://avogadro.cc/">http://avogadro.cc/</a></p></li>
+<li><p><a class="reference external" href="https://jcheminf.biomedcentral.com/articles/10.1186/1758-2946-4-17">DOI: 10.1186/1758-2946-4-17</a></p></li>
+</ul>
+<br> 
+<br> 
+<br>
+<hr style="margin-right: 0px; margin-bottom: 4px; margin-left: 0px; margin-top: -24px; border:2px solid  #d9d9d9 "></hr>
+<hr style="margin: 4px 0px; border:1px solid  #d9d9d9 "></hr></section>
+</section>
+<section id="jmol">
+<h2>JMol<a class="headerlink" href="#jmol" title="Permalink to this heading"></a></h2>
+<hr class="docutils" />
+<p><a class="reference external" href="http://jmol.sourceforge.net/">JMol</a> is a free, open source viewer of molecular structures that supports a wide range of chemical file formats.</p>
+<div class="simple1">
+JMol has following possibilities:<ul class="simple">
+<li><p>visualization of animation,</p></li>
+<li><p>visualization of vibration,</p></li>
+<li><p>visualization of surfaces,</p></li>
+<li><p>visualization of orbitals,</p></li>
+<li><p>schematic shapes for secondary structures in biomolecules,</p></li>
+<li><p>measurements.</p></li>
+</ul>
+</div>
+<br><section id="id3">
+<h3>Environment<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h3>
+<p>On <strong>viz</strong> environment is set up by the commands:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">load</span> <span class="n">green</span><span class="o">-</span><span class="n">spack</span>
+<span class="n">module</span> <span class="n">load</span> <span class="n">jmol</span>
+</pre></div>
+</div>
+<p>On <strong>base</strong> by the commands:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">load</span> <span class="n">green</span><span class="o">-</span><span class="n">spack</span> 
+<span class="n">module</span> <span class="n">load</span> <span class="n">jmol</span>
+</pre></div>
+</div>
+</section>
+<section id="running-jmol">
+<h3>Running JMol<a class="headerlink" href="#running-jmol" title="Permalink to this heading"></a></h3>
+<p>JMol is executed by command <code class="docutils literal notranslate"><span class="pre">jmol</span></code> and reads <code class="docutils literal notranslate"><span class="pre">.xyz</span></code>, <code class="docutils literal notranslate"><span class="pre">.pdb</span></code>, <code class="docutils literal notranslate"><span class="pre">.mol</span></code> formats, etc.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">jmol</span> <span class="n">job</span><span class="o">.</span><span class="n">pdb</span>
+</pre></div>
+</div>
+<p><img alt="JMol" src="../_images/jmol.png" /></p>
+</section>
+<section id="id4">
+<h3>How to cite:<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h3>
+<p>Jmol 14.31.0: an open-source Java viewer for chemical structures in 3D. Available at <a class="reference external" href="http://www.jmol.org/">http://www.jmol.org/</a>.</p>
+<br>
+<br>
+<hr style="margin-right: 0px; margin-bottom: 4px; margin-left: 0px; margin-top: -24px; border:2px solid  #d9d9d9 "></hr>
+<hr style="margin: 4px 0px; border:1px solid  #d9d9d9 "></hr></section>
+</section>
+<section id="vmd">
+<h2>VMD<a class="headerlink" href="#vmd" title="Permalink to this heading"></a></h2>
+<hr class="docutils" />
+<p><a class="reference external" href="http://www.ks.uiuc.edu/Research/vmd/">Visual Molecular Dynamics (VMD)</a> is a molecular modelling and visualization program designed of biological systems. It supports over 60 file formats and has user-extensible graphical and text-based interfaces, as well as built-on standard Tcl/Tk and Python scripting languages. VMD provides a wide range of methods for visualizing and coloring molecules or atom subsets and an extensive selection syntax for subsets of atoms and has no limits on the number of molecules, atoms, residues or trajectory frames.</p>
+<div class="simple1">
+VMD has the following features:<ul class="simple">
+<li><p>animation of MD trajectories,</p></li>
+<li><p>analysis of MD trajectories,</p></li>
+<li><p>analysis of sequences and structures of proteins and nucleic acids,</p></li>
+<li><p>ability to export graphics to files that can be processed by ray tracing and image rendering packages,</p></li>
+<li><p>ability to write molecular analysis programs in the Tcl language.</p></li>
+</ul>
+</div>
+<br><div class="simple1">
+Some useful links:<ul class="simple">
+<li><p><a class="reference external" href="vmd.pdf">VMD manual</a></p></li>
+<li><p><a class="reference external" href="http://www.ks.uiuc.edu/Research/vmd/current/docs.html#tutorials">Many tutorials</a></p></li>
+<li><p>Short introduction <a class="reference external" href="https://www.youtube.com/watch?v=0KxdmnbodNw">video</a></p></li>
+<li><p>Long introduction <a class="reference external" href="https://www.youtube.com/watch?v=_skmrS6X4Ys">video</a></p></li>
+</ul>
+</div>
+<br><section id="id5">
+<h3>Environment<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h3>
+<p>The first time use, the user has to read the license at https://www.ks.uiuc.edu/Research/vmd/current/LICENSE.html the software can only be used if the license is accepted! If you agree to the license, do:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">touch</span> <span class="o">~/.</span><span class="n">licenses</span><span class="o">/</span><span class="n">vmd</span><span class="o">-</span><span class="n">accepted</span> 
+</pre></div>
+</div>
+<p>after that it is needed to unload module and load it again by commands:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">unload</span> <span class="n">VMD</span><span class="o">/</span><span class="mf">1.9.3</span><span class="o">-</span><span class="n">text</span>
+<span class="n">module</span> <span class="n">load</span> <span class="n">VMD</span>
+</pre></div>
+</div>
+<p>if this is the first time you accept a license agreement, the following commands should be given:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="o">.</span><span class="n">licenses</span>
+<span class="n">touch</span> <span class="o">~/.</span><span class="n">licenses</span><span class="o">/</span><span class="n">vmd</span><span class="o">-</span><span class="n">accepted</span> 
+<span class="n">module</span> <span class="n">unload</span> <span class="n">VMD</span><span class="o">/</span><span class="mf">1.9.3</span><span class="o">-</span><span class="n">text</span>
+<span class="n">module</span> <span class="n">load</span> <span class="n">VMD</span>
+</pre></div>
+</div>
+<p>On <strong>viz</strong> environment is set up by the commands:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">load</span> <span class="n">viz</span>
+<span class="n">module</span> <span class="n">load</span> <span class="n">VMD</span>
+</pre></div>
+</div>
+<p>On <strong>base</strong> environment is set up by the commands:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">load</span> <span class="n">green</span>
+<span class="n">module</span> <span class="n">load</span> <span class="n">VMD</span> 
+</pre></div>
+</div>
+<p>User also needs to agree with the licenses, as described above.</p>
+</section>
+<section id="running-vmd">
+<h3>Running VMD<a class="headerlink" href="#running-vmd" title="Permalink to this heading"></a></h3>
+<p>VMD is executed by command <code class="docutils literal notranslate"><span class="pre">vmd</span></code> and reads various input and output formats.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">vmd</span> <span class="n">job</span><span class="o">.</span><span class="n">mol</span>
+</pre></div>
+</div>
+<p><img alt="VMD" src="../_images/vmd.png" /></p>
+</section>
+<section id="id6">
+<h3>How to cite:<a class="headerlink" href="#id6" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>VMD 1.9.4 available at <a class="reference external" href="http://www.ks.uiuc.edu/Research/vmd/">http://www.ks.uiuc.edu/Research/vmd/</a></p></li>
+<li><p>DOI:<a class="reference external" href="https://www.sciencedirect.com/science/article/abs/pii/0263785596000185">10.1016/0263-7855(96)00018-5</a></p></li>
+</ul>
+<br><div class="simple1">
+<b>In addition, the following articles should be cited depending on the functionalities used:</b><ul class="simple">
+<li><p>Interactive Molecular Dynamics - DOI:<a class="reference external" href="https://dl.acm.org/doi/10.1145/364338.364398">10.1145/364338.364398</a></p></li>
+<li><p>Multiple Alignment Plugin - DOI:<a class="reference external" href="https://academic.oup.com/bioinformatics/article/22/4/504/184006">10.1093/bioinformatics/bti825</a></p></li>
+<li><p>Tachyon ray tracing library - John Stone <a class="reference external" href="https://scholarsmine.mst.edu/cgi/viewcontent.cgi?article=2746&amp;context=masters_theses">“An Efficient Library for Parallel Ray Tracing and Animation”</a>, <em>Computer Science Department, University of Missouri-Rolla,</em> <strong>1998</strong></p></li>
+<li><p>STRIDE Secondary Structure Prediction - DOI:<a class="reference external" href="https://onlinelibrary.wiley.com/doi/abs/10.1002/prot.340230412?casa_token=RH2f-1gBiPAAAAAA:dB4V2-CCPt_VIL_cv5Hi9U5S_blWaykCF69Mu5hfXNhKBd8r1PXeUD-2GHRsKFYgRI8ZLqNiG_2b0uwXtw">10.1002/prot.340230412</a></p></li>
+<li><p>SURF solvent accessible surface calculator - DOI:<a class="reference external" href="https://ieeexplore.ieee.org/document/310720">10.1109/38.310720</a></p></li>
+<li><p>MSMS solvent excluded surface calculator - DOI:<a class="reference external" href="https://dl.acm.org/doi/10.1145/220279.220324">doi/10.1145/220279.220324</a></p></li>
+<li><p>Speech and gesture recognition - DOI:<a class="reference external" href="https://ieeexplore.ieee.org/document/824531">10.1109/38.824531</a></p></li>
+</ul>
+</div>
+<br>
+<br>
+<br>
+<hr style="margin-right: 0px; margin-bottom: 4px; margin-left: 0px; margin-top: -24px; border:2px solid  #d9d9d9 "></hr>
+<hr style="margin: 4px 0px; border:1px solid  #d9d9d9 "></hr></section>
+</section>
+<section id="rasmol">
+<h2>RasMol<a class="headerlink" href="#rasmol" title="Permalink to this heading"></a></h2>
+<hr class="docutils" />
+<p><a class="reference external" href="http://www.openrasmol.org/">RasMol</a> is a molecular graphics program for visualisation of proteins, nucleic acids and small molecules.  RasMol provides  a variety of colour schemes and molecule representations. In RasMol, different parts of the molecule may be represented and coloured independently of the rest of the molecule or displayed in several representations simultaneously, and atoms may also be labelled with arbitrary text strings. In addition, RasMol can read a prepared list of commands from a ‘script’ file.
+Supported input file formats are <code class="docutils literal notranslate"><span class="pre">.pdb</span></code>, <code class="docutils literal notranslate"><span class="pre">.mol2</span></code>, <code class="docutils literal notranslate"><span class="pre">.mdl</span></code>, <code class="docutils literal notranslate"><span class="pre">.msc</span></code>, <code class="docutils literal notranslate"><span class="pre">.xyz</span></code>, <code class="docutils literal notranslate"><span class="pre">.xmol</span></code>, CHARMm and CIF formats files.
+Finally, the rendered image may be written in a variety of formats such as GIF, PPM, BMP, PICT, Sun rasterfile or as a MolScript input script or Kinemage.</p>
+<p>RasMol is available on <strong>viz</strong> just by common <code class="docutils literal notranslate"><span class="pre">rasmol</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rasmol</span> <span class="n">job</span><span class="o">.</span><span class="n">mol</span>
+</pre></div>
+</div>
+<div class="simple1">
+Some useful links:<ul class="simple">
+<li><p><a class="reference external" href="http://www.rasmol.org/software/RasMol_Latest_Manual.html">RasMol manual</a></p></li>
+<li><p>tutorial for beginners <a class="reference external" href="https://www.youtube.com/watch?v=cq5lpR2Hqgw">part 1</a>, <a class="reference external" href="https://www.youtube.com/watch?v=HXIkwW539jU">part 2</a></p></li>
+</ul>
+</div>
+<br><section id="id7">
+<h3>How to cite:<a class="headerlink" href="#id7" title="Permalink to this heading"></a></h3>
+<p>Herbert J. Bernstein, 2009. RasMol, available at: <a class="reference external" href="http://www.rasmol.org/">http://www.rasmol.org/</a>.
+<br>
+<br></p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright COPYRIGHT.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

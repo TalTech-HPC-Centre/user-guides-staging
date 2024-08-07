@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Multiwfn &mdash; HPC user-guides 2024 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/extra.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #E4067E" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            HPC user-guides
+              <img src="../_static/TalTech_Gradient-200px.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../lumi.html">LUMI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cloud.html">Quickstart: Cloud</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Quickstart: Cluster</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../learning.html">Courses and introductions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules.html">Module environment (lmod)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software.html">Software packages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mpi.html">Available MPI versions (and comparison)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../performance.html">Performance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../profiling.html">Profiling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../visualization.html">Visualization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gpu.html">GPU-servers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../singularity.html">Containers (Singularity &amp; Docker)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../acknowledgement.html">Acknowledgement</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #E4067E" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">HPC user-guides</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Multiwfn</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/chemistry/multiwfn.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="multiwfn">
+<h1>Multiwfn<a class="headerlink" href="#multiwfn" title="Permalink to this heading"></a></h1>
+<p><em><strong>This manual is work in progress, please check regularly for updates</strong></em></p>
+<br>
+<hr style="margin-right: 0px; margin-bottom: 4px; margin-left: 0px; margin-top: -24px; border:2px solid  #d9d9d9 "></hr>
+<hr style="margin: 4px 0px; border:1px solid  #d9d9d9 "></hr><section id="multiwfn-short-introduction">
+<h2>Multiwfn short introduction<a class="headerlink" href="#multiwfn-short-introduction" title="Permalink to this heading"></a></h2>
+<hr class="docutils" />
+<ol>
+<li><p>Make Multiwfn input <code class="docutils literal notranslate"><span class="pre">.mwfn</span></code>, <code class="docutils literal notranslate"><span class="pre">.wfn</span></code>, <code class="docutils literal notranslate"><span class="pre">.wfx</span></code>, <code class="docutils literal notranslate"><span class="pre">.fch</span></code>, <code class="docutils literal notranslate"><span class="pre">.molden</span></code>, <code class="docutils literal notranslate"><span class="pre">.gms</span></code> (or <code class="docutils literal notranslate"><span class="pre">.cub</span></code>, <code class="docutils literal notranslate"><span class="pre">.grd</span></code>, <code class="docutils literal notranslate"><span class="pre">.pdb</span></code>, <code class="docutils literal notranslate"><span class="pre">.xyz</span></code>, <code class="docutils literal notranslate"><span class="pre">.mol</span></code> - for specific purposes).</p></li>
+<li><p>Accesse <strong>viz</strong> by <a class="reference internal" href="../visualization.html"><span class="doc">remote access programs</span></a> (more preferable) or by ssh protocol (less preferable):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="n">ssh</span> <span class="o">-</span><span class="n">X</span> <span class="o">-</span><span class="n">Y</span> <span class="o">-</span><span class="n">J</span>  <span class="n">UNI</span><span class="o">-</span><span class="n">ID</span><span class="nd">@base</span><span class="o">.</span><span class="n">hpc</span><span class="o">.</span><span class="n">taltech</span><span class="o">.</span><span class="n">ee</span> <span class="n">UNI</span><span class="o">-</span><span class="n">ID</span><span class="nd">@viz</span>
+</pre></div>
+</div>
+</li>
+<li><p>Load enviroment:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="n">module</span> <span class="n">use</span> <span class="o">/</span><span class="n">gpfs</span><span class="o">/</span><span class="n">mariana</span><span class="o">/</span><span class="n">modules</span><span class="o">/</span><span class="n">green</span><span class="o">/</span><span class="n">chemistry</span><span class="o">/</span>
+ <span class="n">module</span> <span class="n">load</span> <span class="n">MultiWFN</span><span class="o">/</span><span class="mf">3.7</span>
+</pre></div>
+</div>
+</li>
+<li><p>Run Multiwfn in interactive mode:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="n">srun</span> <span class="n">Multiwfn</span> <span class="n">job</span><span class="o">.</span><span class="n">wfn</span>
+</pre></div>
+</div>
+<p>Multiwfn also can be run by <a class="reference external" href="multiwfn.slurm">multiwfn.slurm</a> batch script as a non-interactive mode with pre-prepared responses:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="c1">#!/bin/bash</span>
+ <span class="c1">#SBATCH --nodes=1</span>
+ <span class="c1">#SBATCH --ntasks=1</span>
+ <span class="c1">#SBATCH --job-name=test</span>
+ <span class="c1">#SBATCH --mem=2GB</span>
+ <span class="c1">#SBATCH -t 1:00</span>
+ <span class="c1">#SBATCH --partition=short</span>
+
+ <span class="n">module</span> <span class="n">load</span> <span class="n">green</span><span class="o">/</span><span class="nb">all</span>
+ <span class="n">module</span> <span class="n">load</span> <span class="n">MultiWFN</span><span class="o">/</span><span class="mf">3.7</span> 
+
+ <span class="n">Multiwfn</span>  <span class="n">job</span><span class="o">.</span><span class="n">wfn</span> <span class="o">&lt;&lt;</span> <span class="n">EOF</span> <span class="o">&gt;</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">null</span>
+ <span class="mi">2</span>
+ <span class="mi">2</span>
+ <span class="o">-</span><span class="mi">4</span>
+ <span class="mi">6</span>
+ <span class="mi">0</span>
+ <span class="o">-</span><span class="mi">10</span>
+ <span class="mi">100</span>
+ <span class="mi">2</span>
+ <span class="mi">1</span>
+ <span class="n">mol</span><span class="o">.</span><span class="n">pdb</span>
+ <span class="n">q</span>
+ <span class="n">EOF</span>
+</pre></div>
+</div>
+<p>In this case job is submitted using <code class="docutils literal notranslate"><span class="pre">sbatch</span></code> command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="n">sbatch</span> <span class="n">multiwfn</span><span class="o">.</span><span class="n">slurm</span>
+</pre></div>
+</div>
+</li>
+<li><p>Visualize results if needed:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="n">display</span> <span class="n">job</span><span class="o">.</span><span class="n">png</span>
+</pre></div>
+</div>
+<p>or</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="n">module</span> <span class="n">use</span> <span class="o">/</span><span class="n">gpfs</span><span class="o">/</span><span class="n">mariana</span><span class="o">/</span><span class="n">modules</span><span class="o">/</span><span class="n">gray</span><span class="o">/</span><span class="n">spack</span><span class="o">/</span>
+ <span class="n">module</span> <span class="n">load</span> <span class="n">vmd</span>
+ <span class="n">vmd</span> <span class="n">job</span><span class="o">.</span><span class="n">pdb</span>
+</pre></div>
+</div>
+<p><em><strong>NB!</strong></em> It is recommended to visualize Multiwfn results in VMD program, corresponding scripts are provided in Multiwfn examples <em>(/gpfs/mariana/software/green/MultiWFN/Multiwfn_3.7_bin_Linux/examples/)</em>.</p>
+</li>
+</ol>
+<br>
+<hr style="margin-right: 0px; margin-bottom: 4px; margin-left: 0px; margin-top: -24px; border:2px solid  #d9d9d9 "></hr>
+<hr style="margin: 4px 0px; border:1px solid  #d9d9d9 "></hr></section>
+<section id="multiwfn-long-version">
+<h2>Multiwfn long version<a class="headerlink" href="#multiwfn-long-version" title="Permalink to this heading"></a></h2>
+<hr class="docutils" />
+<section id="options">
+<h3>Options<a class="headerlink" href="#options" title="Permalink to this heading"></a></h3>
+<p>Multiwfn is an interactive program performing almost all of important wavefunction analyszes <em>(showing molecular structure and orbitals, calculating real space function, topology analysis, population analysis, orbital composition analysis, bond order/strength analysis, plotting population density-of-states, plotting various kinds of spectra (including conformational weighted spectrum), quantitative analysis of molecular surface, charge decomposition analysis, basin analysis, electron excitation analyses, orbital localization analysis, visual study of weak interaction, conceptual density functional theory (CDFT) analysis, energy decomposition analysis).</em></p>
+<p>For many frequently used analyszes Multiwfn has <a class="reference external" href="https://www.youtube.com/user/sobereva">short youtube videos</a> and “quick start” examples <em>(/gpfs/mariana/software/green/MultiWFN/Multiwfn_3.7_bin_Linux/examples/).</em> More information can be found in the <a class="reference external" href="Manual_Multiwfn.pdf">manual</a>.</p>
+</section>
+<section id="input">
+<h3>Input<a class="headerlink" href="#input" title="Permalink to this heading"></a></h3>
+<p>As an input Multiwfn uses output files of other quantum chemistry programs, including Gaussian, ORCA, GAMESS-US, NWChem, xtb, Turbomole. For example, <code class="docutils literal notranslate"><span class="pre">.wfn</span></code> (wavefunction file), <code class="docutils literal notranslate"><span class="pre">.fch</span></code> (Gaussian check file), <code class="docutils literal notranslate"><span class="pre">.molden</span></code> (Molden input file), <code class="docutils literal notranslate"><span class="pre">.gms</span></code> (GAMESS-US output file), <code class="docutils literal notranslate"><span class="pre">.mwfn</span></code> (Multiwfn wavefunction file). Other types of files, such as  such as <code class="docutils literal notranslate"><span class="pre">.cub</span></code>, <code class="docutils literal notranslate"><span class="pre">.grd</span></code>, <code class="docutils literal notranslate"><span class="pre">.pdb</span></code>, <code class="docutils literal notranslate"><span class="pre">.xyz</span></code>, <code class="docutils literal notranslate"><span class="pre">.log</span></code>, <code class="docutils literal notranslate"><span class="pre">.out</span></code>  and <code class="docutils literal notranslate"><span class="pre">.mol</span></code> files, may be used in certain cases and purposes.</p>
+</section>
+<section id="environment">
+<h3>Environment<a class="headerlink" href="#environment" title="Permalink to this heading"></a></h3>
+<p>On <strong>viz</strong> environment is set up by the commands:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">use</span> <span class="o">/</span><span class="n">gpfs</span><span class="o">/</span><span class="n">mariana</span><span class="o">/</span><span class="n">modules</span><span class="o">/</span><span class="n">green</span><span class="o">/</span><span class="n">chemistry</span><span class="o">/</span>
+<span class="n">module</span> <span class="n">load</span> <span class="n">MultiWFN</span><span class="o">/</span><span class="mf">3.7</span> 
+</pre></div>
+</div>
+<p>The first time use, user has to agree to the licenses:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">touch</span> <span class="o">~/.</span><span class="n">licenses</span><span class="o">/</span><span class="n">multiwfn</span><span class="o">-</span><span class="n">accepted</span> 
+</pre></div>
+</div>
+<p>if this is the first user license agreement, the following commands should be given:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="o">.</span><span class="n">licenses</span>
+<span class="n">touch</span> <span class="o">~/.</span><span class="n">licenses</span><span class="o">/</span><span class="n">multiwfn</span><span class="o">-</span><span class="n">accepted</span> 
+</pre></div>
+</div>
+<p><em><strong>NB!</strong></em> After agreeing to the license, user has to log out and log in again to be able run <code class="docutils literal notranslate"><span class="pre">Multiwfn</span></code>.</p>
+<p>On <strong>base</strong> environment is set up by the commands:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">load</span> <span class="n">rocky8</span><span class="o">/</span><span class="nb">all</span>
+<span class="n">module</span> <span class="n">load</span> <span class="n">MultiWFN</span><span class="o">/</span><span class="mf">3.7</span> 
+</pre></div>
+</div>
+<p>User also needs to agree with the licenses, as described above.</p>
+</section>
+<section id="running-multiwfn">
+<h3>Running Multiwfn<a class="headerlink" href="#running-multiwfn" title="Permalink to this heading"></a></h3>
+<p><em><strong>NB!</strong></em>
+Since Multiwfn has a lot of functionality, we recommend that the user first study the corresponding section in the manuals (<a class="reference external" href="Manual_Multiwfn.pdf">text</a>, <a class="reference external" href="https://www.youtube.com/user/sobereva">video</a>) or examples <em>(/gpfs/mariana/software/green/MultiWFN/Multiwfn_3.7_bin_Linux/examples/).</em> This will greatly simplify the selection of answers in the interactive menu.</p>
+<p>The best practice is to try to reproduce something from the examples folder. To do this, the corresponding files will need to be copied to the user’s derictory using the following commands:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="n">examples</span>
+<span class="n">cp</span> <span class="o">-</span><span class="n">r</span> <span class="o">/</span><span class="n">gpfs</span><span class="o">/</span><span class="n">mariana</span><span class="o">/</span><span class="n">software</span><span class="o">/</span><span class="n">green</span><span class="o">/</span><span class="n">MultiWFN</span><span class="o">/</span><span class="n">Multiwfn_3</span><span class="mf">.7</span><span class="n">_bin_Linux</span><span class="o">/</span><span class="n">examples</span><span class="o">/*</span> <span class="n">examples</span><span class="o">/</span>
+</pre></div>
+</div>
+<p><em><strong>NB!</strong></em> The user can run Multiwfn only from his own folder, not from the shared.</p>
+<p>For visualization that does not perform additional calculations, but only reads outputs (for example spectra visualization), Multiwfn can be run in interactive mode using <code class="docutils literal notranslate"><span class="pre">srun</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">srun</span> <span class="n">Multiwfn</span> <span class="n">job</span><span class="o">.</span><span class="n">log</span>
+</pre></div>
+</div>
+<p>or using several threads (here - 4):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">srun</span> <span class="o">-</span><span class="n">n</span> <span class="mi">4</span> <span class="n">Multiwfn</span> <span class="n">job</span><span class="o">.</span><span class="n">log</span>
+</pre></div>
+</div>
+<p>To exit interactive mode press <code class="docutils literal notranslate"><span class="pre">q</span></code> key.</p>
+<p>For jobs connected to electron density analysis especially in large systems it is recommended to run <a class="reference external" href="multiwfn.slurm">multiwfn.slurm</a> batch script with pre-prepared responses. Below is shown slurm script for Critical Points (CPs) search using job.wfn:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+<span class="c1">#SBATCH --nodes=1</span>
+<span class="c1">#SBATCH --ntasks=1</span>
+<span class="c1">#SBATCH --job-name=test</span>
+<span class="c1">#SBATCH --mem=2GB</span>
+<span class="c1">#SBATCH -t 1:00</span>
+<span class="c1">#SBATCH --partition=short</span>
+
+<span class="n">module</span> <span class="n">load</span> <span class="n">rocky8</span><span class="o">/</span><span class="nb">all</span>
+<span class="n">module</span> <span class="n">load</span> <span class="n">MultiWFN</span><span class="o">/</span><span class="mf">3.7</span> 
+
+<span class="n">Multiwfn</span>  <span class="n">job</span><span class="o">.</span><span class="n">wfn</span> <span class="o">&lt;&lt;</span> <span class="n">EOF</span> <span class="o">&gt;</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">null</span>
+<span class="mi">2</span>
+<span class="mi">2</span>
+<span class="o">-</span><span class="mi">4</span>
+<span class="mi">6</span>
+<span class="mi">0</span>
+<span class="o">-</span><span class="mi">10</span>
+<span class="mi">100</span>
+<span class="mi">2</span>
+<span class="mi">1</span>
+<span class="n">mol</span><span class="o">.</span><span class="n">pdb</span>
+<span class="n">q</span>
+<span class="n">EOF</span>
+</pre></div>
+</div>
+<p>Job is submitted by <code class="docutils literal notranslate"><span class="pre">sbatch</span></code> command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sbatch</span> <span class="n">multiwfn</span><span class="o">.</span><span class="n">slurm</span>   
+</pre></div>
+</div>
+</section>
+<section id="results-visualization">
+<h3>Results visualization<a class="headerlink" href="#results-visualization" title="Permalink to this heading"></a></h3>
+<p>By default, plots made by Multiwfn will be written in the <code class="docutils literal notranslate"><span class="pre">.png</span></code> format and can be visualized by command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">display</span> <span class="n">job</span><span class="o">.</span><span class="n">png</span>
+</pre></div>
+</div>
+<p>Although Multiwfn has its own graphical interface, we recommend to visualize Multiwfn results in VMD (Visual Molecular Dynamics) program, corresponding scripts are provided in Multiwfn  examples <em>(/gpfs/mariana/software/green/MultiWFN/Multiwfn_3.7_bin_Linux/examples/)</em> (with <code class="docutils literal notranslate"><span class="pre">.vmd</span></code> extensions). More about visualization on <strong>viz</strong> can be found <a class="reference internal" href="../visualization.html"><span class="doc">here</span></a> and about VMD - <a class="reference external" href="https://hpc.pages.taltech.ee/user-guides/chemistry/visualization.html#vmd">here</a>.</p>
+<p>On <strong>base</strong> VMD environment is set up by the commands:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">load</span> <span class="n">green</span>
+<span class="n">module</span> <span class="n">load</span> <span class="n">VMD</span> 
+</pre></div>
+</div>
+<p>VMD is run by command <code class="docutils literal notranslate"><span class="pre">vmd</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">vmd</span> <span class="n">job</span><span class="o">.</span><span class="n">pdb</span>
+</pre></div>
+</div>
+<section id="how-to-cite">
+<h4>How to cite:<a class="headerlink" href="#how-to-cite" title="Permalink to this heading"></a></h4>
+<p><strong>Citing the original paper of Multiwfn is mandatory</strong> - DOI: <a class="reference external" href="https://onlinelibrary.wiley.com/doi/abs/10.1002/jcc.22885">10.1002/jcc.22885</a></p>
+<div class="simple1">
+<b>In addition, the following articles should be cited depending on the analyzes performed:</b><ul class="simple">
+<li><p>Quantitative molecular surface analysis (main function 12) - DOI:<a class="reference external" href="https://www.sciencedirect.com/science/article/abs/pii/S1093326312000903">10.1016/j.jmgm.2012.07.004</a></p></li>
+<li><p>Hole-electron analysis (subfunction 1 of main function 18) - DOI:<a class="reference external" href="https://www.sciencedirect.com/science/article/abs/pii/S0008622320304644">10.1016/j.carbon.2020.05.023</a></p></li>
+<li><p>Electrostatic potential evaluation algorithm - DOI:<a class="reference external" href="https://pubs.rsc.org/en/content/articlelanding/2021/cp/d1cp02805g">10.1039/D1CP02805G</a></p></li>
+<li><p>Orbital composition analysis (main function 8). - <em>Tian Lu, Feiwu Chen, Calculation of Molecular Orbital Composition, Acta Chim. Sinica, 69, 2393-2406 (2011)</em> (in Chinese) (<a class="reference external" href="http://sioc-journal.cn/Jwk_hxxb/CN/abstract/abstract340458.shtml">http://sioc-journal.cn/Jwk_hxxb/CN/abstract/abstract340458.shtml</a>)</p></li>
+<li><p>Charge decomposition analysis (CDA) (main function 16) - <em>Meng Xiao, Tian Lu, Generalized Charge Decomposition Analysis (GCDA) Method,
+Journal of Advances in Physical Chemistry, 4, 111-124 (2015)</em> (in Chinese) (<a class="reference external" href="http://dx.doi.org/10.12677/JAPC.2015.44013">http://dx.doi.org/10.12677/JAPC.2015.44013</a>)</p></li>
+<li><p>Atomic dipole moment corrected Hirshfeld (ADCH) - DOI:<a class="reference external" href="https://www.worldscientific.com/doi/10.1142/S0219633612500113">10.1142/S0219633612500113</a></p></li>
+<li><p>Population analysis module (main function 7) - DOI:<a class="reference external" href="http://www.whxb.pku.edu.cn/EN/10.3866/PKU.WHXB2012281">10.3866/PKU.WHXB2012281</a></p></li>
+<li><p>Laplacian bond order (LBO) - DOI: <a class="reference external" href="https://pubs.acs.org/doi/10.1021/jp4010345">10.1021/jp4010345</a></p></li>
+<li><p>Statistical analysis of area in different ESP ranges on vdW surface - DOI:<a class="reference external" href="https://pubs.acs.org/doi/10.1021/jp4010345">10.1007/s11224-014-0430-6</a></p></li>
+<li><p>Charge-transfer spectrum  - DOI:<a class="reference external" href="https://www.sciencedirect.com/science/article/abs/pii/S0008622321010745?via%3Dihub">10.1016/j.carbon.2021.11.005</a></p></li>
+<li><p>Electron localization function (ELF) - DOI:<a class="reference external" href="http://www.whxb.pku.edu.cn/EN/10.3866/PKU.WHXB20112786">10.3866/PKU.WHXB20112786</a></p></li>
+<li><p>Analysis of valence electron and deformation density - DOI:<a class="reference external" href="http://www.whxb.pku.edu.cn/EN/10.3866/PKU.WHXB201709252">10.3866/PKU.WHXB201709252</a></p></li>
+<li><p>Predicting binding energy of hydrogen bonds based properties of bond critical point - DOI:<a class="reference external" href="https://onlinelibrary.wiley.com/doi/abs/10.1002/jcc.26068">10.1002/jcc.26068</a></p></li>
+<li><p>electron analysis based on localized molecular orbitals (e.g. subfunction 22 of main function 100) - DOI:<a class="reference external" href="https://link.springer.com/article/10.1007/s00214-019-2541-z">10.1007/s00214-019-2541-z</a></p></li>
+<li><p>van der Waals potential analysis (subfunction 6 of main function 20) - DOI:<a class="reference external" href="https://pubmed.ncbi.nlm.nih.gov/33098007/">10.1007/s00894-020-04577-0</a></p></li>
+<li><p>Interaction region indicator (IRI) (subfunction 4 of main function 20) - DOI:<a class="reference external" href="https://chemistry-europe.onlinelibrary.wiley.com/doi/10.1002/cmtd.202100007">10.1002/cmtd.202100007</a></p></li>
+<li><p>Independent gradient model based on Hirshfeld partition (IGMH) (subfunction 11 of main function 20) - DOI:<a class="reference external" href="https://onlinelibrary.wiley.com/doi/abs/10.1002/jcc.26812">10.1002/jcc.26812</a></p></li>
+<li><p>ICSSZZ map (subfunction 4 in main function 200) - DOI:<a class="reference external" href="https://www.sciencedirect.com/science/article/abs/pii/S000862232030436X">10.1016/j.carbon.2020.04.099</a></p></li>
+<li><p>MO-PDOS map (Option -2 in main function 10) - DOI:<a class="reference external" href="https://www.sciencedirect.com/science/article/abs/pii/S0008622320304644">10.1016/j.carbon.2020.05.023</a></p></li>
+<li><p>Molecular polarity index (MPI) (outputted by main function 12) - DOI:<a class="reference external" href="https://www.sciencedirect.com/science/article/abs/pii/S0008622320309076">10.1016/j.carbon.2020.09.048</a></p></li>
+<li><p>Analysis of valence electron and deformation density - DOI:<a class="reference external" href="http://www.whxb.pku.edu.cn/EN/10.3866/PKU.WHXB201709252">10.3866/PKU.WHXB201709252</a></p></li>
+<li><p>Studying molecular planarity via MPP, SDP and coloring atoms according to ds values - DOI:<a class="reference external" href="https://pubmed.ncbi.nlm.nih.gov/34435265/">10.1007/s00894-021-04884-0</a></p></li>
+<li><p>Energy decomposition analysis based on force field (EDA-FF) - DOI:<a class="reference external" href="https://www.sciencedirect.com/science/article/abs/pii/S0921510721003834">10.1016/j.mseb.2021.115425</a></p></li>
+</ul>
+</div>
+<br></section>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright COPYRIGHT.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

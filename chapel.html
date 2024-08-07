@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chapel language for HPC &mdash; HPC user-guides 2024 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="_static/css/extra.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #E4067E" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            HPC user-guides
+              <img src="_static/TalTech_Gradient-200px.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="lumi.html">LUMI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cloud.html">Quickstart: Cloud</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart: Cluster</a></li>
+<li class="toctree-l1"><a class="reference internal" href="learning.html">Courses and introductions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">Module environment (lmod)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="software.html">Software packages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mpi.html">Available MPI versions (and comparison)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="performance.html">Performance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="profiling.html">Profiling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="visualization.html">Visualization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gpu.html">GPU-servers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="singularity.html">Containers (Singularity &amp; Docker)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acknowledgement.html">Acknowledgement</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #E4067E" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">HPC user-guides</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Chapel language for HPC</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/chapel.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <p><span style="color:red">not changed to rocky yet</span></p>
+<section id="chapel-language-for-hpc">
+<h1>Chapel language for HPC<a class="headerlink" href="#chapel-language-for-hpc" title="Permalink to this heading"></a></h1>
+<p>Special programming language developed for supercomputing, origially by the Cray Cascade project in DARPA’s High Productivity Computing Systems (HPCS) program.</p>
+<section id="modules">
+<h2>modules<a class="headerlink" href="#modules" title="Permalink to this heading"></a></h2>
+<hr class="docutils" />
+<p>on amp</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">load</span> <span class="n">amp</span>
+<span class="n">module</span> <span class="n">load</span> <span class="n">llvm</span><span class="o">/</span><span class="mf">14.0.0</span>
+<span class="n">module</span> <span class="n">load</span> <span class="n">chapel</span><span class="o">/</span><span class="mf">1.28</span>
+<span class="n">module</span> <span class="n">load</span> <span class="n">amp</span><span class="o">-</span><span class="n">spack</span>
+<span class="n">module</span> <span class="n">load</span> <span class="n">cuda</span><span class="o">/</span><span class="mf">11.3.1</span><span class="o">-</span><span class="n">gcc</span><span class="o">-</span><span class="mf">9.3.0</span><span class="o">-</span><span class="n">e4ej</span>
+</pre></div>
+</div>
+<p>on green</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">load</span> <span class="n">green</span><span class="o">-</span><span class="n">spack</span><span class="o">/</span><span class="mf">0.17.1</span>
+<span class="n">module</span> <span class="n">load</span> <span class="n">gcc</span><span class="o">/</span><span class="mf">10.3.0</span><span class="o">-</span><span class="n">gcc</span><span class="o">-</span><span class="mf">10.3.0</span><span class="o">-</span><span class="n">qshu</span>
+<span class="n">module</span> <span class="n">load</span> <span class="n">llvm</span><span class="o">/</span><span class="mf">13.0.0</span><span class="o">-</span><span class="n">gcc</span><span class="o">-</span><span class="mf">10.3.0</span><span class="o">-</span><span class="n">dhdd</span>
+<span class="n">module</span> <span class="n">load</span> <span class="n">opempi</span><span class="o">/</span><span class="mf">4.1.1</span><span class="o">-</span><span class="n">gcc</span><span class="o">-</span><span class="mf">10.3.0</span>
+</pre></div>
+</div>
+</section>
+<section id="evironment-variables">
+<h2>evironment variables<a class="headerlink" href="#evironment-variables" title="Permalink to this heading"></a></h2>
+<hr class="docutils" />
+<p>on amp</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">source</span> <span class="o">/</span><span class="n">gpfs</span><span class="o">/</span><span class="n">mariana</span><span class="o">/</span><span class="n">software</span><span class="o">/</span><span class="n">amp</span><span class="o">/</span><span class="n">chapel</span><span class="o">/</span><span class="n">chapel</span><span class="o">-</span><span class="mf">1.28.0</span><span class="o">/</span><span class="n">util</span><span class="o">/</span><span class="n">quickstart</span><span class="o">/</span><span class="n">setchplenv</span><span class="o">.</span><span class="n">bash</span>
+</pre></div>
+</div>
+<p>on green</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">source</span> <span class="o">/</span><span class="n">gpfs</span><span class="o">/</span><span class="n">mariana</span><span class="o">/</span><span class="n">software</span><span class="o">/</span><span class="n">green</span><span class="o">/</span><span class="n">chapel</span><span class="o">/</span><span class="n">chapel</span><span class="o">-</span><span class="mf">1.28.0</span><span class="o">/</span><span class="n">util</span><span class="o">/</span><span class="n">quickstart</span><span class="o">/</span><span class="n">setchplenv</span><span class="o">.</span><span class="n">bash</span>
+</pre></div>
+</div>
+<p>Check which environments are available and compare to current settings</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$CHPL_HOME/util/chplenv/printchplbuilds.py
+</pre></div>
+</div>
+<p>check current variables</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> $CHPL_HOME/util/printchplenv
+</pre></div>
+</div>
+<p>set some environment variables</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CHPL_TASKS</span><span class="o">=</span><span class="n">fifo</span>
+<span class="n">CHPL_GMP</span><span class="o">=</span><span class="n">none</span>
+<span class="n">CHPL_TARGET_CPU</span><span class="o">=</span><span class="n">native</span>
+<span class="n">CHPL_COMM</span><span class="o">=</span><span class="n">gasnet</span>
+<span class="n">CHPL_COMM_SUBSTRATE</span><span class="o">=</span><span class="n">ibv</span>
+<span class="n">CHPL_TARGET_COMPILER</span><span class="o">=</span><span class="n">gnu</span>
+<span class="n">CHPL_RE2</span><span class="o">=</span><span class="n">none</span>
+<span class="n">CHPL_LLVM</span><span class="o">=</span><span class="n">none</span>
+<span class="n">CHPL_LAUNCHER_PARTITION</span><span class="o">=</span><span class="n">green</span><span class="o">-</span><span class="n">ib</span>
+<span class="n">CHPL_SANITIZE</span><span class="o">=</span>
+<span class="n">CHPL_HOME</span><span class="o">=/</span><span class="n">gpfs</span><span class="o">/</span><span class="n">mariana</span><span class="o">/</span><span class="n">software</span><span class="o">/</span><span class="n">green</span><span class="o">/</span><span class="n">chapel</span><span class="o">/</span><span class="n">chapel</span><span class="o">-</span><span class="mf">1.28.0</span>
+<span class="n">CHPL_LAUNCHER</span><span class="o">=</span><span class="n">slurm</span><span class="o">-</span><span class="n">srun</span>
+<span class="n">CHPL_LAUNCHER_NODE_ACCESS</span><span class="o">=</span><span class="n">unset</span>
+<span class="n">CHPL_MEM</span><span class="o">=</span><span class="n">jemalloc</span>
+
+
+
+<span class="n">CHPL_COMM_SUBSTRATE</span><span class="o">=</span><span class="n">ibv</span>        <span class="c1"># several locales (nodes) with IB</span>
+<span class="n">CHPL_COMM_SUBSTRATE</span><span class="o">=</span><span class="n">smp</span>        <span class="c1"># several locales within a single node</span>
+<span class="n">CHPL_COMM_SUBSTRATE</span><span class="o">=</span><span class="n">mpi</span>        <span class="c1"># several locales (nodes) using MPI</span>
+<span class="n">CHPL_COMM_SUBSTRATE</span><span class="o">=</span><span class="n">udp</span>        <span class="c1"># several locales (nodes) using </span>
+
+
+<span class="n">CHPL_LOCALE_MODEL</span><span class="o">=</span><span class="n">flat</span>  <span class="c1">#normal</span>
+<span class="n">CHPL_LOCALE_MODEL</span><span class="o">=</span><span class="n">numa</span>  <span class="c1">#locale is subdevided into numa domains</span>
+<span class="n">CHPL_LOCALE_MODEL</span><span class="o">=</span><span class="n">gpu</span>   <span class="c1">#for GPU</span>
+
+<span class="n">CHPL_LAUNCHER_PARTITION</span><span class="o">=</span><span class="n">green</span><span class="o">-</span><span class="n">ib</span>
+<span class="n">CHPL_LAUNCHER_PARTITION</span><span class="o">=</span><span class="n">gpu</span>
+</pre></div>
+</div>
+</section>
+<section id="example-chapel-programs">
+<h2>example chapel programs<a class="headerlink" href="#example-chapel-programs" title="Permalink to this heading"></a></h2>
+<hr class="docutils" />
+<p>can be copied from <code class="docutils literal notranslate"><span class="pre">$CHPL_HOME/examples</span></code></p>
+<p>set environment variables as needed</p>
+<p>compile</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">chpl</span> <span class="o">-</span><span class="n">o</span> <span class="n">jacobi</span><span class="o">-</span><span class="n">cpu</span><span class="o">-</span><span class="n">green</span> <span class="n">jacobi</span><span class="o">-</span><span class="n">cpu</span><span class="o">.</span><span class="n">chpl</span>
+</pre></div>
+</div>
+<p>run the chapel program with apropriate number of locales (typically a locale is a full node!)</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">jacobi</span><span class="o">-</span><span class="n">cpu</span><span class="o">-</span><span class="n">green</span> <span class="o">-</span><span class="n">nl</span> <span class="mi">1</span>
+</pre></div>
+</div>
+<p>the program can be started directly (without srun or sbatch), it uses the specified launcher set in the environment variable <code class="docutils literal notranslate"><span class="pre">CHPL_LAUNCHER=slurm-srun</span></code></p>
+<p>less threads on a node can be specified using the <code class="docutils literal notranslate"><span class="pre">CHPL_RT_NUM_THREADS_PER_LOCALE</span></code> environment variable</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright COPYRIGHT.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
