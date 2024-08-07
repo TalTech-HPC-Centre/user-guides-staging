@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Remote visualization using X2GO (easiest to get working) &mdash; HPC user-guides 2024 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/extra.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #E4067E" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            HPC user-guides
+              <img src="../_static/TalTech_Gradient-200px.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../lumi.html">LUMI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cloud.html">Quickstart: Cloud</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Quickstart: Cluster</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../learning.html">Courses and introductions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules.html">Module environment (lmod)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software.html">Software packages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mpi.html">Available MPI versions (and comparison)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../performance.html">Performance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../profiling.html">Profiling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../visualization.html">Visualization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gpu.html">GPU-servers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../singularity.html">Containers (Singularity &amp; Docker)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../acknowledgement.html">Acknowledgement</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #E4067E" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">HPC user-guides</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Remote visualization using X2GO (easiest to get working)</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/visualization/x2go.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <p><span style="color:red">not changed to rocky yet</span></p>
+<section id="remote-visualization-using-x2go-easiest-to-get-working">
+<h1>Remote visualization using X2GO (easiest to get working)<a class="headerlink" href="#remote-visualization-using-x2go-easiest-to-get-working" title="Permalink to this heading"></a></h1>
+<p>The client (your desktop) computer needs the <a class="reference external" href="https://www.x2go.org">X2GO-client</a></p>
+<p><em><strong>NB!</strong></em> <em>X2GO uses ssh-key. Ssh-key generation guide is <a class="reference internal" href="../ssh.html"><span class="doc">here</span></a>.</em></p>
+<p><em><strong>NB!</strong> To use <strong>viz</strong> the ssh-key must be added to the <strong>base</strong> node.</em></p>
+<p>On Mac and Linux this can be done by command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ssh</span><span class="o">-</span><span class="n">copy</span><span class="o">-</span><span class="nb">id</span> <span class="n">Uni</span><span class="o">-</span><span class="n">ID</span><span class="nd">@base</span><span class="o">.</span><span class="n">hpc</span><span class="o">.</span><span class="n">taltech</span><span class="o">.</span><span class="n">ee</span>
+</pre></div>
+</div>
+<p>After about an hour, when the automatic script has synced the files, and you can use <strong>viz</strong>.</p>
+<br>
+<br>
+<hr style="margin-right: 0px; margin-bottom: 4px; margin-left: 0px; margin-top: -24px; border:2px solid  #d9d9d9 "></hr>
+<hr style="margin: 4px 0px; border:1px solid  #d9d9d9 "></hr><section id="configuring-the-client">
+<h2>Configuring the client:<a class="headerlink" href="#configuring-the-client" title="Permalink to this heading"></a></h2>
+<hr class="docutils" />
+<p>During first use X2GO-client needed to be configured as it is shown at the picture. To configure, select in the upper left corner “Session” tab.
+The setting of the ssh-key is only necessary, if you use a non-standard name or not the default key.
+<br></p>
+<p><img alt="Configuration" src="../_images/x2go-config-1.png" /></p>
+<p>Large memory consuming Desktop environments like MATE, KDE, GNOME are <strong>not</strong> available, use window managers like <code class="docutils literal notranslate"><span class="pre">blackbox</span></code> <code class="docutils literal notranslate"><span class="pre">fluxbox</span></code> <code class="docutils literal notranslate"><span class="pre">jwm</span></code> <code class="docutils literal notranslate"><span class="pre">fvwm2</span></code> <code class="docutils literal notranslate"><span class="pre">awesome</span></code> <code class="docutils literal notranslate"><span class="pre">lwm</span></code> <code class="docutils literal notranslate"><span class="pre">fvwm-crystal</span></code> (last setting on the screen).</p>
+<p>If you select <code class="docutils literal notranslate"><span class="pre">Terminal</span></code> as “Session type” (use “fvwm2” as Command), you will get a “rootless” xterm and you can use that to start other software which will appear as individual windows on your regular desktop (not within a remote desktop window).</p>
+<p>It is also recommended to configure the display settings, for example, as done in the example below or in some other suitable way, since changing the resolution of the remote desktop (= window size) at runtime is not possible (resizing the window would be the equivalent of stretching your physical monitor) or can have other undesired effects.
+<br></p>
+<p><img alt="Configuration" src="../_images/x2go-config-2.png" /></p>
+<br>
+<br>
+<hr style="margin-right: 0px; margin-bottom: 4px; margin-left: 0px; margin-top: -24px; border:2px solid  #d9d9d9 "></hr>
+<hr style="margin: 4px 0px; border:1px solid  #d9d9d9 "></hr></section>
+<section id="configuring-the-server-side">
+<h2>Configuring the server-side:<a class="headerlink" href="#configuring-the-server-side" title="Permalink to this heading"></a></h2>
+<hr class="docutils" />
+<p>A couple of config files need to be present:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">$HOME/.fvwm/.fvwm2rc</span></code> <a class="reference external" href="fvwm2rc.fvwm2rc">.fvwm2rc</a></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">$HOME/.xsessionrc-x2go</span></code> <a class="reference external" href="xsessionrc-x2go.xsessionrc-x2go">.xsessionrc-x2go</a> (can be a link to .xsessionrc, .xsession, or .vnc/xstartup)</p></li>
+</ul>
+<p>If the files are not present, just <strong>copy them from</strong> <code class="docutils literal notranslate"><span class="pre">/etc/skel/</span></code> or run</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>curl https://hpc.pages.taltech.ee/user-guides/visualization/fvwm2rc.fvwm2rc --create-dirs -o $HOME/.fvwm/.fvwm2rc
+curl https://hpc.pages.taltech.ee/user-guides/visualization/xsessionrc-x2go.xsessionrc-x2go --create-dirs -o $HOME/.xsessionrc-x2go
+</pre></div>
+</div>
+<p>to copy/save the example configs.</p>
+<br>
+<br>
+<hr style="margin-right: 0px; margin-bottom: 4px; margin-left: 0px; margin-top: -24px; border:2px solid  #d9d9d9 "></hr>
+<hr style="margin: 4px 0px; border:1px solid  #d9d9d9 "></hr></section>
+<section id="x2go-run-use">
+<h2>X2GO run &amp; use<a class="headerlink" href="#x2go-run-use" title="Permalink to this heading"></a></h2>
+<hr class="docutils" />
+<p><code class="docutils literal notranslate"><span class="pre">$HOME</span></code> on <strong>base</strong>  coincide with <code class="docutils literal notranslate"><span class="pre">$HOME</span></code> on <strong>viz</strong>.</p>
+<p>When session is configured, press <code class="docutils literal notranslate"><span class="pre">enter</span></code> to run session. Press left bottom of the mouse to call menu and choose XTerm.</p>
+<p><img alt="XTerm" src="../_images/XTerm.png" /></p>
+<p>Will appear terminal where user can call the desired visualization program. We do <em>not</em> maintain the list of software in the menues of window managers or desktop environments, that means even with a graphical frontend, you still need to use the command-line to start your programs! You can configure the menues yourself, e.g. in the <code class="docutils literal notranslate"><span class="pre">$HOME/.fvwm/.fvwm2rc</span></code> file for the fvwm window manager.</p>
+<p><strong>Viz</strong> has module system. Most of the modules are needed to be loaded unless the manual says they are native.</p>
+<p>Before loading modules, the source must be specified the source:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">source</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">lmod</span><span class="o">/</span><span class="mf">6.6</span><span class="o">/</span><span class="n">init</span><span class="o">/</span><span class="n">bash</span>
+<span class="n">module</span> <span class="n">use</span> <span class="o">/</span><span class="n">gpfs</span><span class="o">/</span><span class="n">mariana</span><span class="o">/</span><span class="n">modules</span><span class="o">/</span><span class="n">system</span>
+</pre></div>
+</div>
+<p>followed by module load commands, for example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="n">module</span> <span class="n">load</span> <span class="n">viz</span><span class="o">-</span><span class="n">spack</span>
+ <span class="n">module</span> <span class="n">load</span> <span class="n">jmol</span>
+</pre></div>
+</div>
+<p><img alt="x2go-jmol" src="../_images/x2go-jmol.png" /></p>
+<p>In case of native program only the command that calls this program is needed.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rasmol</span>
+</pre></div>
+</div>
+<p>or</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">paraview</span>
+</pre></div>
+</div>
+<p><em><strong>NB!</strong></em> <em>ParaView and maybe other software using GLX needs to be started using VirtualGL: <code class="docutils literal notranslate"><span class="pre">vglrun</span> <span class="pre">paraview</span></code></em></p>
+<p><img alt="x2go-awesome" src="../_images/x2go-awesome.png" /></p>
+<br>
+<br>
+<hr style="margin-right: 0px; margin-bottom: 4px; margin-left: 0px; margin-top: -24px; border:2px solid  #d9d9d9 "></hr>
+<hr style="margin: 4px 0px; border:1px solid  #d9d9d9 "></hr></section>
+<section id="terminate-x2go-run">
+<h2>Terminate X2GO run<a class="headerlink" href="#terminate-x2go-run" title="Permalink to this heading"></a></h2>
+<hr class="docutils" />
+<p>It is extremely important to end session in proper way! To do this</p>
+<ol class="simple">
+<li><p>Print <code class="docutils literal notranslate"><span class="pre">exit</span></code> in your terminal</p></li>
+<li><p>Click left mouth buttom, call menu and choose <code class="docutils literal notranslate"><span class="pre">Exit</span> <span class="pre">fvwm</span></code>.</p></li>
+</ol>
+<p><img alt="exit" src="../_images/x2go-exit.png" /></p>
+<br></section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright COPYRIGHT.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

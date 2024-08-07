@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Performance &mdash; HPC user-guides 2024 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="_static/css/extra.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Profiling" href="profiling.html" />
+    <link rel="prev" title="Available MPI versions (and comparison)" href="mpi.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #E4067E" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            HPC user-guides
+              <img src="_static/TalTech_Gradient-200px.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="lumi.html">LUMI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cloud.html">Quickstart: Cloud</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart: Cluster</a></li>
+<li class="toctree-l1"><a class="reference internal" href="learning.html">Courses and introductions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">Module environment (lmod)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="software.html">Software packages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mpi.html">Available MPI versions (and comparison)</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Performance</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#benchmarking">Benchmarking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#desktop-vs-compute-node">Desktop <em>vs.</em> Compute Node</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#parallel-scaling">Parallel scaling</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#strong-scaling"><em>Strong scaling</em></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#weak-scaling"><em>Weak scaling</em></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#how-many-cores-or-tasks-to-use"><em>How many cores or tasks to use?</em></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#clean-vs-fast-code-python">Clean vs. fast code (Python)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#an-example-of-the-time-function-calls-can-waste">An example of the time function calls can waste:</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="profiling.html">Profiling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="visualization.html">Visualization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gpu.html">GPU-servers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="singularity.html">Containers (Singularity &amp; Docker)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acknowledgement.html">Acknowledgement</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #E4067E" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">HPC user-guides</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Performance</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/performance.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <p><span style="color:red">not changed to rocky yet</span></p>
+<section id="performance">
+<h1>Performance<a class="headerlink" href="#performance" title="Permalink to this heading"></a></h1>
+<p>How fast is your program? How good makes it use of available hardware? Could it run faster on the same hardware?</p>
+<br>
+<hr style="margin-right: 0px; margin-bottom: 4px; margin-left: 0px; margin-top: -24px; border:2px solid  #d9d9d9 "></hr>
+<hr style="margin: 4px 0px; border:1px solid  #d9d9d9 "></hr><section id="benchmarking">
+<h2>Benchmarking<a class="headerlink" href="#benchmarking" title="Permalink to this heading"></a></h2>
+<hr class="docutils" />
+<p>Benchmarking is the art and skill to find out how fast your program and hardware is. Many factors influence the execution time of your program, the obvious ones are the speed and type of processors, speed of memory, etc, but also the less obvious ones have a huge impact (maybe larger than the speed of the processor). The less obvious ones include programming style and language! Yes, there are slow and fast languages. Slow languages include Python and basic, fast languages include C, Fortran, Julia and Rust. The programming style has an impact as well, as it influences memory access and optimization possibilities of the compiler/interpreter.</p>
+<p>In order to find out just how fast your hardware is, you need a software that uses all of the available components in an optimal way.</p>
+<br>
+<hr style="margin-right: 0px; margin-bottom: 4px; margin-left: 0px; margin-top: -24px; border:2px solid  #d9d9d9 "></hr>
+<hr style="margin: 4px 0px; border:1px solid  #d9d9d9 "></hr></section>
+<section id="desktop-vs-compute-node">
+<h2>Desktop <em>vs.</em> Compute Node<a class="headerlink" href="#desktop-vs-compute-node" title="Permalink to this heading"></a></h2>
+<hr class="docutils" />
+<div class="simple1">
+Why is my (single-thread) job not faster on the cluster than on my desktop?<ul class="simple">
+<li><p>Compute nodes do not have higher clock frequencies than desktop computers, but they have more cores and more RAM</p></li>
+<li><p>A single thread job on your desktop probably uses “boost-frequency” when the other cores are idle, a compute node has usually many busy cores and therefore “boost-frequency” is not possible</p></li>
+<li><p>A CPU has typically 6 memory channels, several applications share these on the compute node, while on the desktop only your single application uses them.</p></li>
+</ul>
+</div>
+<br>
+<div class="simple1">
+Why is my x-ntask parallel job not x-times as fast than my sequential job?<ul class="simple">
+<li><p>not enough to do for each core (task)</p></li>
+<li><p>load imbalance, some tasks need to wait till another task finishes</p></li>
+<li><p>communication between tasks introduces overhead</p></li>
+<li><p>congestion of memory channels (see above)</p></li>
+</ul>
+</div>
+<br>
+<br>
+<hr style="margin-right: 0px; margin-bottom: 4px; margin-left: 0px; margin-top: -24px; border:2px solid  #d9d9d9 "></hr>
+<hr style="margin: 4px 0px; border:1px solid  #d9d9d9 "></hr></section>
+<section id="parallel-scaling">
+<h2>Parallel scaling<a class="headerlink" href="#parallel-scaling" title="Permalink to this heading"></a></h2>
+<hr class="docutils" />
+<p>The assumption that all programs run faster when more cores are used is generally <em>wrong</em>. Especially a seqential (single threaded) program will not be able to use more than 1 core, but also for parallel programs there is an optimum of how many cores to use. The relationship between program speed and number of cores used is called scaling. Usually the scaling needs to be tested! It is not uncommon that programs run slower when more cores are used. For the rational use of resources, it is necessary to determine the optimum of this particular program.</p>
+<section id="strong-scaling">
+<h3><em>Strong scaling</em><a class="headerlink" href="#strong-scaling" title="Permalink to this heading"></a></h3>
+<blockquote>
+<div><p><em><strong>Strong scaling</strong></em> is defined as how the solution time varies with the number of processors for a fixed <em>total</em> problem size.</p>
+</div></blockquote>
+<p>If a simulation exhibits strong scaling, then the same problem is solved faster with linear speedup and the workload per processor is reduced. Strong scaling is mostly used for long-running CPU-bound applications. However, the speedup achieved by increasing the number of processes usually decreases.</p>
+<br></section>
+<section id="weak-scaling">
+<h3><em>Weak scaling</em><a class="headerlink" href="#weak-scaling" title="Permalink to this heading"></a></h3>
+<blockquote>
+<div><p><em><strong>Weak scaling</strong></em> is defined as how the solution time varies with the number of processors for a fixed problem <em>size per processor</em>.</p>
+</div></blockquote>
+<p>Thus, both the number of processors and the problem size are increased, which results in a constant workload per processor. Weak scaling is mostly used for large memory-bound applications.</p>
+</section>
+<section id="how-many-cores-or-tasks-to-use">
+<h3><em>How many cores or tasks to use?</em><a class="headerlink" href="#how-many-cores-or-tasks-to-use" title="Permalink to this heading"></a></h3>
+<p><em><strong>NOTE: Parallel does not (necessarily) mean faster!!!</strong></em> Parallel execution introduces overhead (starting threads, communication)! For optimal execution time and optimal use of resources one needs to test (run the same (a typical) simulation with different numbers of parallel tasks) and find the sweet spot.</p>
+<p><img alt="sweet spot" src="_images/of-timing4.png" /></p>
+<p>The division into the areas is a combined decision taking into account “real” (wall clock) and “user” (summed time of all threads) time (from the time command). <em><strong>“Wall clock”</strong></em> (real) time is the time one needs to wait till the job is finished, <em><strong>“Summed thread time”</strong></em> (user) is the sum of the times that all individual threads needed, it should be roughly user = numtreads x real. For parallel programs, one can expect that “user” time of the parallel run is larger than for the sequential, due to communication overhead, if it is smaller, that probably means the individual threads could make better use of cache.</p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>area</th>
+<th>why</th>
+<th>explanation</th>
+<th>when to use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sweet spot</td>
+<td>minimal "user" time</td>
+<td>= minimal heat production, optimal use of resources</td>
+<td>regular use</td>
+</tr>
+<tr>
+<td>good range</td>
+<td>linear speedup for "real", with constant or slightly increasing "user"</td>
+<td></td>
+<td>approaching deadline</td>
+</tr>
+<tr>
+<td>OK range</td>
+<td>slightly less than linear speedup for "real", and slightly increasing "user"</td>
+<td></td>
+<td>pushing hard to make a deadline</td>
+</tr>
+<tr>
+<td>avoid</td>
+<td>ascending slope in the diagram for "real" and "user"</td>
+<td>one actually needs to wait longer compared to the case with fewer cores</td>
+<td>NEVER</td>
+</tr>
+</tbody>
+</table><p>In our example case, it is recommended  to request 4 or 8 threads; 8 threads if the software does not benefit from HyperThreading: <code class="docutils literal notranslate"><span class="pre">-n</span> <span class="pre">8</span> <span class="pre">--ntasks-per-node</span> <span class="pre">8</span></code> but use <code class="docutils literal notranslate"><span class="pre">mpirun</span> <span class="pre">-n</span> <span class="pre">4</span></code>, this would make sure the software has the full cores for itself and not be sharing it with other software.</p>
+<p>A rule of thumb for FEA/CFD is: keep at least 50000 cells per core (500k cells means not more that 10 tasks or cores).</p>
+<p>Here are a couple more examples:</p>
+<p>Matrix-matrix multiplication of two 2000x2000 matrices:</p>
+<p>Wall-clock time of the whole job:</p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>ntasks</th>
+<th>none</th>
+<th>bind cores</th>
+<th>bind threads</th>
+<th>bind sockets</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2</td>
+<td>57.198766</td>
+<td>56.398039</td>
+<td>57.485236</td>
+<td>56.268668</td>
+</tr>
+<tr>
+<td>4</td>
+<td></td>
+<td>28.018947</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>8</td>
+<td></td>
+<td>20.035140</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>16</td>
+<td></td>
+<td>11.012887</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>32</td>
+<td></td>
+<td>4.914047</td>
+<td>5.050369</td>
+<td>5.454213</td>
+</tr>
+<tr>
+<td>40</td>
+<td></td>
+<td>3.951628</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>48</td>
+<td>3.309776</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table><p>CPU-efficiency reported by SLURM:</p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>ntasks</th>
+<th>none</th>
+<th>bind cores</th>
+<th>bind threads</th>
+<th>bind sockets</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2</td>
+<td>97.46%</td>
+<td>97.41%</td>
+<td>97.46%</td>
+<td>97.41%</td>
+</tr>
+<tr>
+<td>4</td>
+<td></td>
+<td>94.17%</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>8</td>
+<td></td>
+<td>81.82%</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>16</td>
+<td></td>
+<td>77.68%</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>32</td>
+<td></td>
+<td>71.18%</td>
+<td>69.10%</td>
+<td>73.61%</td>
+</tr>
+<tr>
+<td>40</td>
+<td></td>
+<td>61.11%</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>48</td>
+<td>60.19%</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table><p>Billed CPU-time:</p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>ntasks</th>
+<th>none</th>
+<th>bind cores</th>
+<th>bind threads</th>
+<th>bind sockets</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2</td>
+<td></td>
+<td>1:56</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>4</td>
+<td></td>
+<td>2:00</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>8</td>
+<td></td>
+<td>3:28</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>16</td>
+<td></td>
+<td>3:44</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>32</td>
+<td></td>
+<td>4:48</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>40</td>
+<td></td>
+<td>6:00</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>48</td>
+<td>7:12</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table><br>
+<br><p><img alt="efficiency" src="_images/efficiency.png" /></p>
+<p>Simple way to check if CPUs are busy enough: run an interactive session on the same node:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">srun</span> <span class="o">-</span><span class="n">w</span> <span class="n">green</span><span class="o">&lt;</span><span class="n">Nnmber</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">pty</span> <span class="n">bash</span> 
+<span class="n">htop</span>
+</pre></div>
+</div>
+<p>ideally the bars of your process are all green. To find your the processor of your job, you can add a column or use</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>ps aux |grep $USER      # to get the PID 
+taskset -c -p PID 
+</pre></div>
+</div>
+<p>(add 1 to the number from taskset to find the processor in htop, because taskset starts from 0, htop from 1).</p>
+<p>These jobs have spend over 90% CPU-time in calculations:</p>
+<p><img alt="htop-openfoam-n8" src="_images/htop-openfoam-n8_crop.png" />
+<img alt="htop-starccm-1node-80core-good" src="_images/htop-starccm-1node-80core-good_crop.png" /></p>
+<p>This jobs spends already much more CPU-time in communication:</p>
+<p><img alt="htop-openfoam-n32" src="_images/htop-openfoam-n32_crop.png" /></p>
+<p>This jobs spends less than 10% CPU-time in calculation and over 90% in communication, reducing the number of <code class="docutils literal notranslate"><span class="pre">ntasks</span></code> will probably speed it up considerably:</p>
+<p><img alt="htop-starccm-7node-job" src="_images/htop-starccm-7node-job_crop.png" /></p>
+<br>
+<hr style="margin-right: 0px; margin-bottom: 4px; margin-left: 0px; margin-top: -24px; border:2px solid  #d9d9d9 "></hr>
+<hr style="margin: 4px 0px; border:1px solid  #d9d9d9 "></hr></section>
+</section>
+<section id="clean-vs-fast-code-python">
+<h2>Clean vs. fast code (Python)<a class="headerlink" href="#clean-vs-fast-code-python" title="Permalink to this heading"></a></h2>
+<hr class="docutils" />
+<p>Clean Code states:</p>
+<blockquote>
+<div><p>The ﬁrst rule of functions is that they should be small. The second rule of functions is that they should be smaller than that.</p>
+</div></blockquote>
+<div class="simple1">
+This rule is unfortunately often taken to the extreme, leading to several problems:<ol class="simple">
+<li><p>Someone reading the code for the first time is hopping around the code to find out what the tiny functions are actually doing.</p></li>
+<li><p><em><strong>Hot</strong></em> and <em><strong>cold</strong></em> code is mixed (instruction cache misses).</p></li>
+<li><p>Function calls are expensive, especially in Python, regarding computation time. (In contrast to Python, a C/C++/Fortran compiler may inline small functions, thus solving the issue, though there is no guarantee that the compiler will inline, not even with the inline statement.)</p></li>
+<li><p>A lot of variables have to be passed over multiple levels of function calls, thus increasing memory use and cache misses. Object orientation and global variables are used as a remedy for this, but this leads to functions with side effects (the reader does not know what variables the function is changing by looking at the function call).</p></li>
+</ol>
+</div>
+<br><p><s>  An example of the time function calls can waste </s></p>
+<section id="an-example-of-the-time-function-calls-can-waste">
+<h3>An example of the time function calls can waste:<a class="headerlink" href="#an-example-of-the-time-function-calls-can-waste" title="Permalink to this heading"></a></h3>
+<p>Time the following codes:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="k">pass</span>
+</pre></div>
+</div>
+<p>and:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">f</span><span class="p">():</span>
+    <span class="k">pass</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="n">f</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>An average function call in Python costs about 150ns, this means that you loose about 2-3 orders of magnitude of processor speed!  <strong>That means that your fancy 2.5 GHz from 2021 runs as slow as a 25 MHz processor from 1991 (or even as slow as a 2.5 MHz processor)!</strong> Now that’s something to think about.</p>
+<p>A good read on this are <a class="reference external" href="https://ilovesymposia.com/2015/12/10/the-cost-of-a-python-function-call/">the-cost-of-a-python-function-call</a> and <a class="reference external" href="https://www.colmryan.org/posts/python_function_call_overhead/">python_function_call_overhead</a>; and so is <a class="reference external" href="https://copyconstruct.medium.com/small-functions-considered-harmful-91035d316c29">small-functions-considered-harmful</a>.</p>
+<p>To learn:</p>
+<blockquote>
+<div><p>Use <em>meaningful</em> function blocks. Define functions for code-blocks that are re-used in other parts of the program. Do <em>not</em> define 1-line functions, except you have a very good reason!</p>
+</div></blockquote>
+<br>
+<br><p>Are newer processors better/faster in every case?
+When does it make sense to switch to the newer nodes?
+When does it make sense to still use the older nodes?</p>
+<p>Intel Xeon E5-2630L 6C 2.00 GHz (max turbo 2.50 GHz)
+4 memory channels
+42.6 GB/s max memory bandwidth
+(~10.65 GiB/s memory bandwidth per channel)
+GFlops per core or CPU</p>
+<p>memory channels per core: 4/6 (0.75)
+bandwidth per core: ~7.99 GiB/s
+bandwidth per GFlop:</p>
+<p>Xeon Gold 6148 20C 2.40 GHz (max turbo 3.70 GHz)
+Turbo Frequency (20 Cores):	3.00 GHz
+6 memory channels
+119.21 GiB/s max  memory bandwidth
+19.87 GiB/s memory bandwidth per channel
+GFlops per core or CPU</p>
+<p>memory channels per core: 6/20 (0.30)
+bandwidth per core: 5.961 GiB/s
+bandwidth per GFlop: 0.133 GiB/s</p>
+<p>Bandwidth	Single 19.87 GiB/sDouble 39.74 GiB/sQuad 79.47 GiB/sHexa 119.21 GiB/s</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="mpi.html" class="btn btn-neutral float-left" title="Available MPI versions (and comparison)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="profiling.html" class="btn btn-neutral float-right" title="Profiling" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright COPYRIGHT.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

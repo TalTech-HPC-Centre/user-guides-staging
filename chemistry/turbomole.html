@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TURBOMOLE &mdash; HPC user-guides 2024 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/extra.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #E4067E" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            HPC user-guides
+              <img src="../_static/TalTech_Gradient-200px.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../lumi.html">LUMI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cloud.html">Quickstart: Cloud</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Quickstart: Cluster</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../learning.html">Courses and introductions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules.html">Module environment (lmod)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software.html">Software packages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mpi.html">Available MPI versions (and comparison)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../performance.html">Performance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../profiling.html">Profiling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../visualization.html">Visualization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gpu.html">GPU-servers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../singularity.html">Containers (Singularity &amp; Docker)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../acknowledgement.html">Acknowledgement</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #E4067E" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">HPC user-guides</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">TURBOMOLE</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/chemistry/turbomole.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <p><span style="color:red">not changed to rocky yet</span></p>
+<p>﻿</p>
+<section id="turbomole">
+<h1>TURBOMOLE<a class="headerlink" href="#turbomole" title="Permalink to this heading"></a></h1>
+<p>** This manual is work in progress, please check regularly for updates **</p>
+<p><em><strong>Important note:</strong></em> To run TURBOMOLE, user must be a member of the TURBOMOLE user group or have purchased TURBOMOLE licenses.</p>
+<br>
+<hr style="margin-right: 0px; margin-bottom: 4px; margin-left: 0px; margin-top: -24px; border:2px solid  #d9d9d9 "></hr>
+<hr style="margin: 4px 0px; border:1px solid  #d9d9d9 "></hr><section id="turbomole-short-introduction">
+<h2>TURBOMOLE short introduction<a class="headerlink" href="#turbomole-short-introduction" title="Permalink to this heading"></a></h2>
+<hr class="docutils" />
+<ol>
+<li><p>Set up environment and generate TURBOMOLE coordinate file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="n">module</span> <span class="n">load</span> <span class="n">turbomole7</span><span class="mf">.0</span>
+ <span class="n">x2t</span> <span class="n">inputfile</span><span class="o">.</span><span class="n">xyz</span> <span class="o">&gt;</span> <span class="n">start</span><span class="o">-</span><span class="n">coord</span>
+</pre></div>
+</div>
+</li>
+<li><p>Run <em><strong>define</strong></em> to create the input files needed.</p></li>
+<li><p>Download <a class="reference external" href="TURBOMOLE.slurm">TURBOMOLE.slurm</a> batch script:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> #!/bin/bash
+ #SBATCH --nodes=1
+ #SBATCH --ntasks=1
+ #SBATCH --cpus-per-task=1
+ #SBATCH --job-name=test
+ #SBATCH --mem-per-cpu=1GB
+ #SBATCH -t 1:00:00
+ #SBATCH --partition=common 
+
+ module load turbomole7.0
+
+ #Directory where you run the script
+ CALCULATIONDIR=`pwd`
+
+ #Create scratch directory
+ SCRATCHDIRNAME=/state/partition1/$SLURM_JOBID
+ mkdir $SCRATCHDIRNAME
+ cp * $SCRATCHDIRNAME
+ cd $SCRATCHDIRNAME 
+
+ #Run calculations 
+  jobex -ri &gt; jobex.out 2&gt;jobex.err  # TURBOMOLE commands
+  t2x -c &gt; final.xyz
+
+ #Clean after yourself
+ mv $SCRATCHDIRNAME/* $CALCULATIONDIR 
+ rm -rf $SCRATCHDIRNAME
+</pre></div>
+</div>
+</li>
+<li><p>Submit the job:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">sbatch</span> <span class="n">TURBOMOLE</span><span class="o">.</span><span class="n">slurm</span>
+</pre></div>
+</div>
+</li>
+</ol>
+<p><em><strong>NB!</strong></em> <em>More cores does not mean faster!!! See Benchmarks.</em></p>
+<br>
+<hr style="margin-right: 0px; margin-bottom: 4px; margin-left: 0px; margin-top: -24px; border:2px solid  #d9d9d9 "></hr>
+<hr style="margin: 4px 0px; border:1px solid  #d9d9d9 "></hr></section>
+<section id="turbomole-long-version">
+<h2>TURBOMOLE long version<a class="headerlink" href="#turbomole-long-version" title="Permalink to this heading"></a></h2>
+<hr class="docutils" />
+<section id="environment">
+<h3>Environment<a class="headerlink" href="#environment" title="Permalink to this heading"></a></h3>
+<p>There are currently several versions of TURBOMOLE (6.3 - 7.0) are available on HPC, and most of them can be run as parallel jobs. Environment is set up by the command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">load</span> <span class="n">turbomole7</span><span class="mf">.0</span>
+<span class="n">module</span> <span class="n">load</span> <span class="n">turbomole7</span><span class="mf">.0</span><span class="o">-</span><span class="n">mpi</span>    <span class="c1"># for parallel run </span>
+</pre></div>
+</div>
+</section>
+<section id="running-turbomole-jobs">
+<h3>Running TURBOMOLE jobs<a class="headerlink" href="#running-turbomole-jobs" title="Permalink to this heading"></a></h3>
+<p>TURBOMOLE uses its own coordinate file <code class="docutils literal notranslate"><span class="pre">coord</span></code>, which can be generated from .xyz file by TURBOMOLE command (when some TURBOMOLE version is already loaded):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x2t</span> <span class="n">inputfile</span><span class="o">.</span><span class="n">xyz</span> <span class="o">&gt;</span> <span class="n">start</span><span class="o">-</span><span class="n">coord</span>
+</pre></div>
+</div>
+<p>Example of TURBOMOLE coordinate file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> $coord
+ 1.27839972889714      0.80710203135546      0.00041573974923       c
+ 1.42630859331810      2.88253155131977      0.00372276048178       h
+ 3.06528696563114     -0.57632867600746     -0.00069919866917       o
+-1.91446264796512     -0.31879679861781      0.00039684248791       s
+-2.98773260513752      1.98632893279876     -0.00701088395301       h
+ $end
+</pre></div>
+</div>
+<p>In addition to coordinate file, TURBOMOLE uses a special interactive program <code class="docutils literal notranslate"><span class="pre">define</span></code> to create the input files, which determines  molecules’ parameters, levels of theory used and calculation types.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">define</span>
+</pre></div>
+</div>
+<p>The answers to the <code class="docutils literal notranslate"><span class="pre">define</span></code>’s questions can be presented as a separate file. More about <code class="docutils literal notranslate"><span class="pre">define</span></code> can be read in <a class="reference external" href="http://www.cosmologic-services.de/downloads/TM72-documentation/DOKse8.html">‘Quick and Dirty’ Tutorial</a> and <a class="reference external" href="Turbomole_Tutorial_7-0.pdf">TURBOMOLE tutorial</a>. Some examples of define files can be found <a class="reference external" href="define">here</a>.</p>
+<p>To include solvent effects into calculations interactive program <code class="docutils literal notranslate"><span class="pre">cosmoprep</span></code> should be run after <code class="docutils literal notranslate"><span class="pre">define</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cosmoprep</span> 
+</pre></div>
+</div>
+<p>TURBOMOLE includes the Conductor-like Screening Model (COSMO), where the solvent is described as dielectric continuum with permittivity ε. An example of <a class="reference external" href="cosmoprep.sh">cosmoprep</a> file with acetonitrile as a solvent.</p>
+<p>After input files are created TURBOMOLE calculations are executed by one of the following commands: <code class="docutils literal notranslate"><span class="pre">dscf</span></code>, <code class="docutils literal notranslate"><span class="pre">ridft</span></code>, <code class="docutils literal notranslate"><span class="pre">jobex</span></code>, <code class="docutils literal notranslate"><span class="pre">aoforce</span></code>, <code class="docutils literal notranslate"><span class="pre">NumForce</span></code>, <code class="docutils literal notranslate"><span class="pre">escf</span></code>, <code class="docutils literal notranslate"><span class="pre">egrad</span></code>, <code class="docutils literal notranslate"><span class="pre">mpshift</span></code>, <code class="docutils literal notranslate"><span class="pre">raman</span></code>, <code class="docutils literal notranslate"><span class="pre">ricc2</span></code> etc. For example,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dscf</span>           <span class="c1"># for Hartree-Fock energy calculation (single point calculation)</span>
+<span class="n">jobex</span> <span class="o">-</span><span class="n">ri</span>      <span class="c1"># geometry optimization using RI-approximation</span>
+<span class="n">aoforce</span>        <span class="c1"># analytical force constant calculations</span>
+<span class="n">NumForce</span> <span class="o">-</span><span class="n">ri</span>   <span class="c1"># numerical force constant calculations using RI-approximation</span>
+</pre></div>
+</div>
+<p>More about TURBOMOLE commands used can be found in <a class="reference external" href="Turbomole_Tutorial_7-0.pdf">TURBOMOLE tutorial</a>.</p>
+</section>
+<section id="single-core-calculations">
+<h3><em>Single core calculations</em><a class="headerlink" href="#single-core-calculations" title="Permalink to this heading"></a></h3>
+<p>Example of Slurm script for single point HF calculation performed on a single core:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>#!/bin/bash
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=1
+#SBATCH --job-name=test
+#SBATCH --mem-per-cpu=1GB
+#SBATCH -t 1:00:00
+#SBATCH --partition=common 
+
+module load turbomole7.0
+
+#Directory where you run the script
+CALCULATIONDIR=`pwd`
+
+#Create scratch directory
+SCRATCHDIRNAME=/state/partition1/$SLURM_JOBID
+mkdir $SCRATCHDIRNAME
+
+cp * $SCRATCHDIRNAME
+cd $SCRATCHDIRNAME 
+
+#Run calculations 
+dscf &gt; JOB.out 2&gt;JOB.err  
+    
+#Clean after yourself
+mv $SCRATCHDIRNAME/* $CALCULATIONDIR 
+rm -rf $SCRATCHDIRNAME
+</pre></div>
+</div>
+</section>
+<section id="parallel-jobs-smp">
+<h3><em>Parallel jobs SMP</em><a class="headerlink" href="#parallel-jobs-smp" title="Permalink to this heading"></a></h3>
+<p>Example of Slurm script for geometry optimization using RI-approximation performed by SMP run:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>#!/bin/bash
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=24
+#SBATCH --job-name=test
+#SBATCH --mem-per-cpu=1GB
+#SBATCH -t 1:00:00
+#SBATCH --partition=common 
+
+module load turbomole7.0-mpi
+
+#Directory where you run the script
+CALCULATIONDIR=`pwd`
+
+#Create scratch directory
+SCRATCHE=/state/partition1/$SLURM_JOBID
+mkdir $SCRATCH
+
+cp * $SCRATCH
+cd $SCRATCH 
+
+export PARA_ARCH=SMP
+export PATH=$TURBODIR/bin/`sysname`:$PATH 
+export PARNODES=$SLURM_NTASKS 
+export OMP_NUM_THREADS=$SLURM_CPUS_PER_TASK
+
+#Run calculations 
+jobex -ri -c 600 &gt; jobex.out 2&gt;jobex.err 
+t2x -c &gt; final.xyz
+
+#Clean after yourself
+mv $SCRATCH/* $CALCULATIONDIR 
+rm -rf $SCRATC
+</pre></div>
+</div>
+</section>
+<section id="memory">
+<h3>Memory<a class="headerlink" href="#memory" title="Permalink to this heading"></a></h3>
+<p>For common calculations (e.g. optimization, frequency etc.) it is enough 1 GB per 1 CPU. However, some calculations can require more memory (e.g TD-DFT, large SCF calculations, etc.). Data from a <code class="docutils literal notranslate"><span class="pre">slurm-JOBID.stat</span></code> file can be useful to determine the amount of memory required for a computation. In <code class="docutils literal notranslate"><span class="pre">slurm-JOBID.stat</span></code> file the efficiency of memory utilization is shown.</p>
+<p>Bad example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Memory</span> <span class="n">Utilized</span><span class="p">:</span> <span class="mf">3.08</span> <span class="n">GB</span> 
+<span class="n">Memory</span> <span class="n">Efficiency</span><span class="p">:</span> <span class="mf">11.83</span><span class="o">%</span> <span class="n">of</span> <span class="mf">26.00</span> <span class="n">GB</span>
+</pre></div>
+</div>
+<p>Good example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Memory</span> <span class="n">Utilized</span><span class="p">:</span> <span class="mf">63.12</span> <span class="n">GB</span> 
+<span class="n">Memory</span> <span class="n">Efficiency</span><span class="p">:</span> <span class="mf">98.62</span><span class="o">%</span> <span class="n">of</span> <span class="mf">64.00</span> <span class="n">GB</span>
+</pre></div>
+</div>
+</section>
+<section id="time">
+<h3>Time<a class="headerlink" href="#time" title="Permalink to this heading"></a></h3>
+<p>Time limits depend on time partition used <a class="reference external" href="https://hpc.pages.taltech.ee/user-guides/hardware">taltech user-guides</a>. If the calculation time exceeds the time limit requested in the Slurm script, then the job will be killed. Therefore, it is recommended to request a little more than is usually needed for calculation.</p>
+</section>
+<section id="restarting-a-failed-interrupted-calculation">
+<h3><em>Restarting a failed/interrupted calculation</em><a class="headerlink" href="#restarting-a-failed-interrupted-calculation" title="Permalink to this heading"></a></h3>
+<p>All TURBOMOLE jobs are restart jobs as default.</p>
+<section id="benchmarks-for-parallel-jobs">
+<h4>Benchmarks for parallel jobs<a class="headerlink" href="#benchmarks-for-parallel-jobs" title="Permalink to this heading"></a></h4>
+</section>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright COPYRIGHT.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

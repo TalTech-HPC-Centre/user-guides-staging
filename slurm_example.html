@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Examples of slurm scripts for submitting jobs &mdash; HPC user-guides 2024 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="_static/css/extra.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #E4067E" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            HPC user-guides
+              <img src="_static/TalTech_Gradient-200px.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="lumi.html">LUMI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cloud.html">Quickstart: Cloud</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart: Cluster</a></li>
+<li class="toctree-l1"><a class="reference internal" href="learning.html">Courses and introductions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">Module environment (lmod)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="software.html">Software packages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mpi.html">Available MPI versions (and comparison)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="performance.html">Performance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="profiling.html">Profiling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="visualization.html">Visualization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gpu.html">GPU-servers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="singularity.html">Containers (Singularity &amp; Docker)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acknowledgement.html">Acknowledgement</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #E4067E" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">HPC user-guides</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Examples of slurm scripts for submitting jobs</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/slurm_example.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <p><span style="color:red">not changed to rocky yet</span></p>
+<section id="examples-of-slurm-scripts-for-submitting-jobs">
+<h1>Examples of slurm scripts for submitting jobs<a class="headerlink" href="#examples-of-slurm-scripts-for-submitting-jobs" title="Permalink to this heading"></a></h1>
+<br>
+<br>
+<hr style="margin-right: 0px; margin-bottom: 4px; margin-left: 0px; margin-top: -24px; border:2px solid  #d9d9d9 "></hr>
+<hr style="margin: 4px 0px; border:1px solid  #d9d9d9 "></hr><section id="a-single-process-job">
+<h2>A single process job<a class="headerlink" href="#a-single-process-job" title="Permalink to this heading"></a></h2>
+<hr class="docutils" />
+<p>The following script  launches job named bowtie2 using one thread. A directory bowtie2-results will be created where results will be written into bowtie2-%J.log output file (<code class="docutils literal notranslate"><span class="pre">%J</span></code> is a job allocation number and step number in format jobid.stepid).</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>#!/bin/bash 
+#SBATCH --job-name=bowtie2		### job name 
+#SBATCH --output=bowtie2-%J.log  	### output file 
+#SBATCH --ntasks=1			### number of threads   
+
+## load bowtie2 environment 
+module load bowtie2-2.1.0
+
+## creating directory for results 
+mkdir bowtie2-results 
+cd bowtie2-results 
+
+## building bowtie2 index 
+bowtie2-build $BT2_HOME/example/reference/lambda_virus.fa lambda_virus
+
+## aligning against the index, output to eg1.sam file 
+bowtie2 -x lambda_virus -U $BT2_HOME/example/reads/reads_1.fq -S eg1.sam
+</pre></div>
+</div>
+<br>
+<br>
+<hr style="margin-right: 0px; margin-bottom: 4px; margin-left: 0px; margin-top: -24px; border:2px solid  #d9d9d9 "></hr>
+<hr style="margin: 4px 0px; border:1px solid  #d9d9d9 "></hr></section>
+<section id="an-openmp-parallel-job">
+<h2>An OpenMP parallel job<a class="headerlink" href="#an-openmp-parallel-job" title="Permalink to this heading"></a></h2>
+<hr class="docutils" />
+<p>The following script launches job named HelloOMP using OpenMP. For this job slurm reserves one node and 12 threads. Maximum run time is 10 minutes.</p>
+<span style="color:blue"> 
+Even though it is `--cpus-per-task` slurm reserves threads, not CPU, since  "cpu" in SLURM's language is the smallest unit. </span> <p><strong>Note:</strong> Each thread needs sufficient work to do to make up for the time spent in launching the thread. Therefore it is not useful to run small/short jobs in parallel.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>#!/bin/bash
+#SBATCH --job-name=HelloOMP		### job name           -J
+#SBATCH --time=00:10:00     		### time limit         -t
+#SBATCH --nodes=1           		### number of nodes    -N 
+#SBATCH --ntasks-per-node=1 		### number of tasks (MPI processes)
+#SBATCH --cpus-per-task=12  		### number of threads per task (OMP threads)
+
+## load environment    
+export OMP_NUM_THREADS=$SLURM_CPUS_PER_TASK
+
+## run job
+./hello_omp 
+</pre></div>
+</div>
+<p><strong>NOTE: Parallel does not (necessarily) mean faster!!!</strong> Parallel execution introduces overhead (starting threads, communication)! For optimal execution time and optimal use of resources one needs to test and find the sweet spot.</p>
+<br>
+<br>
+<hr style="margin-right: 0px; margin-bottom: 4px; margin-left: 0px; margin-top: -24px; border:2px solid  #d9d9d9 "></hr>
+<hr style="margin: 4px 0px; border:1px solid  #d9d9d9 "></hr></section>
+<section id="a-script-for-mpi-parallel-job-openfoam">
+<h2>A script for MPI parallel job (OpenFOAM)<a class="headerlink" href="#a-script-for-mpi-parallel-job-openfoam" title="Permalink to this heading"></a></h2>
+<hr class="docutils" />
+<p>The following script reserves 4 CPU-cores for 10 hours
+<span style="color:blue">
+(since <code class="docutils literal notranslate"><span class="pre">mpirun</span></code> uses cores by default),
+</span><br />loads the OpenMPI module, the OpenFOAM variables, changes into the case directory and runs the typical commands necessary for a parallel OpenFOAM job. <em>It also sets OpenMPI transport properties to use Ethernet TCP!</em></p>
+<p>It would be possible to request all tasks to be on the same node using the <code class="docutils literal notranslate"><span class="pre">-N</span></code> and <code class="docutils literal notranslate"><span class="pre">--tasks-per-node</span></code> options, this would be useful to make use of the very low latency shared memory communication of MPI (provided the job fits into the RAM of a single node).</p>
+<span style="color:blue"> 
+Flag `-l` in #!/bin/bash row means that settings in /home/user/.bash_profile will be executed.
+</span>  <p><strong>Note:</strong> Each task needs sufficient work to do to make up for the time spent with inter-process communication. Therefore it is not useful to run small/short jobs in parallel.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>#!/bin/bash -l    
+#SBATCH -n 4     			### number of CPUs 
+#SBATCH -t 10:00:00      		### run time   
+#SBATCH -J openfoam-damBreak     	### job name
+#SBATCH --partition=infiniband		### partition 
+
+## load environment    
+module load rocks-openmpi
+source /share/apps/OpenFOAM/OpenFOAM-v1912/etc/bashrc
+
+## run program
+cd $WM_PROJECT_USER_DIR/damBreak/damBreak
+blockMesh
+decomposePar
+setFields
+mpirun -n $SLURM_NTASKS interFoam -parallel
+reconstructPar
+</pre></div>
+</div>
+<p><strong>NOTE: Parallel does not (necessarily) mean faster!!!</strong> Parallel execution introduces overhead (starting threads, communication)! For optimal execution time and optimal use of resources one needs to test and find the sweet spot.</p>
+<p><img alt="sweet spot" src="_images/of-timing4.png" /></p>
+<p>The division into the areas is a combined decision taking into account “real” (wall clock) and “user” (summed time of all threads) time (from the time command). “Wall clock” (real) time is the time one needs to wait till the job is finished, “Summed thread time” (user) is the sum of the times that all individual threads needed, it should be roughly user = numtreads x real. For parallel programs, one can expect that “user” time of the parallel run is larger than for the sequential, due to communication overhead, if it is smaller, that probably means the individual threads could make better use of cache.</p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>area</th>
+<th>why</th>
+<th>explanation</th>
+<th>when to use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sweet spot</td>
+<td>minimal "user" time</td>
+<td>= minimal heat production, optimal use of resources</td>
+<td>regular use</td>
+</tr>
+<tr>
+<td>good range</td>
+<td>linear speedup for "real", with constant or slightly increasing "user"</td>
+<td></td>
+<td>approaching deadline</td>
+</tr>
+<tr>
+<td>OK range</td>
+<td>slightly less than linear speedup for "real", and slightly increasing "user"</td>
+<td></td>
+<td>pushing hard to make a deadline</td>
+</tr>
+<tr>
+<td>avoid</td>
+<td>ascending slope in the diagram for "real" and "user"</td>
+<td>one actually needs to wait longer compared to the case with fewer cores</td>
+<td>NEVER</td>
+</tr>
+</tbody>
+</table><p>Recommended in <em>this</em> case would be to request 8 threads <code class="docutils literal notranslate"><span class="pre">-n</span> <span class="pre">8</span> <span class="pre">--ntasks-per-node</span> <span class="pre">8</span></code> but use <code class="docutils literal notranslate"><span class="pre">mpirun</span> <span class="pre">-n</span> <span class="pre">4</span></code>. OpenFOAM does not seem to benefit from hyperthreading
+.</p>
+<br>
+<br>
+<hr style="margin-right: 0px; margin-bottom: 4px; margin-left: 0px; margin-top: -24px; border:2px solid  #d9d9d9 "></hr>
+<hr style="margin: 4px 0px; border:1px solid  #d9d9d9 "></hr></section>
+<section id="an-array-parameter-sweep-job">
+<h2>An array (parameter sweep) job<a class="headerlink" href="#an-array-parameter-sweep-job" title="Permalink to this heading"></a></h2>
+<hr class="docutils" />
+<span style="color:blue">
+Tis script reserves 10 threads and run array of jobs in range of 13-1800.  The `$SLURM_ARRAY_TASK_ID` variable calls the input files in the given range in turn and data is written in output files arrayjob, which also contain job allocation ID and  job array index number (`-%A` and `-%a`, respectively). 
+</span> <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>#!/bin/bash 
+#SBATCH --job-name=array-parameter-scan	### job name  
+#SBATCH --output=arrayjob-%A-%a  		### output file 
+#SBATCH --ntasks=10  			    	### number of threads  
+#SBATCH --array=13-1800       		    	### Array tasks for parameter sweep
+
+## run job
+./myarrayjob  $SLURM_ARRAY_TASK_ID
+</pre></div>
+</div>
+<br>
+<br>
+<hr style="margin-right: 0px; margin-bottom: 4px; margin-left: 0px; margin-top: -24px; border:2px solid  #d9d9d9 "></hr>
+<hr style="margin: 4px 0px; border:1px solid  #d9d9d9 "></hr></section>
+<section id="a-gpu-job">
+<h2>A GPU job<a class="headerlink" href="#a-gpu-job" title="Permalink to this heading"></a></h2>
+<hr class="docutils" />
+<p>The GPU scripts can be run only on <strong>amp</strong>.</p>
+<p>The following script reserves 1 gpu (Nvidia A100), uses gpu partition and has time limit 0f 10 minutes.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash </span>
+<span class="c1">#SBATCH --job-name=uses-gpu		### job name</span>
+<span class="c1">#SBATCH -p gpu			### use gpu</span>
+<span class="c1">#SBATCH --gres=gpu:A100:1		### specifying the GPU type</span>
+<span class="c1">#SBATCH -t 00:10:00			### time limit </span>
+
+<span class="c1">## run job    </span>
+<span class="o">./</span><span class="n">mygpujob</span>
+</pre></div>
+</div>
+<p>This script reserves 4 gpu without specifying the GPU type.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash </span>
+<span class="c1">#SBATCH --job-name=uses-gpu		### job name</span>
+<span class="c1">#SBATCH -p gpu			### use gpu</span>
+<span class="c1">#SBATCH --gres=gpu:4		### number of gpu</span>
+<span class="c1">#SBATCH -t 00:10:00 		### time limit </span>
+
+<span class="c1">## run job    </span>
+<span class="o">./</span><span class="n">mygpujob</span>
+</pre></div>
+</div>
+<br>
+<br>
+<hr style="margin-right: 0px; margin-bottom: 4px; margin-left: 0px; margin-top: -24px; border:2px solid  #d9d9d9 "></hr>
+<hr style="margin: 4px 0px; border:1px solid  #d9d9d9 "></hr></section>
+<section id="a-job-using-the-scratch-partition-sequential-or-openmp-parallel">
+<h2>A job using the scratch partition (sequential or OpenMP parallel)<a class="headerlink" href="#a-job-using-the-scratch-partition-sequential-or-openmp-parallel" title="Permalink to this heading"></a></h2>
+<hr class="docutils" />
+<span style="color:blue"> 
+The following script creates a directory named scratch-%x-%j (where -%x is a job name and %j is a jobid of the running job). This scratch directory is done on the scratch partition of the node to provide fast local storage, that does **not** require network. After, slurm script runs the job, and copies the output files back into the permanent home-directory once the job is completed.
+</span>  <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>#!/bin/bash -l
+
+#SBATCH -N 1			### number of nodes
+#SBATCH -t 00:10:00			### time limit  
+#SBATCH -J using-scratch		### job name
+
+## creates scratch scratch directory, copy files from working directory to scratch directory, goes to scratch directory
+mkdir /state/partition1/scratch-%x-%j
+cp -r $HOME/were/input/is/* /state/partition1/scratch-%x-%j/
+cd /state/partition1/scratch-%x-%j/
+
+## run job
+myjob
+
+## copy files from scratch directory to working directory and remove scratch directory
+cp -r /state/partition1/scratch-%x-%j/* $HOME/were/input/is
+rm -rf /state/partition1/scratch-%x-%j
+</pre></div>
+</div>
+<p>Please note that the scratch is <em>not</em> shared between nodes, so parallel MPI jobs that span multiple nodes cannot access each other’s scratch files.</p>
+<br></section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright COPYRIGHT.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
