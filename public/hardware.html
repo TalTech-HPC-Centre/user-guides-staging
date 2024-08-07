@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hardware Specification &mdash; HPC user-guides 2024 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="_static/css/extra.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #E4067E" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            HPC user-guides
+              <img src="_static/TalTech_Gradient-200px.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="lumi.html">LUMI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cloud.html">Quickstart: Cloud</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart: Cluster</a></li>
+<li class="toctree-l1"><a class="reference internal" href="learning.html">Courses and introductions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">Module environment (lmod)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="software.html">Software packages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mpi.html">Available MPI versions (and comparison)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="performance.html">Performance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="profiling.html">Profiling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="visualization.html">Visualization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gpu.html">GPU-servers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="singularity.html">Containers (Singularity &amp; Docker)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acknowledgement.html">Acknowledgement</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #E4067E" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">HPC user-guides</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Hardware Specification</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/hardware.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <p><span style="color:red">not changed to rocky yet</span></p>
+<section id="hardware-specification">
+<h1>Hardware Specification<a class="headerlink" href="#hardware-specification" title="Permalink to this heading"></a></h1>
+<p>The use of the resources of the TalTech <a class="reference external" href="https://taltech.ee/en/itcollege/hpc-centre">HPC Centre</a> requires an active Uni-ID account, a procedure for non-employees/non-students can be found <a class="reference external" href="https://taltech.atlassian.net/wiki/spaces/ITI/pages/38996020/Uni-ID+lepinguv+line+konto">here</a> (in Estonian).</p>
+<p>TalTech operates the following infrastructure:</p>
+<ul class="simple">
+<li><p><strong>base.hpc.taltech.ee</strong> is the new cluster environment all nodes from HPC1 and HPC2 will be migrated here</p>
+<ul>
+<li><p>a live diagram of the cluster load is here: <a class="reference external" href="https://base.hpc.taltech.ee/load/">load diagram</a></p></li>
+<li><p>UniID login (please ask at hpcsupport&#64;taltech.ee to activate access)</p></li>
+<li><p>SLURM v20 scheduler</p></li>
+<li><p>CentOS 7</p></li>
+<li><p>home-directories’ location: <code class="docutils literal notranslate"><span class="pre">/gpfs/mariana/home/uni-ID</span></code></p></li>
+<li><p>HPC1 home-directories accessible under <code class="docutils literal notranslate"><span class="pre">/beegfs/home/uni-ID</span></code></p></li>
+<li><p>home directory file system has 1.5 PB storage, with a 2 TB/user quota</p></li>
+<li><p><strong>green</strong> nodes (former <strong>hpc2.ttu.ee</strong> nodes)</p>
+<ul>
+<li><p>32 nodes 2 x Intel Xeon Gold 6148 20C 2.40 GHz, <strong>96 GB</strong> DDR4-2666 R ECC RAM (<strong>green[1-32]</strong>)</p></li>
+<li><p>25 Gbit Ethernet</p></li>
+<li><p>18 of these nodes are connected with low latency interconnect FDR InfiniBand (<strong>green-ib</strong> partition)</p></li>
+</ul>
+</li>
+<li><p><strong>gray</strong> nodes (former <strong>hpc.ttu.ee</strong> nodes, migration in progress)</p>
+<ul>
+<li><p>48 nodes with 2 x Intel Xeon E5-2630L 6C with <strong>64 GB RAM</strong> and 1 TB local drive connected with low latency interconnect QDR InfiniBand (<strong>gray-ib</strong> partition)</p></li>
+<li><p>60 nodes with 2 x Intel Xeon E5-2630L 6C with 48 GB RAM and 1 TB local drive (memory upgrade to 64 GB in progress)</p></li>
+<li><p>1 Gbit Ethernet</p></li>
+</ul>
+</li>
+<li><p><strong>mem1tb</strong> large memory node</p>
+<ul>
+<li><p>1 node with 1TB of operating RAM</p></li>
+<li><p>4x Intel Xeon CPU E5-4640 (together 32 cores, 64 threads)</p></li>
+</ul>
+</li>
+<li><p><strong>amp</strong> GPU node, <a class="reference internal" href="gpu.html"><span class="doc">specific guide for amp</span></a> (amp.hpc.taltech.ee)</p>
+<ul>
+<li><p>1 node with 8xNvidia A100</p></li>
+<li><p>2x 64core AMD EPYC 7742 (together 128 cores, 256 threads)</p></li>
+<li><p>1 TB RAM</p></li>
+<li><p>OpenACC, OpenMP, OpenCL, CUDA</p></li>
+<li><p>Ubuntu 20.04</p></li>
+</ul>
+</li>
+<li><p><strong>viz.hpc.taltech.ee</strong> Visualization node (accessible within University network and FortiVPN)</p>
+<ul>
+<li><p>this service is intended mainly for post-processing, especially of large datasets; it is not intended as a remote desktop service; job submission is not possible from here</p></li>
+<li><p>1 node with 2 nVidia Tesla K20Xm grapic cards (on displays :0.0 and :0.1)</p></li>
+<li><p>this node is not for computation on GPUs</p></li>
+<li><p>Debian 10</p></li>
+<li><p>UniID login with ssh-keys (no password login; previous login on base.hpc.taltech.ee required to create account)</p></li>
+<li><p>same home-directories as base, HPC1-homes accessible under /beegfs/home/uni-ID</p></li>
+<li><p>ParaView, VisIt and COVISE available for remote visualization</p></li>
+<li><p>VirtualGL, Xpra, VNC available for remote execution of programs (can be used with e.g. Mayavi, ParaView, VisIt, COVISE, OpenDX)</p></li>
+</ul>
+</li>
+<li><p><strong>There is no backup</strong> please take care of backups yourself!</p></li>
+<li><p><strong>partitions:</strong></p>
+<ul>
+<li><p><strong>short</strong>: (<em>default</em>) time limit 4 hours, default time 10 min, default mem 1 GB/thread, <em>green</em> nodes</p></li>
+<li><p><strong>common</strong>: time limit 8 days, default time 10 min, default mem 1 GB/thread, green nodes</p></li>
+<li><p><strong>long</strong>: time limit 22 days, default time 10 min, default mem 1 GB/thread, green nodes</p></li>
+<li><p><strong>green-ib</strong>: time limit 8 days, default time 10 min, default mem 1 GB/thread, <em>green</em> InfiniBand nodes</p></li>
+<li><p><strong>gray-ib</strong>: time limit 8 days, default time 10 min, default mem 1 GB/thread, <em>gray</em> InfiniBand nodes</p></li>
+<li><p><strong>gpu</strong>: <em>amp</em> GPU node, time limit 5 days, default time 10 min, default mem 1 GB/thread</p></li>
+<li><p><strong>mem1tb</strong>: <em>mem1tb</em> node</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>training.hpc.taltech.ee</strong> virtual training cluster</p>
+<ul>
+<li><p>used for testing</p></li>
+<li><p>running on the TalTech ETAIS OpenStack cloud service</p></li>
+</ul>
+</li>
+<li><p><strong>TalTech ETAIS Cloud</strong>: 4 node OpenStack cloud</p>
+<ul>
+<li><p>5 compute (nova) nodes with 282GB or 768GB of RAM and 80 threads each</p></li>
+<li><p>65 TB CephFS storage (net capacity)</p></li>
+<li><p>accessible through the ETAIS website: <a class="reference external" href="https://etais.ee/using/">https://etais.ee/using/</a></p></li>
+</ul>
+</li>
+</ul>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright COPYRIGHT.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Remote visualization using VNC &mdash; HPC user-guides 2024 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/extra.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #E4067E" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            HPC user-guides
+              <img src="../_static/TalTech_Gradient-200px.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../lumi.html">LUMI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cloud.html">Quickstart: Cloud</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Quickstart: Cluster</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../learning.html">Courses and introductions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules.html">Module environment (lmod)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software.html">Software packages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mpi.html">Available MPI versions (and comparison)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../performance.html">Performance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../profiling.html">Profiling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../visualization.html">Visualization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gpu.html">GPU-servers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../singularity.html">Containers (Singularity &amp; Docker)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../acknowledgement.html">Acknowledgement</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #E4067E" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">HPC user-guides</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Remote visualization using VNC</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/visualization/vnc.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <p><span style="color:red">not changed to rocky yet</span></p>
+<section id="remote-visualization-using-vnc">
+<h1>Remote visualization using VNC<a class="headerlink" href="#remote-visualization-using-vnc" title="Permalink to this heading"></a></h1>
+<br>
+<hr style="margin-right: 0px; margin-bottom: 4px; margin-left: 0px; margin-top: -24px; border:2px solid  #d9d9d9 "></hr>
+<hr style="margin: 4px 0px; border:1px solid  #d9d9d9 "></hr><section id="short-guide">
+<h2>Short guide<a class="headerlink" href="#short-guide" title="Permalink to this heading"></a></h2>
+<hr class="docutils" />
+<ol>
+<li><p>Connect to <strong>viz</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="n">ssh</span> <span class="n">uni</span><span class="o">-</span><span class="n">ID</span><span class="nd">@viz</span><span class="o">.</span><span class="n">hpc</span><span class="o">.</span><span class="n">taltech</span><span class="o">.</span><span class="n">ee</span>
+</pre></div>
+</div>
+</li>
+<li><p>Start VNC on <strong>viz</strong> by command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="n">vncserver</span> <span class="o">-</span><span class="n">geometry</span> <span class="mi">1265</span><span class="n">x980</span>
+</pre></div>
+</div>
+</li>
+<li><p>Open a second connection to <strong>viz</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="n">ssh</span> <span class="o">-</span><span class="n">L</span> <span class="mi">59</span><span class="n">XX</span><span class="p">:</span><span class="n">localhost</span><span class="p">:</span><span class="mi">50</span><span class="n">XX</span> <span class="n">uni</span><span class="o">-</span><span class="n">ID</span><span class="nd">@viz</span><span class="o">.</span><span class="n">hpc</span><span class="o">.</span><span class="n">taltech</span><span class="o">.</span><span class="n">ee</span>
+</pre></div>
+</div>
+<p>where <code class="docutils literal notranslate"><span class="pre">XX</span></code> is the display number that appear after giving <code class="docutils literal notranslate"><span class="pre">vncserver</span></code> command.<br /><em><strong>NB!</strong></em> <em><code class="docutils literal notranslate"><span class="pre">XX</span></code> is always the number of two digits (e.g. <code class="docutils literal notranslate"><span class="pre">01</span></code> for <code class="docutils literal notranslate"><span class="pre">:1</span></code>)</em></p>
+</li>
+<li><p>On your desktop start a vncviewer</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="n">vncviewer</span> <span class="p">:</span><span class="n">XX</span>
+</pre></div>
+</div>
+<p>where <code class="docutils literal notranslate"><span class="pre">XX</span></code> is the display number</p>
+</li>
+<li><p><strong>Stop the vncserver!!!</strong> on <strong>viz</strong> by command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="n">vncserver</span> <span class="o">-</span><span class="n">kill</span> <span class="p">:</span><span class="n">XX</span>
+</pre></div>
+</div>
+</li>
+</ol>
+<br>
+<br>
+<br>
+<hr style="margin-right: 0px; margin-bottom: 4px; margin-left: 0px; margin-top: -24px; border:2px solid  #d9d9d9 "></hr>
+<hr style="margin: 4px 0px; border:1px solid  #d9d9d9 "></hr></section>
+<section id="get-started">
+<h2>Get started<a class="headerlink" href="#get-started" title="Permalink to this heading"></a></h2>
+<hr class="docutils" />
+<section id="software-recommended-to-use">
+<h3>Software recommended to use<a class="headerlink" href="#software-recommended-to-use" title="Permalink to this heading"></a></h3>
+<p>Virtual Network Computing (VNC) is a graphical desktop-sharing system to remotely control another computer.</p>
+<div class="simple1">
+The client (your desktop) computer needs a vncviewer<ul class="simple">
+<li><p><strong>Linux:</strong> <a class="reference external" href="https://command-not-found.com/xtigervncviewer">xtigervncviewer</a></p></li>
+<li><p><strong>Windows:</strong> TigerVNCviewer: <a class="reference external" href="https://sourceforge.net/projects/tigervnc/files/stable/1.12.0/vncviewer64-1.12.0.exe/download">vncviewer64-1.12.0.exe</a></p></li>
+<li><p><strong>Mac:</strong> <a class="reference external" href="https://www.realvnc.com/en/connect/download/viewer/">VNC Viewer</a></p></li>
+</ul>
+</div>
+<br></section>
+<section id="first-time-use">
+<h3>First time use<a class="headerlink" href="#first-time-use" title="Permalink to this heading"></a></h3>
+<p>On the first start, VNC asks to specify a password to connect to the server, choose a secure one, which does not match your HPC/UniID password because VNC connections are not encrypted!</p>
+<div style="width:95%; height:!95%; margin-left: auto; margin-right: auto;"> <p><img alt="vnc-host-0" src="../_images/vnc-host-0.png" /></p>
+</div><br>
+<br>
+<hr style="margin-right: 0px; margin-bottom: 4px; margin-left: 0px; margin-top: -24px; border:2px solid  #d9d9d9 "></hr>
+<hr style="margin: 4px 0px; border:1px solid  #d9d9d9 "></hr></section>
+</section>
+<section id="vnc-long-version">
+<h2>VNC Long version<a class="headerlink" href="#vnc-long-version" title="Permalink to this heading"></a></h2>
+<hr class="docutils" />
+<p>VNC should be run firstly at <strong>viz</strong> node of HPC and after at user’s computer.</p>
+<ol>
+<li><p>Connect to <strong>viz</strong> by command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ssh</span> <span class="n">uni</span><span class="o">-</span><span class="n">ID</span><span class="nd">@viz</span><span class="o">.</span><span class="n">hpc</span><span class="o">.</span><span class="n">taltech</span><span class="o">.</span><span class="n">ee</span>
+</pre></div>
+</div>
+<p>if this command does not work try to connect through jump host:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="n">ssh</span> <span class="o">-</span><span class="n">J</span> <span class="n">uni</span><span class="o">-</span><span class="n">ID</span><span class="nd">@base</span><span class="o">.</span><span class="n">hpc</span><span class="o">.</span><span class="n">taltech</span><span class="o">.</span><span class="n">ee</span> <span class="n">uni</span><span class="o">-</span><span class="n">ID</span><span class="nd">@viz</span> 
+</pre></div>
+</div>
+<p><em><strong>NB!</strong></em> <em>Connection to <strong>viz</strong> can be done <em><strong>only</strong></em> with SSH keys. SSH key generation guide is <a class="reference internal" href="../ssh.html"><span class="doc">here</span></a>.</em></p>
+<p><em><strong>NB!</strong></em> <em>To use <strong>viz</strong> the SSH key must be added to the <strong>base</strong> node.</em></p>
+<p>On Mac and Linux this can be done by command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="n">ssh</span><span class="o">-</span><span class="n">copy</span><span class="o">-</span><span class="nb">id</span> <span class="n">Uni</span><span class="o">-</span><span class="n">ID</span><span class="nd">@base</span><span class="o">.</span><span class="n">hpc</span><span class="o">.</span><span class="n">taltech</span><span class="o">.</span><span class="n">ee</span>
+</pre></div>
+</div>
+<p>After about an hour, when the automatic script has synced the files, and you can use <strong>viz</strong>.</p>
+</li>
+<li><p>On <strong>viz</strong> start the VNC server. Depending on which VNC client user has, one of those commands should be given:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="n">vncserver</span> <span class="o">-</span><span class="n">geometry</span> <span class="mi">1265</span><span class="n">x980</span>
+</pre></div>
+</div>
+<p>and for Tiger VNC:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="n">tigervncserver</span> <span class="o">-</span><span class="n">geometry</span> <span class="mi">1280</span><span class="n">x1024</span>
+</pre></div>
+</div>
+<p>It is recommended to specify window size as well by <code class="docutils literal notranslate"><span class="pre">-geometry</span></code> flag, since changing the resolution of the remote desktop (= window size) at runtime can have undesired effects.</p>
+</li>
+<li><p>The output in the terminal will show on which display VNC is running.</p>
+  <div style="width:95%; height:!95%; margin-left: auto; margin-right: auto;"> <p><img alt="vnc-host-1" src="../_images/vnc-host-1.png" /></p>
+ </div><p>see second line <code class="docutils literal notranslate"><span class="pre">desktop</span> <span class="pre">at</span> <span class="pre">:8</span></code>, where <code class="docutils literal notranslate"><span class="pre">:8</span></code> is the display number – further <code class="docutils literal notranslate"><span class="pre">XX</span></code>.</p>
+</li>
+<li><p>Open a second connection to <strong>viz</strong> (in new terminal) and give the command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="n">ssh</span> <span class="o">-</span><span class="n">L</span> <span class="mi">59</span><span class="n">XX</span><span class="p">:</span><span class="n">localhost</span><span class="p">:</span><span class="mi">50</span><span class="n">XX</span> <span class="n">uni</span><span class="o">-</span><span class="n">ID</span><span class="nd">@viz</span><span class="o">.</span><span class="n">hpc</span><span class="o">.</span><span class="n">taltech</span><span class="o">.</span><span class="n">ee</span>
+</pre></div>
+</div>
+<p>where <code class="docutils literal notranslate"><span class="pre">XX</span></code> is the display number as two digits (e.g. <code class="docutils literal notranslate"><span class="pre">01</span></code> for <code class="docutils literal notranslate"><span class="pre">:1</span></code>)</p>
+<p><em><strong>NB!</strong></em> <em>If you were connected through jump host this command should be given:</em></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="n">ssh</span> <span class="o">-</span><span class="n">J</span> <span class="n">Uni</span><span class="o">-</span><span class="n">ID</span><span class="nd">@base</span><span class="o">.</span><span class="n">hpc</span><span class="o">.</span><span class="n">taltech</span><span class="o">.</span><span class="n">ee</span> <span class="o">-</span><span class="n">L</span> <span class="mi">59</span><span class="n">XX</span><span class="p">:</span><span class="mf">127.0.0.1</span><span class="p">:</span><span class="mi">59</span><span class="n">XX</span> <span class="n">Uni</span><span class="o">-</span><span class="n">ID</span><span class="nd">@viz</span>
+</pre></div>
+</div>
+</li>
+<li><p>On <strong>your desktop</strong> start a VNC viewer. If you do it from terminal – give one of these command depending on which VNC viewer you have:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="n">vncviewer</span> <span class="p">:</span><span class="n">XX</span>
+</pre></div>
+</div>
+<p>or</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="n">xtigervncviewer</span> <span class="n">localhost</span><span class="p">:</span><span class="n">XX</span>
+</pre></div>
+</div>
+<p>where <code class="docutils literal notranslate"><span class="pre">XX</span></code> is the number from above. On Windows (depending on the VNC-client) the address to connect to could be <code class="docutils literal notranslate"><span class="pre">localhost::50XX</span></code> (again, the <code class="docutils literal notranslate"><span class="pre">XX</span></code> stands for the display/port as specified before).</p>
+</li>
+</ol>
+<p>If you use graphical interface - specify localhost - in the corresponding field (line in the top) and click bottom “Continue”.</p>
+<div style="width:75%; height:!75%; margin-left: auto; margin-right: auto;"> <p><img alt="vnc-1" src="../_images/vnc-1.png" /></p>
+</div><p>Type password.</p>
+<div style="width:75%; height:!75%; margin-left: auto; margin-right: auto;"> <p><img alt="vnc-2" src="../_images/vnc-2.png" /></p>
+</div><p>If you see monochromic field and can not start a session, it mean that you to set up your VNC session: <a class="reference external" href="https://hpc.pages.taltech.ee/user-guides/visualization/vnc.html#setting-up-vnc-session">Setting up VNC config</a>.</p>
+<p>If you see terminal - then everything is done correctly and you can start working. Within the session window, you can start any program from the terminal or using the menus of the window manager.</p>
+<p><strong>Viz</strong> has module system. Most of the modules are needed to be loaded unless the manual says they are native.</p>
+<p>Before loading modules, the source must be specified:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">source</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">lmod</span><span class="o">/</span><span class="mf">6.6</span><span class="o">/</span><span class="n">init</span><span class="o">/</span><span class="n">bash</span>
+<span class="n">module</span> <span class="n">use</span> <span class="o">/</span><span class="n">gpfs</span><span class="o">/</span><span class="n">mariana</span><span class="o">/</span><span class="n">modules</span><span class="o">/</span><span class="n">system</span>
+</pre></div>
+</div>
+<p>followed by two commands to load the modules. The first one loads <em><strong>viz-spack</strong></em> or <em><strong>viz module,</strong></em> depending on program installation type, and the second command loads the program itself.
+For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="n">module</span> <span class="n">load</span> <span class="n">viz</span><span class="o">-</span><span class="n">spack</span>
+ <span class="n">module</span> <span class="n">load</span> <span class="n">jmol</span>
+</pre></div>
+</div>
+<div style="width:75%; height:!75%; margin-left: auto; margin-right: auto;"> <p><img alt="vnc-3" src="../_images/vnc-3.png" /></p>
+</div><p>In case of native program only the command that calls this program is needed.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rasmol</span>
+</pre></div>
+</div>
+<p>or</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">paraview</span>
+</pre></div>
+</div>
+<br>
+<br>
+<br>
+<hr style="margin-right: 0px; margin-bottom: 4px; margin-left: 0px; margin-top: -24px; border:2px solid  #d9d9d9 "></hr>
+<hr style="margin: 4px 0px; border:1px solid  #d9d9d9 "></hr></section>
+<section id="correct-termination">
+<h2>Correct termination<a class="headerlink" href="#correct-termination" title="Permalink to this heading"></a></h2>
+<hr class="docutils" />
+<p>In is very important to finish session correctly! Since if you do not do it - session continue to run even if you close session on your computer.</p>
+<p>To stop VNC session give on <strong>viz</strong> one of these commands:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">vncserver</span> <span class="o">-</span><span class="n">kill</span> <span class="p">:</span><span class="n">XX</span>
+</pre></div>
+</div>
+<p>or</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tigervncserver</span> <span class="o">-</span><span class="n">kill</span> <span class="p">:</span><span class="n">XX</span>
+</pre></div>
+</div>
+<p>where <code class="docutils literal notranslate"><span class="pre">XX</span></code> is the display number.</p>
+<p>Running sessions can be checked by command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">vncserver</span> <span class="o">-</span><span class="nb">list</span>
+</pre></div>
+</div>
+<div style="width:85%; height:!85%; margin-left: auto; margin-right: auto;"> <p><img alt="vnc-4" src="../_images/vnc-4.png" /></p>
+</div><br>
+<br>
+<hr style="margin-right: 0px; margin-bottom: 4px; margin-left: 0px; margin-top: -24px; border:2px solid  #d9d9d9 "></hr>
+<hr style="margin: 4px 0px; border:1px solid  #d9d9d9 "></hr></section>
+<section id="setting-up-vnc-session">
+<h2>Setting up VNC session<a class="headerlink" href="#setting-up-vnc-session" title="Permalink to this heading"></a></h2>
+<hr class="docutils" />
+<p>It is impossible to work with VNC without setting it. To do this give the following commands from home catalogue on <strong>base</strong> or <strong>viz</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cat</span>  <span class="o">&lt;&lt;</span><span class="n">EOT</span> <span class="o">&gt;</span> <span class="o">.</span><span class="n">xsession</span>
+<span class="n">xterm</span> <span class="o">&amp;</span>
+<span class="n">fvwm2</span>
+<span class="n">EOT</span>
+</pre></div>
+</div>
+<p>This will configure automatic startup of  <code class="docutils literal notranslate"><span class="pre">xterm</span></code> and  <code class="docutils literal notranslate"><span class="pre">fvwm2</span></code> window manager. Alternatively, user can use other window managers: more desktop-like – <code class="docutils literal notranslate"><span class="pre">fluxbox</span></code>, <code class="docutils literal notranslate"><span class="pre">awesome</span></code> or <code class="docutils literal notranslate"><span class="pre">jwm</span></code> or tiling – <code class="docutils literal notranslate"><span class="pre">i3</span></code>, <code class="docutils literal notranslate"><span class="pre">xmonad</span></code> or <code class="docutils literal notranslate"><span class="pre">tritium</span></code>. To do this, the corresponding line must be added to <code class="docutils literal notranslate"><span class="pre">.xsession</span></code> file by command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">echo</span>  <span class="s2">&quot;fluxbox&quot;</span> <span class="o">&gt;&gt;</span> <span class="o">.</span><span class="n">xsession</span>
+</pre></div>
+</div>
+<p>The same way <code class="docutils literal notranslate"><span class="pre">.vnc/xstartup</span></code> can be configured in case user wants to apply special settings exactly to VNC visualisation.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright COPYRIGHT.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

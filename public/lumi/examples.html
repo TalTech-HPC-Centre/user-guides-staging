@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Slurm scripts &mdash; HPC user-guides 2024 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/extra.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #E4067E" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            HPC user-guides
+              <img src="../_static/TalTech_Gradient-200px.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../lumi.html">LUMI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cloud.html">Quickstart: Cloud</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Quickstart: Cluster</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../learning.html">Courses and introductions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules.html">Module environment (lmod)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software.html">Software packages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mpi.html">Available MPI versions (and comparison)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../performance.html">Performance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../profiling.html">Profiling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../visualization.html">Visualization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gpu.html">GPU-servers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../singularity.html">Containers (Singularity &amp; Docker)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../acknowledgement.html">Acknowledgement</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #E4067E" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">HPC user-guides</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Slurm scripts</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/lumi/examples.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="slurm-scripts">
+<h1>Slurm scripts<a class="headerlink" href="#slurm-scripts" title="Permalink to this heading"></a></h1>
+<p>Like at HPC, at LUMI, computing resources are allocated to the user by the resource manager Slurm. More about Slurm scripts at LUMI can be found <a class="reference external" href="https://docs.lumi-supercomputer.eu/runjobs/scheduled-jobs/slurm-quickstart/">here</a>.</p>
+<ul>
+<li><p>At LUMI partitions can be allocated by <a class="reference external" href="https://docs.lumi-supercomputer.eu/runjobs/scheduled-jobs/partitions/#slurm-partitions-allocatable-by-node">node</a> or by <a class="reference external" href="https://docs.lumi-supercomputer.eu/runjobs/scheduled-jobs/partitions/#slurm-partitions-allocatable-by-resources">resources</a>.</p></li>
+<li><span style="color:blue"> 
+  User always has to specifying the account. 
+  </span>   
+  It is mandatory!<p>Account specification can be done by adding into Slurm script <code class="docutils literal notranslate"><span class="pre">#SBATCH</span> <span class="pre">--	account=project_XXX</span></code> line or by adding the following two lines into <code class="docutils literal notranslate"><span class="pre">.bashrc</span></code> file by command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  <span class="n">cat</span>  <span class="o">&lt;&lt;</span><span class="n">EOT</span> <span class="o">&gt;</span> <span class="o">.</span><span class="n">bashrc</span>
+  <span class="n">export</span> <span class="n">SBATCH_ACCOUNT</span><span class="o">=</span><span class="n">project_XXX</span>
+  <span class="n">export</span> <span class="n">SALLOC_ACCOUNT</span><span class="o">=</span><span class="n">project_XXX</span>
+  <span class="n">EOT</span>
+</pre></div>
+</div>
+<p>where <code class="docutils literal notranslate"><span class="pre">XXX</span></code> is a project number which can be found in <a class="reference external" href="https://etais.ee">ETAIS</a> as <code class="docutils literal notranslate"><span class="pre">Effective</span> <span class="pre">ID</span></code>.</p>
+</li>
+<li><p>By default, <span style="color:blue">
+upon node failure job will be automatically resubmitted to the queue
+</span>
+with the same job ID and that will truncate the previous output. To avoid this add the following two lines into <code class="docutils literal notranslate"><span class="pre">.bashrc</span></code> file by command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  <span class="n">cat</span>  <span class="o">&lt;&lt;</span><span class="n">EOT</span> <span class="o">&gt;</span> <span class="o">.</span><span class="n">bashrc</span>
+  <span class="n">SBATCH_NO_REQUEUE</span><span class="o">=</span><span class="mi">1</span> 
+  <span class="n">SBATCH_OPEN_MODE</span><span class="o">=</span><span class="n">append</span>
+  <span class="n">EOT</span>
+</pre></div>
+</div>
+</li>
+</ul>
+<p>More about Slurm options can be found in <a class="reference external" href="https://docs.lumi-supercomputer.eu/runjobs/scheduled-jobs/batch-job/#common-slurm-options">LUMI manuals</a>.</p>
+<div class="simple1">
+Slurm script examples provided by LUMI:<ul class="simple">
+<li><p><a class="reference external" href="https://docs.lumi-supercomputer.eu/runjobs/scheduled-jobs/lumig-job/">GPU jobs</a></p></li>
+<li><p><a class="reference external" href="https://docs.lumi-supercomputer.eu/runjobs/scheduled-jobs/lumic-job/">CPU jobs</a></p></li>
+<li><p><a class="reference external" href="https://docs.lumi-supercomputer.eu/runjobs/scheduled-jobs/throughput/">Job array</a></p></li>
+</ul>
+</div>
+<br>
+<br>
+<br>
+<hr style="margin-right: 0px; margin-bottom: 4px; margin-left: 0px; margin-top: -24px; border:2px solid  #d9d9d9 "></hr>
+<hr style="margin: 4px 0px; border:1px solid  #d9d9d9 "></hr><section id="multi-node-multi-gpu-pytorch-training">
+<h2>Multi Node Multi GPU PyTorch Training<a class="headerlink" href="#multi-node-multi-gpu-pytorch-training" title="Permalink to this heading"></a></h2>
+<hr class="docutils" />
+<p>This PyTorch script simulates training a ResNet model across multiple gpus and nodes.</p>
+<section id="quick-guide">
+<h3>Quick Guide<a class="headerlink" href="#quick-guide" title="Permalink to this heading"></a></h3>
+<ol>
+<li><div class="simple1"> Download:<ul class="simple">
+<li><p>environment setup script - <a class="reference external" href="env.sh">env.sh</a></p></li>
+<li><p>bash script setup singularity - <a class="reference external" href="setup.sh">setup.sh</a></p></li>
+<li><p>PyTorch script - <a class="reference external" href="min_dist.py">min_dist.py</a></p></li>
+<li><p>slurm script - <a class="reference external" href="dist_run.slurm">dist_run.slurm</a> </div></p></li>
+</ul>
+</li>
+<li><p>Setup environment by command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="o">.</span> <span class="n">env</span><span class="o">.</span><span class="n">sh</span> <span class="n">project_XXX</span> 
+</pre></div>
+</div>
+<p>where <code class="docutils literal notranslate"><span class="pre">XXX</span></code> is a project number.</p>
+</li>
+<li><p>Setup singularity:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="o">./</span><span class="n">setup</span><span class="o">.</span><span class="n">sh</span> 
+</pre></div>
+</div>
+</li>
+<li><p>Run PyTorch script:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="n">sbatch</span> <span class="o">-</span><span class="n">N</span> <span class="mi">2</span> <span class="n">dist_run</span><span class="o">.</span><span class="n">slurm</span> <span class="n">min_dist</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+</li>
+<li><p>You should get an output file <code class="docutils literal notranslate"><span class="pre">slurm_job-number</span></code> with content like:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="mi">8</span> <span class="n">GPU</span> <span class="n">processes</span> <span class="ow">in</span> <span class="n">total</span>
+ <span class="n">Batch</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">128</span>
+ <span class="n">Dataset</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">50000</span>
+ <span class="n">Epochs</span> <span class="o">=</span> <span class="mi">5</span>
+
+ <span class="n">Epoch</span> <span class="mi">0</span>  <span class="n">done</span> <span class="ow">in</span> <span class="mf">232.64820963301463</span><span class="n">s</span>
+ <span class="n">Epoch</span> <span class="mi">1</span>  <span class="n">done</span> <span class="ow">in</span> <span class="mf">31.191600811027456</span><span class="n">s</span>
+ <span class="n">Epoch</span> <span class="mi">2</span>  <span class="n">done</span> <span class="ow">in</span> <span class="mf">31.244039460027125</span><span class="n">s</span>
+ <span class="n">Epoch</span> <span class="mi">3</span>  <span class="n">done</span> <span class="ow">in</span> <span class="mf">31.384101407951675</span><span class="n">s</span>
+ <span class="n">Epoch</span> <span class="mi">4</span>  <span class="n">done</span> <span class="ow">in</span> <span class="mf">31.143528194981627</span><span class="n">s</span>
+</pre></div>
+</div>
+</li>
+</ol>
+<br></section>
+<section id="detailed-guide">
+<h3>Detailed Guide<a class="headerlink" href="#detailed-guide" title="Permalink to this heading"></a></h3>
+<div class="simple1"> Download:<ul class="simple">
+<li><p>environment setup script - <a class="reference external" href="env.sh">env.sh</a></p></li>
+<li><p>bash script setup singularity - <a class="reference external" href="setup.sh">setup.sh</a></p></li>
+<li><p>PyTorch script - <a class="reference external" href="min_dist.py">min_dist.py</a></p></li>
+<li><p>slurm script - <a class="reference external" href="dist_run.slurm">dist_run.slurm</a></div></p></li>
+</ul>
+<section id="setup">
+<h4>Setup<a class="headerlink" href="#setup" title="Permalink to this heading"></a></h4>
+<p>This commands will setup environment and singularity</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span> <span class="n">env</span><span class="o">.</span><span class="n">sh</span> <span class="n">project_XXX</span>
+<span class="o">./</span><span class="n">setup</span><span class="o">.</span><span class="n">sh</span>
+</pre></div>
+</div>
+<p>where <code class="docutils literal notranslate"><span class="pre">XXX</span></code> is a project number that should be changed according user’s project number.</p>
+</section>
+<section id="running">
+<h4>Running<a class="headerlink" href="#running" title="Permalink to this heading"></a></h4>
+<p>Job can be submitted into queue by command</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sbatch</span> <span class="o">-</span><span class="n">N</span> <span class="mi">2</span> <span class="n">dist_run</span><span class="o">.</span><span class="n">slurm</span> <span class="n">min_dist</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<p>Where  <code class="docutils literal notranslate"><span class="pre">dist_run.slurm</span></code> is a resource manager, <code class="docutils literal notranslate"><span class="pre">min_dist.py</span></code> is a PyTorch script and <code class="docutils literal notranslate"><span class="pre">-N</span></code> in a number of nodes used.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+<span class="c1">#SBATCH --job-name=DIST</span>
+<span class="c1">#SBATCH --time=10:00</span>
+<span class="c1">#SBATCH --mem 64G</span>
+<span class="c1">#SBATCH --cpus-per-task 32</span>
+<span class="c1">#SBATCH --partition small-g</span>
+<span class="c1">#SBATCH --gpus-per-node 4</span>
+
+<span class="nb">export</span><span class="w"> </span><span class="nv">NCCL_SOCKET_IFNAME</span><span class="o">=</span>hsn
+<span class="nb">export</span><span class="w"> </span><span class="nv">NCCL_NET_GDR_LEVEL</span><span class="o">=</span><span class="m">3</span>
+
+<span class="nb">export</span><span class="w"> </span><span class="nv">CXI_FORK_SAFE</span><span class="o">=</span><span class="m">1</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">CXI_FORK_SAFE_HP</span><span class="o">=</span><span class="m">1</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">FI_CXI_DISABLE_CQ_HUGETLB</span><span class="o">=</span><span class="m">1</span>
+
+<span class="nb">export</span><span class="w"> </span><span class="nv">MIOPEN_USER_DB_PATH</span><span class="o">=</span>/tmp/<span class="si">${</span><span class="nv">USER</span><span class="si">}</span>-miopen-cache-<span class="si">${</span><span class="nv">SLURM_JOB_ID</span><span class="si">}</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">MIOPEN_CUSTOM_CACHE_DIR</span><span class="o">=</span><span class="si">${</span><span class="nv">MIOPEN_USER_DB_PATH</span><span class="si">}</span>
+
+<span class="nb">export</span><span class="w"> </span><span class="nv">MASTER_ADDR</span><span class="o">=</span><span class="k">$(</span>scontrol<span class="w"> </span>show<span class="w"> </span>hostname<span class="w"> </span><span class="nv">$SLURM_NODELIST</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-n1<span class="k">)</span>
+
+<span class="nb">export</span><span class="w"> </span><span class="nv">OMP_NUM_THREADS</span><span class="o">=</span><span class="m">8</span>
+
+srun<span class="w"> </span>singularity<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>--rocm<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="nv">$SCRATCH</span>/pytorch_latest.sif<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>torchrun<span class="w"> </span>--nnodes<span class="o">=</span><span class="nv">$SLURM_NNODES</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--nproc_per_node<span class="o">=</span><span class="nv">$SLURM_GPUS_PER_NODE</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--rdzv_id<span class="o">=</span><span class="nv">$SLURM_JOB_ID</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--rdzv_backend<span class="o">=</span>c10d<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--rdzv_endpoint<span class="o">=</span><span class="nv">$MASTER_ADDR</span><span class="w"> </span><span class="nv">$@</span>
+</pre></div>
+</div>
+<p>The environment variables containing <code class="docutils literal notranslate"><span class="pre">NCCL</span></code> and <code class="docutils literal notranslate"><span class="pre">CXI</span></code> are used by RCCL for communication over Slingshot.</p>
+<p>The ones containing <code class="docutils literal notranslate"><span class="pre">MIOPEN</span></code> are for <a class="reference external" href="https://rocmsoftwareplatform.github.io/MIOpen/doc/html/index.html">MIOpen</a> to create its caches in the <code class="docutils literal notranslate"><span class="pre">/tmp</span></code> (which is local to each node and in
+memory). If this is not set then MIOpen will create its cache in the user
+home directory (the default) which is a problem since each node needs its own cache.</p>
+</section>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright COPYRIGHT.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
