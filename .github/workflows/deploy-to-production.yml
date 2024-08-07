@@ -1,0 +1,22 @@
+name: Deploy to production on manual trigger
+on:
+  workflow_dispatch:
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.7'
+      - uses: cpina/github-action-push-to-another-repository@main
+        env:
+          SSH_DEPLOY_KEY: ${{ secrets.SSH_DEPLOY_KEY }}
+        with:
+          source-directory: 'public/'
+          destination-github-username: 'TalTech-HPC-Centre'
+          destination-repository-name: 'user-guides-production'
+          user-email: hpc-actions@taltech.ee
+          target-branch: main
+          target-directory: public
