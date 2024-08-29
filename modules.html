@@ -229,9 +229,8 @@ automatically load some modules on login and to define one’s own “default”
 <section id="module-groups">
 <h2>Module groups<a class="headerlink" href="#module-groups" title="Permalink to this heading"></a></h2>
 <hr class="docutils" />
-<p>There are several module groups (directories) depending on the target architecture (<strong>green</strong>, <strong>amp</strong>, <strong>viz</strong>), operating system (Rocky, Ubuntu) and installation method (manual, spack). Software is optimized for the hardware when possible, that means “green” software (Skylake CPU) will not run on <strong>amp</strong> (Zen2 CPU).</p>
 <span style="color:blue">
-We moved to a new module structure! Modules from `/share/apps/modules` are being retired.<p>New modules are grouped, you can activate them by loading one or more of the following modules:</p>
+We moved to a new module structure! Modules from `/share/apps/modules` are being retired. Software is compiled for `x86-64` and will run o all nodes (no special optimization). Optimized versions for some software for specific nodes may follow later (or not).<p>New modules are grouped, you can activate them by loading one or more of the following modules:</p>
 <table border="1" class="docutils">
 <thead>
 <tr>
@@ -249,14 +248,7 @@ We moved to a new module structure! Modules from `/share/apps/modules` are being
 <td>software installed with spack package manager</td>
 </tr>
 </tbody>
-</table><!---
-Additionally, there will be science-field category directories with the most common software for that field to keep the module list short:
-
-- /gpfs/mariana/modules/gray/engineering : for FEA, CFD
-- /gpfs/mariana/modules/gray/chemistry : for chemistry software
-- /gpfs/mariana/modules/gray/biology : for biology software (former bio directories)
-- possibly more
----></span><br>
+</table></span><br>
 <br> 
 <hr style="margin-right: 0px; margin-bottom: 4px; margin-left: 0px; margin-top: -24px; border:2px solid  #d9d9d9 "></hr>
 <hr style="margin: 4px 0px; border:1px solid  #d9d9d9 "></hr></section>
