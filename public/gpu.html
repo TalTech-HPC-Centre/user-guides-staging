@@ -82,12 +82,6 @@
 <li class="toctree-l3"><a class="reference internal" href="#hip-upcoming"><em>HIP (upcoming)</em></a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#example-jobs">Example jobs</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#example-job-for-meshroom">Example job for meshroom</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#example-job-for-colmap-needs-gpu-for-part-of-the-tasks">Example job for colmap (needs GPU for part of the tasks)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#singularity">Singularity</a></li>
-</ul>
-</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="singularity.html">Containers (Singularity &amp; Docker)</a></li>
@@ -203,6 +197,7 @@
 <li><p>StarCCM+</p></li>
 <li><p>Julia</p></li>
 <li><p>Chapel</p></li>
+<li><p>Singularity (apptainer), see page on <a class="reference internal" href="singularity.html"><span class="doc">Singularity</span></a></p></li>
 </ul>
 <br>
 <br>
@@ -350,50 +345,7 @@ get accelerator information</p>
 <p>For porting code to AMD-Instinct based LUMI, the AMD HIP SDK will be installed.</p>
 <br>
 <hr style="margin-right: 0px; margin-bottom: 4px; margin-left: 0px; margin-top: -24px; border:2px solid  #d9d9d9 "></hr>
-<hr style="margin: 4px 0px; border:1px solid  #d9d9d9 "></hr></section>
-</section>
-<section id="example-jobs">
-<h2>Example jobs<a class="headerlink" href="#example-jobs" title="Permalink to this heading"></a></h2>
-<hr class="docutils" />
-<section id="example-job-for-meshroom">
-<h3>Example job for meshroom<a class="headerlink" href="#example-job-for-meshroom" title="Permalink to this heading"></a></h3>
-<p>** under construction **</p>
-</section>
-<section id="example-job-for-colmap-needs-gpu-for-part-of-the-tasks">
-<h3>Example job for colmap (needs GPU for part of the tasks)<a class="headerlink" href="#example-job-for-colmap-needs-gpu-for-part-of-the-tasks" title="Permalink to this heading"></a></h3>
-<p>** under construction **</p>
-<p>See the AI-lab guide <a class="reference external" href="https://gitlab.cs.ttu.ee/ai-lab/samples/structure-from-motion-with-colmap">https://gitlab.cs.ttu.ee/ai-lab/samples/structure-from-motion-with-colmap</a>, which needs to be slightly adapted.</p>
-<br></section>
-<section id="singularity">
-<h3>Singularity<a class="headerlink" href="#singularity" title="Permalink to this heading"></a></h3>
-<p>The container solution <em>singularity</em> is available (can also run docker container).
-Use with</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">load</span> <span class="n">amp</span>
-<span class="n">module</span> <span class="n">load</span> <span class="n">Singularity</span>
-</pre></div>
-</div>
-<p>pull the docker image you want, here ubuntu:18.04:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">singularity</span> <span class="n">pull</span> <span class="n">docker</span><span class="p">:</span><span class="o">//</span><span class="n">ubuntu</span><span class="p">:</span><span class="mf">18.04</span>
-</pre></div>
-</div>
-<p>write an sbatch file (here called <code class="docutils literal notranslate"><span class="pre">ubuntu.slurm</span></code>):</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
-<span class="c1">#SBATCH -t 0-00:30</span>
-<span class="c1">#SBATCH -N 1</span>
-<span class="c1">#SBATCH -c 1</span>
-<span class="c1">#SBATCH -p gpu</span>
-<span class="c1">#SBATCH --gres=gpu:A100:1</span>
-<span class="c1">#SBATCH --mem-per-cpu=4000</span>
-
-<span class="n">singularity</span> <span class="n">exec</span> <span class="n">docker</span><span class="p">:</span><span class="o">//</span><span class="n">ubuntu</span><span class="p">:</span><span class="mf">18.04</span> <span class="n">cat</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">issue</span>
-</pre></div>
-</div>
-<p>submit to the queueing system with</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sbatch</span> <span class="n">ubuntu</span><span class="o">.</span><span class="n">slurm</span>
-</pre></div>
-</div>
-<p>and when the resources become available, your job will be executed.</p>
-<br>
+<hr style="margin: 4px 0px; border:1px solid  #d9d9d9 "></hr><br>
 <br></section>
 </section>
 </section>
