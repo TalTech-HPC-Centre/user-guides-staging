@@ -60,10 +60,11 @@
 <li class="toctree-l1"><a class="reference internal" href="visualization.html">Visualization</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">GPU-servers</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#hardware">Hardware</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#login-and-home">Login and $HOME</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#login-and-localstorage">Login and localstorage</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#running-jobs">Running jobs</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#software-and-modules">Software and modules</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#from-ai-lab"><em>From AI lab</em></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#software-that-supports-gpus"><em>Software that supports GPUs</em></a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#gpu-libraries-and-tools">GPU libraries and tools</a><ul>
@@ -129,7 +130,7 @@
 <hr style="margin: 4px 0px; border:1px solid  #d9d9d9 "></hr><section id="hardware">
 <h2>Hardware<a class="headerlink" href="#hardware" title="Permalink to this heading"></a></h2>
 <hr class="docutils" />
- <div class="simple1"> <b>amp</b> <ul class="simple">
+ <div class="simple1"> <b>amp1</b> <ul class="simple">
 <li><p>CPU: 2x AMD EPYC 7742 64core</p></li>
 <li><p>RAM: 1 TB</p></li>
 <li><p>GPUs: 8x A100 Nvidia 40GB</p></li>
@@ -155,10 +156,11 @@
 <br>
 <hr style="margin-right: 0px; margin-bottom: 4px; margin-left: 0px; margin-top: -24px; border:2px solid  #d9d9d9 "></hr>
 <hr style="margin: 4px 0px; border:1px solid  #d9d9d9 "></hr></section>
-<section id="login-and-home">
-<h2>Login and $HOME<a class="headerlink" href="#login-and-home" title="Permalink to this heading"></a></h2>
+<section id="login-and-localstorage">
+<h2>Login and localstorage<a class="headerlink" href="#login-and-localstorage" title="Permalink to this heading"></a></h2>
 <hr class="docutils" />
 <p>No direct login, jobs are submitted from “base”, use <code class="docutils literal notranslate"><span class="pre">srun</span> <span class="pre">-p</span> <span class="pre">gpu</span> <span class="pre">--gres=gpu:L40</span> <span class="pre">--pty</span> <span class="pre">bash</span></code></p>
+<p>amp[1,2] have <code class="docutils literal notranslate"><span class="pre">/localstorage</span></code> a 10 TB NVMe partition for fast data access. Data in directory has a longer sstorage duration than data in the 4 TB <code class="docutils literal notranslate"><span class="pre">/tmp</span></code> (<code class="docutils literal notranslate"><span class="pre">/state/partition1</span></code> is the same as <code class="docutils literal notranslate"><span class="pre">/tmp</span></code>)</p>
 <br>
 <hr style="margin-right: 0px; margin-bottom: 4px; margin-left: 0px; margin-top: -24px; border:2px solid  #d9d9d9 "></hr>
 <hr style="margin: 4px 0px; border:1px solid  #d9d9d9 "></hr></section>
@@ -187,9 +189,21 @@
 <section id="software-and-modules">
 <h2>Software and modules<a class="headerlink" href="#software-and-modules" title="Permalink to this heading"></a></h2>
 <hr class="docutils" />
+<p>same modules as on all nodes, i.e. the rocky8 and rocky8-spack modules.</p>
 <section id="from-ai-lab">
 <h3><em>From AI lab</em><a class="headerlink" href="#from-ai-lab" title="Permalink to this heading"></a></h3>
 <p>will not work due to different OS</p>
+</section>
+<section id="software-that-supports-gpus">
+<h3><em>Software that supports GPUs</em><a class="headerlink" href="#software-that-supports-gpus" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>JupyterLab, see page on <a class="reference internal" href="data-analysis/jupyter.html"><span class="doc">JupyterLab</span></a></p></li>
+<li><p>Gaussian, see page on <a class="reference internal" href="chemistry/gaussian.html"><span class="doc">Gaussian</span></a></p></li>
+<li><p>cp2k</p></li>
+<li><p>StarCCM+</p></li>
+<li><p>Julia</p></li>
+<li><p>Chapel</p></li>
+</ul>
 <br>
 <br>
 <hr style="margin-right: 0px; margin-bottom: 4px; margin-left: 0px; margin-top: -24px; border:2px solid  #d9d9d9 "></hr>
