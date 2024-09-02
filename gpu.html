@@ -125,7 +125,7 @@
 <h2>Hardware<a class="headerlink" href="#hardware" title="Permalink to this heading"></a></h2>
 <hr class="docutils" />
  <div class="simple1"> <b>amp1</b> <ul class="simple">
-<li><p>CPU: 2x AMD EPYC 7742 64core</p></li>
+<li><p>CPU: 2x AMD EPYC 7742 64core (2nd gen EPYC, Zen2)</p></li>
 <li><p>RAM: 1 TB</p></li>
 <li><p>GPUs: 8x A100 Nvidia 40GB</p></li>
 <li><p>OS: Rocky8</p></li>
@@ -154,7 +154,7 @@
 <h2>Login and localstorage<a class="headerlink" href="#login-and-localstorage" title="Permalink to this heading"></a></h2>
 <hr class="docutils" />
 <p>No direct login, jobs are submitted from “base”, use <code class="docutils literal notranslate"><span class="pre">srun</span> <span class="pre">-p</span> <span class="pre">gpu</span> <span class="pre">--gres=gpu:L40</span> <span class="pre">--pty</span> <span class="pre">bash</span></code></p>
-<p>amp[1,2] have <code class="docutils literal notranslate"><span class="pre">/localstorage</span></code> a 10 TB NVMe partition for fast data access. Data in directory has a longer sstorage duration than data in the 4 TB <code class="docutils literal notranslate"><span class="pre">/tmp</span></code> (<code class="docutils literal notranslate"><span class="pre">/state/partition1</span></code> is the same as <code class="docutils literal notranslate"><span class="pre">/tmp</span></code>)</p>
+<p>amp[1,2] have <code class="docutils literal notranslate"><span class="pre">/localstorage</span></code> a 10 TB NVMe partition for fast data access. Data in directory has a longer storage duration than data in the 4 TB <code class="docutils literal notranslate"><span class="pre">/tmp</span></code> (<code class="docutils literal notranslate"><span class="pre">/state/partition1</span></code> is the same as <code class="docutils literal notranslate"><span class="pre">/tmp</span></code>)</p>
 <br>
 <hr style="margin-right: 0px; margin-bottom: 4px; margin-left: 0px; margin-top: -24px; border:2px solid  #d9d9d9 "></hr>
 <hr style="margin: 4px 0px; border:1px solid  #d9d9d9 "></hr></section>
@@ -173,7 +173,7 @@
 <p>all nodes with GPUs are in the same partition (<code class="docutils literal notranslate"><span class="pre">-p</span> <span class="pre">gpu</span></code>, but also in <code class="docutils literal notranslate"><span class="pre">short</span></code>, which has higher priority, but shorter time-limit) so jobs that do not have specific requirements can run on any of the nodes. If you need a specific type, e.g. for testing performance or because of memory requirements:</p>
 <ul class="simple">
 <li><p>it is possible to request the feature “A100-40” (for the 40GB A100s), “A100-80” (for the 80GB A100s):** <code class="docutils literal notranslate"><span class="pre">--gres=gpu:A100:1</span> <span class="pre">--constraint=A100-80</span></code> or <code class="docutils literal notranslate"><span class="pre">--gres=gpu:1</span> <span class="pre">--constraint=A100-40</span></code></p></li>
-<li><p>it is also possible to request the”compute capability, e.g. cc80 (for A100) or cc89 (for L40) using <code class="docutils literal notranslate"><span class="pre">--gres=gpu:1</span> <span class="pre">--constraint=cc89</span></code> = <code class="docutils literal notranslate"><span class="pre">--gres=gpu:L40:1</span></code></p></li>
+<li><p>it is also possible to request the”compute capability, e.g. nvcc80 (for A100) or nvcc89 (for L40) using <code class="docutils literal notranslate"><span class="pre">--gres=gpu:1</span> <span class="pre">--constraint=nvcc89</span></code> = <code class="docutils literal notranslate"><span class="pre">--gres=gpu:L40:1</span></code></p></li>
 <li><p>another option is to request the job to run on a specific node, using the <code class="docutils literal notranslate"><span class="pre">-w</span></code> switch (e.g. <code class="docutils literal notranslate"><span class="pre">srun</span> <span class="pre">-p</span> <span class="pre">gpu</span> <span class="pre">-w</span> <span class="pre">amp1</span> <span class="pre">--gres=gpu:A100:1</span> <span class="pre">...</span> </code>)</p></li>
 </ul>
 <p>You can see which GPUs have been assigned to your job using <code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">$CUDA_VISIBLE_DEVICES</span></code>, <strong>the CUDA-deviceID in your programs always start with “0” (no matter which physical GPU was assigned to you by SLURM)</strong>.</p>
