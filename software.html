@@ -94,8 +94,8 @@
 <li class="toctree-l3"><a class="reference internal" href="#general-purpose-computational-chemistry-biology-and-physics">General purpose computational chemistry, biology and physics</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#gaussian"><em>Gaussian</em></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#orca"><em>ORCA</em></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#xtb"><em>xtb</em></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#nwchem"><em>NWChem</em></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#turbomole-tmolex"><em>TURBOMOLE &amp; TmoleX</em></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#wavefunction-analysis">Wavefunction analysis</a><ul>
@@ -353,18 +353,15 @@ spectre-code
 <h4><em>ORCA</em><a class="headerlink" href="#orca" title="Permalink to this heading"></a></h4>
 <p><a class="reference external" href="https://orcaforum.kofo.mpg.de/app.php/portal">ORCA</a> is a multi-purpose quantum-chemical software package developed in the research group of Frank Neese. ORCA includes a wide variety of methods (semi-empirical, density functional theory, many-body perturbation, coupled cluster, multireference, nudged elastic band (NEB) methods). In ORCA, molecules’ and  spectroscopic properties calculations are available, and environmental (MD (including ab initio), QM/MM, Crystal-QMMM) as well as relativistic effects can be taken into account. ORCA is parallelized, and uses the resolution of the identity (RI) approximation and domain based local pair natural orbital (DLPNO) methods, which significantly speed calculations. More about ORCA on HPC can be found <a class="reference internal" href="chemistry/orca.html"><span class="doc">here</span></a></p>
 </section>
+<section id="xtb">
+<h4><em>xtb</em><a class="headerlink" href="#xtb" title="Permalink to this heading"></a></h4>
+<p><a class="reference external" href="https://xtb-docs.readthedocs.io/en/latest">Extended tight binding - xTB</a> program developed in the research group of Stefan Grimme for solutions of common chemical problems. The workhorses of xTB are the GFN methods, both semi-empirical and force-field. The program contains several  implicit solvent  models: GBSA, ALPB, ddCOSMO, and CPCM-X. xTB functionality covers single-point energy calculations, geometry optimization, frequency calculations, reaction path methods. Also allows to perform molecular dynamics, meta-dynamics, and ONIOM calculations. More about xTB on HPC can be found <a class="reference internal" href="chemistry/xtb.html"><span class="doc">here</span></a></p>
+</section>
 <section id="nwchem">
 <h4><em>NWChem</em><a class="headerlink" href="#nwchem" title="Permalink to this heading"></a></h4>
 <p>The North West computational chemistry (<a class="reference external" href="https://nwchemgit.github.io/">NWChem</a>) is an ab initio computational chemistry software package which includes quantum chemical ( HF, DFT, MP2, MCSCF,  and CC, including the tensor contraction engine (TCE)) and molecular dynamics (using either force fields (AMBER or CHARMM) or DFT) functionality. In NWChem, ab initio methods can be coupled with the classical MD to perform mixed quantum-mechanics and molecular-mechanics simulations (QM/MM). Various molecular response properties, solvent models, nudged elastic band (NEB) method, relativistic and resolution of the identity (RI) approaches are also available.</p>
 <p>NWChem was developed to enable large scale calculations by  using many CPUs and has  parallel scalability and performance. Additionally,  python programs may be embedded into the NWChem input and used to control the execution of NWChem.</p>
 </section>
-<section id="turbomole-tmolex">
-<h4><em>TURBOMOLE &amp; TmoleX</em><a class="headerlink" href="#turbomole-tmolex" title="Permalink to this heading"></a></h4>
-<p>License belongs to a research group.
-More about Turbomole on HPC can be found <a class="reference internal" href="chemistry/turbomole.html"><span class="doc">here</span></a>.</p>
-<!---
-[Turbomole](https://www.turbomole.org/turbomole/turbomole-documentation/) is a software for quantum chemical calculations of molecules, clusters, periodic systems, and solutions. Turbomole specializes in electronic structure methods with such as density functional theory, second–order Møller-Plesset and coupled cluster theory. Aside from energies and structures, Turbomole is capable for calculations of optical, electrical, and magnetic properties of metter. [More about Turbomole on HPC can be found here](chemistry/turbomole.md). [TmoleX](https://www.turbomole.org/turbomole/turbomole-documentation/) is a graphical user interface for Turbomole. 
----></section>
 </section>
 <section id="wavefunction-analysis">
 <h3>Wavefunction analysis<a class="headerlink" href="#wavefunction-analysis" title="Permalink to this heading"></a></h3>
