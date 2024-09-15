@@ -97,19 +97,19 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <p><span STYLE="font-size:14mm"> <span style="color:red">not changed to rocky yet</span></span></p>
-<section id="available-mpi-versions-and-comparison">
+  <section id="available-mpi-versions-and-comparison">
 <h1>Available MPI versions (and comparison)<a class="headerlink" href="#available-mpi-versions-and-comparison" title="Permalink to this heading"></a></h1>
 <p>The cluster has OpenMPI installed.</p>
-<p>The recommendation is to use <strong>OpenMPI</strong> <em><strong>(except you really know what you are doing)!!!</strong></em>
-MPICH does <em><strong>not</strong></em> support InfiniBand. MVAPICH is <em><strong>not</strong></em> integrated with SLURM, you need to create the hostfile yourself from the slurm-nodelist.</p>
 <p>On all nodes:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">load</span> <span class="n">mpi</span><span class="o">/</span><span class="n">openmpi</span><span class="o">-</span><span class="n">x86_64</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">load</span> <span class="n">openmpi</span><span class="o">/</span><span class="mf">4.1.1</span><span class="o">-</span><span class="n">gcc</span><span class="o">-</span><span class="mf">10.3.0</span><span class="o">-</span><span class="n">r8</span><span class="o">-</span><span class="n">tcp</span>
 </pre></div>
 </div>
-<p>OpenMPI will choose the fastest interface, it will try RDMA over Ethernet (RoCE) which causes <em>“[qelr_create_qp:683]create qp: failed on ibv_cmd_create_qp”</em> messages, these can be ignored, it will fail over to IB (higher bandwidth anyway) or TCP.</p>
+<p><strong>NB: Currently only use TCP transport!</strong>
+There are several OpenMPI modules for diffrent versions, different modules for the same version only differ in environment variables for transport selection.</p>
+<p>Normally, OpenMPI will choose the fastest interface, it will try RDMA over Ethernet (RoCE) which causes <em>“[qelr_create_qp:683]create qp: failed on ibv_cmd_create_qp”</em> messages, these can be ignored, it will fail over to IB (higher bandwidth anyway) or TCP.</p>
+<p><strong>NB:</strong> <code class="docutils literal notranslate"><span class="pre">mpirun</span></code> is not available, use <code class="docutils literal notranslate"><span class="pre">srun</span></code></p>
 <p>For MPI jobs prefer the <strong>green-ib</strong> partition (<code class="docutils literal notranslate"><span class="pre">#SBATCH</span> <span class="pre">-p</span> <span class="pre">green-ib</span></code>) or stay within a single node (<code class="docutils literal notranslate"><span class="pre">#SBATCH</span> <span class="pre">-N</span> <span class="pre">1</span></code>).</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mpirun</span> <span class="o">--</span><span class="n">mca</span> <span class="n">btl_openib_warn_no_device_params_found</span> <span class="mi">0</span> <span class="o">./</span><span class="n">hello</span><span class="o">-</span><span class="n">mpi</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">export</span> <span class="n">OMPI_MCA_btl_openib_warn_no_device_params_found</span><span class="o">=</span><span class="mi">0</span> <span class="n">srun</span> <span class="o">./</span><span class="n">hello</span><span class="o">-</span><span class="n">mpi</span>
 </pre></div>
 </div>
 <br>
@@ -140,20 +140,17 @@ MPICH does <em><strong>not</strong></em> support InfiniBand. MVAPICH is <em><str
 </li>
 </ul>
 <br><p>The layers can be confusing, so was openib originally developed for InfiniBand, but is now used for RoCE and is deprecated for IB. However, on some IB cards and configurations it is the only working option. Also, the MVAPICH implementation still uses the openib (verbs) instead of UCX.</p>
-<p>Layers can be selected with the <code class="docutils literal notranslate"><span class="pre">--mca</span></code> option of <code class="docutils literal notranslate"><span class="pre">mpirun</span></code>:</p>
+<p>Layers can be selected using environment variables:</p>
 <p>To select TCP transport:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mpirun</span> <span class="o">--</span><span class="n">mca</span> <span class="n">btl</span> <span class="n">tcp</span><span class="p">,</span><span class="bp">self</span><span class="p">,</span><span class="n">vader</span>
-</pre></div>
-</div>
+<p>export OMPI_MCA_btl=tcp,self,vader`</p>
 <p>To select RDMA transport (verbs):</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mpirun</span> <span class="o">--</span><span class="n">mca</span> <span class="n">btl</span> <span class="n">openib</span><span class="p">,</span><span class="bp">self</span><span class="p">,</span><span class="n">vader</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>export OMPI_MCA_btl=openib,self,vader`
 </pre></div>
 </div>
 <p>To select UCX transport:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mpirun</span> <span class="o">--</span><span class="n">mca</span> <span class="n">pml</span> <span class="n">ucx</span> 
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>export OMPI_MCA_pml=ucx`
 </pre></div>
 </div>
-<p>Or using environment variables, e.g. <code class="docutils literal notranslate"><span class="pre">export</span> <span class="pre">OMPI_MCA_btl=tcp,self,vader</span></code>.</p>
 <p><em><strong>NB!</strong></em> <em>UCX is not supported on QLogic FastLinQ QL41000 Ethernet controllers.</em></p>
 <p><em><strong>NB!</strong></em> <em>UCX 1.8 on amps from Ubuntu is broken, use SPACK version</em></p>
 <div class="simple1">
@@ -216,7 +213,7 @@ For further explanations and details see:<ul class="simple">
 <section id="recommendation">
 <h3>Recommendation<a class="headerlink" href="#recommendation" title="Permalink to this heading"></a></h3>
 <ul class="simple">
-<li><p>default: use OpenMPI on both clusters</p></li>
+<li><p>default: use OpenMPI on our clusters</p></li>
 <li><p>if unsatisfied with performance and running on single node or over TCP, try MPICH</p></li>
 <li><p>if unsatisfied with performance and running on IB try MVAPICH</p></li>
 </ul>
