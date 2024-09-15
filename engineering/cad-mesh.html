@@ -133,13 +133,16 @@ You can also cite additional <a class="reference external" href="https://gmsh.in
 <h2>Salome<a class="headerlink" href="#salome" title="Permalink to this heading"></a></h2>
 <hr class="docutils" />
 <p>Salome is a multi-platform environment, allowing the realization of physics simulations. Salome is suitable for various stages of a study: from creation of the CAD model and the mesh to the post-processing and visualization of the results. Other functionalities such as uncertainty treatment, data assimilation are also implemented. Salome does not contain a physics solver but it provides the computing environment necessary for their integration.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">load</span> <span class="n">rocky8</span>
+<span class="n">module</span> <span class="n">load</span> <span class="n">salome</span><span class="o">/</span><span class="mf">9.13.0</span>
+</pre></div>
+</div>
 <p>Salome has a python interface, so the meshing can be done as a batch-job on the cluster nodes.</p>
 <p>The current state can be dumped into a script from the GUI by <code class="docutils literal notranslate"><span class="pre">CTRL+D</span></code>, the script can then be executed on the command-line by:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">salome</span> <span class="o">-</span><span class="n">t</span> <span class="n">scriptname</span><span class="o">.</span><span class="n">py</span>
 </pre></div>
 </div>
-<p>It is therefore possible to prepare the geometry on your workstation or <strong>viz</strong>, dump the script, add the meshing command and run the script on the cluster in batch-mode.</p>
-<p>On <strong>viz</strong> there is no module for Salome, just run <code class="docutils literal notranslate"><span class="pre">salome</span></code> or <code class="docutils literal notranslate"><span class="pre">mesa_salome</span></code> on the command-line, this is best done within a <a class="reference internal" href="../visualization/vnc.html"><span class="doc">VNC session</span></a> session (or <a class="reference internal" href="../visualization/x2go.html"><span class="doc">X2GO</span></a> session, here use <code class="docutils literal notranslate"><span class="pre">vglrun</span> <span class="pre">salome</span></code>).</p>
+<p>It is therefore possible to prepare the geometry on your workstation or an OnDemand desktop session, dump the script, add the meshing command and run the script on the cluster in batch-mode.</p>
 <p>See separate page on <a class="reference internal" href="../visualization.html"><span class="doc">visualization</span></a>.</p>
 <section id="id2">
 <h3>How to cite:<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h3>
