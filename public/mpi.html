@@ -142,13 +142,15 @@ There are several OpenMPI modules for diffrent versions, different modules for t
 <br><p>The layers can be confusing, so was openib originally developed for InfiniBand, but is now used for RoCE and is deprecated for IB. However, on some IB cards and configurations it is the only working option. Also, the MVAPICH implementation still uses the openib (verbs) instead of UCX.</p>
 <p>Layers can be selected using environment variables:</p>
 <p>To select TCP transport:</p>
-<p>export OMPI_MCA_btl=tcp,self,vader`</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">export</span> <span class="n">OMPI_MCA_btl</span><span class="o">=</span><span class="n">tcp</span><span class="p">,</span><span class="bp">self</span><span class="p">,</span><span class="n">vader</span>
+</pre></div>
+</div>
 <p>To select RDMA transport (verbs):</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>export OMPI_MCA_btl=openib,self,vader`
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">export</span> <span class="n">OMPI_MCA_btl</span><span class="o">=</span><span class="n">openib</span><span class="p">,</span><span class="bp">self</span><span class="p">,</span><span class="n">vader</span>
 </pre></div>
 </div>
 <p>To select UCX transport:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>export OMPI_MCA_pml=ucx`
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">export</span> <span class="n">OMPI_MCA_pml</span><span class="o">=</span><span class="n">ucx</span>
 </pre></div>
 </div>
 <p><em><strong>NB!</strong></em> <em>UCX is not supported on QLogic FastLinQ QL41000 Ethernet controllers.</em></p>
