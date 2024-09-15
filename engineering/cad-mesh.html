@@ -85,7 +85,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="cad-mesh-tools">
+  <p><span STYLE="font-size:14mm"> <span style="color:orange">not fully updated yet</span></span></p>
+<section id="cad-mesh-tools">
 <h1>CAD &amp; Mesh-Tools<a class="headerlink" href="#cad-mesh-tools" title="Permalink to this heading"></a></h1>
 <p>CAD and meshing software installed on <strong>viz</strong>, <strong>amp</strong> and <strong>green</strong> cluster nodes.</p>
 <br> 
@@ -95,13 +96,8 @@
 <h2>FreeCAD<a class="headerlink" href="#freecad" title="Permalink to this heading"></a></h2>
 <hr class="docutils" />
 <p>FreeCAD is an easy to use open-source CAD software, that can use Gmsh or Netgen for meshing. It can also serve as a frontend for CalculiX and <a class="reference internal" href="elmerfem.html"><span class="doc">ElmerFEM</span></a>, thus providing similar functionality as SolidWorks.</p>
+<p>Currently only working on <strong>viz</strong>.</p>
 <p>(Please don’t run simulations on <strong>viz</strong>) FreeCAD is best used  within a <a class="reference internal" href="../visualization/vnc.html"><span class="doc">VNC session</span></a>.</p>
-<p>See separate page on <a class="reference internal" href="../visualization.html"><span class="doc">visualization</span></a>.</p>
-<p>On the <strong>green</strong> nodes use a SPACK module:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">load</span> <span class="n">rocky8</span><span class="o">-</span><span class="n">spack</span>
-<span class="n">module</span> <span class="n">load</span> <span class="n">openfoam</span>
-</pre></div>
-</div>
 <section id="how-to-cite">
 <h3>How to cite:<a class="headerlink" href="#how-to-cite" title="Permalink to this heading"></a></h3>
 <p>FreeCAD available from: <a class="reference external" href="https://www.freecadweb.org">https://www.freecadweb.org</a>.</p>
@@ -114,12 +110,12 @@
 <h2>Gmsh<a class="headerlink" href="#gmsh" title="Permalink to this heading"></a></h2>
 <hr class="docutils" />
 <p>Gmsh meshes can be used with <a class="reference internal" href="elmerfem.html"><span class="doc">ElmerFEM</span></a> and <a class="reference internal" href="openfoam.html"><span class="doc">OpenFOAM</span></a>. For OpenFOAM, make sure it is saved as version 2 and ASCII format.</p>
-<p>The GUI is available on <strong>viz</strong>, large meshes can be done as batch jobs on the <strong>green</strong> cluster nodes, on the command-line run:</p>
+<p>The GUI can be used within a OnDemand desktop session, large meshes can be done as batch jobs on cluster nodes (use srun or sbatch), on the command-line run:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gmsh</span> <span class="o">-</span><span class="mi">3</span> <span class="o">-</span><span class="nb">format</span> <span class="n">msh2</span> <span class="o">-</span><span class="n">o</span> <span class="n">outfilename</span><span class="o">.</span><span class="n">msh</span> <span class="n">infilename</span><span class="o">.</span><span class="n">geo</span>
 </pre></div>
 </div>
 <p>this creates a volume mesh and saves as version 2 format suitable for OpenFOAM.</p>
-<p>On the <strong>green</strong> nodes use a SPACK module:</p>
+<p>Use the SPACK module:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">load</span> <span class="n">rocky8</span><span class="o">-</span><span class="n">spack</span>
 <span class="n">module</span> <span class="n">load</span> <span class="n">gmsh</span>
 </pre></div>
@@ -137,11 +133,6 @@ You can also cite additional <a class="reference external" href="https://gmsh.in
 <h2>Salome<a class="headerlink" href="#salome" title="Permalink to this heading"></a></h2>
 <hr class="docutils" />
 <p>Salome is a multi-platform environment, allowing the realization of physics simulations. Salome is suitable for various stages of a study: from creation of the CAD model and the mesh to the post-processing and visualization of the results. Other functionalities such as uncertainty treatment, data assimilation are also implemented. Salome does not contain a physics solver but it provides the computing environment necessary for their integration.</p>
-<p>Salome is installed on the <strong>green</strong> nodes.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">load</span> <span class="n">rocky8</span><span class="o">/</span><span class="nb">all</span>
-<span class="n">module</span> <span class="n">load</span> <span class="n">salome</span>
-</pre></div>
-</div>
 <p>Salome has a python interface, so the meshing can be done as a batch-job on the cluster nodes.</p>
 <p>The current state can be dumped into a script from the GUI by <code class="docutils literal notranslate"><span class="pre">CTRL+D</span></code>, the script can then be executed on the command-line by:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">salome</span> <span class="o">-</span><span class="n">t</span> <span class="n">scriptname</span><span class="o">.</span><span class="n">py</span>
@@ -184,8 +175,8 @@ You can also cite additional <a class="reference external" href="https://gmsh.in
 <p>You can get a list of export formats from the GUI.</p>
 <section id="id3">
 <h3>How to cite:<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h3>
-<p>Netgen - <a class="reference external" href="https://link.springer.com/article/10.1007/s007910050004">J. Schöberl. NETGEN An advancing front 2D/3D-mesh generator based on abstract rules. Comput. Vis. Sci., 1(1):41–52, 1997</a>.
-Netgen/NGSolve is open source and available at <a class="reference external" href="www.ngsolve.org">www.ngsolve.org</a>.</p>
+<p>Netgen - <a class="reference external" href="https://link.springer.com/article/10.1007/s007910050004">J. Schöberl. NETGEN An advancing front 2D/3D-mesh generator based on abstract rules. Comput. Vis. Sci., 1(1):41–52, 1997</a>.</p>
+<p>Netgen/NGSolve is open source and available at <a class="reference external" href="www.ngsolve.org">www.ngsolve.org</a>.</p>
 <br> 
 <br> </section>
 </section>
