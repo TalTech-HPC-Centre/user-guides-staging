@@ -85,8 +85,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <p><span STYLE="font-size:14mm"> <span style="color:orange">not fully updated yet</span></span></p>
-<section id="cad-mesh-tools">
+  <section id="cad-mesh-tools">
 <h1>CAD &amp; Mesh-Tools<a class="headerlink" href="#cad-mesh-tools" title="Permalink to this heading"></a></h1>
 <p>CAD and meshing software installed on <strong>viz</strong>, <strong>amp</strong> and <strong>green</strong> cluster nodes.</p>
 <br> 
@@ -96,34 +95,15 @@
 <h2>FreeCAD<a class="headerlink" href="#freecad" title="Permalink to this heading"></a></h2>
 <hr class="docutils" />
 <p>FreeCAD is an easy to use open-source CAD software, that can use Gmsh or Netgen for meshing. It can also serve as a frontend for CalculiX and <a class="reference internal" href="elmerfem.html"><span class="doc">ElmerFEM</span></a>, thus providing similar functionality as SolidWorks.</p>
-<p>Currently only working on <strong>viz</strong>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">load</span> <span class="n">rocky8</span>
+<span class="n">module</span> <span class="n">load</span> <span class="n">freecad</span>
+<span class="n">freecad</span>
+</pre></div>
+</div>
 <p>(Please don’t run simulations on <strong>viz</strong>) FreeCAD is best used  within a <a class="reference internal" href="../visualization/vnc.html"><span class="doc">VNC session</span></a>.</p>
 <section id="how-to-cite">
 <h3>How to cite:<a class="headerlink" href="#how-to-cite" title="Permalink to this heading"></a></h3>
 <p>FreeCAD available from: <a class="reference external" href="https://www.freecadweb.org">https://www.freecadweb.org</a>.</p>
-<br> 
-<br>
-<hr style="margin-right: 0px; margin-bottom: 4px; margin-left: 0px; margin-top: -24px; border:2px solid  #d9d9d9 "></hr>
-<hr style="margin: 4px 0px; border:1px solid  #d9d9d9 "></hr></section>
-</section>
-<section id="gmsh">
-<h2>Gmsh<a class="headerlink" href="#gmsh" title="Permalink to this heading"></a></h2>
-<hr class="docutils" />
-<p>Gmsh meshes can be used with <a class="reference internal" href="elmerfem.html"><span class="doc">ElmerFEM</span></a> and <a class="reference internal" href="openfoam.html"><span class="doc">OpenFOAM</span></a>. For OpenFOAM, make sure it is saved as version 2 and ASCII format.</p>
-<p>The GUI can be used within a OnDemand desktop session, large meshes can be done as batch jobs on cluster nodes (use srun or sbatch), on the command-line run:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gmsh</span> <span class="o">-</span><span class="mi">3</span> <span class="o">-</span><span class="nb">format</span> <span class="n">msh2</span> <span class="o">-</span><span class="n">o</span> <span class="n">outfilename</span><span class="o">.</span><span class="n">msh</span> <span class="n">infilename</span><span class="o">.</span><span class="n">geo</span>
-</pre></div>
-</div>
-<p>this creates a volume mesh and saves as version 2 format suitable for OpenFOAM.</p>
-<p>Use the SPACK module:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">load</span> <span class="n">rocky8</span><span class="o">-</span><span class="n">spack</span>
-<span class="n">module</span> <span class="n">load</span> <span class="n">gmsh</span>
-</pre></div>
-</div>
-<section id="id1">
-<h3>How to cite:<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h3>
-<p>If you use Gmsh please cite <a class="reference external" href="https://gmsh.info/doc/preprints/gmsh_paper_preprint.pdf">C. Geuzaine and J.-F. Remacle. Gmsh: a three-dimensional finite element mesh generator with built-in pre- and post-processing facilities. Int. J. Numer. Methods Eng., 79(11), pp. 1309-1331, 2009</a>.
-You can also cite additional <a class="reference external" href="https://gmsh.info/#References">references</a> for specific features and algorithms.</p>
 <br> 
 <br>
 <hr style="margin-right: 0px; margin-bottom: 4px; margin-left: 0px; margin-top: -24px; border:2px solid  #d9d9d9 "></hr>
@@ -144,9 +124,32 @@ You can also cite additional <a class="reference external" href="https://gmsh.in
 </div>
 <p>It is therefore possible to prepare the geometry on your workstation or an OnDemand desktop session, dump the script, add the meshing command and run the script on the cluster in batch-mode.</p>
 <p>See separate page on <a class="reference internal" href="../visualization.html"><span class="doc">visualization</span></a>.</p>
+<section id="id1">
+<h3>How to cite:<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h3>
+<p>Salome can be cited as <a class="reference external" href="https://www.researchgate.net/publication/318531878_SALOME_an_Open-Source_simulation_platform_integrating_ParaView?channel=doi&amp;linkId=596f5f25458515d5ff64e0c6&amp;showFulltext=true">DOI:10.13140/RG.2.2.12107.08485</a>.</p>
+<br> 
+<br>
+<hr style="margin-right: 0px; margin-bottom: 4px; margin-left: 0px; margin-top: -24px; border:2px solid  #d9d9d9 "></hr>
+<hr style="margin: 4px 0px; border:1px solid  #d9d9d9 "></hr></section>
+</section>
+<section id="gmsh">
+<h2>Gmsh<a class="headerlink" href="#gmsh" title="Permalink to this heading"></a></h2>
+<hr class="docutils" />
+<p>Gmsh meshes can be used with <a class="reference internal" href="elmerfem.html"><span class="doc">ElmerFEM</span></a> and <a class="reference internal" href="openfoam.html"><span class="doc">OpenFOAM</span></a>. For OpenFOAM, make sure it is saved as version 2 and ASCII format.</p>
+<p>The GUI can be used within a OnDemand desktop session, large meshes can be done as batch jobs on cluster nodes (use srun or sbatch), on the command-line run:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gmsh</span> <span class="o">-</span><span class="mi">3</span> <span class="o">-</span><span class="nb">format</span> <span class="n">msh2</span> <span class="o">-</span><span class="n">o</span> <span class="n">outfilename</span><span class="o">.</span><span class="n">msh</span> <span class="n">infilename</span><span class="o">.</span><span class="n">geo</span>
+</pre></div>
+</div>
+<p>this creates a volume mesh and saves as version 2 format suitable for OpenFOAM.</p>
+<p>Use the SPACK module:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">load</span> <span class="n">rocky8</span><span class="o">-</span><span class="n">spack</span>
+<span class="n">module</span> <span class="n">load</span> <span class="n">gmsh</span>
+</pre></div>
+</div>
 <section id="id2">
 <h3>How to cite:<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h3>
-<p>Salome can be cited as <a class="reference external" href="https://www.researchgate.net/publication/318531878_SALOME_an_Open-Source_simulation_platform_integrating_ParaView?channel=doi&amp;linkId=596f5f25458515d5ff64e0c6&amp;showFulltext=true">DOI:10.13140/RG.2.2.12107.08485</a>.</p>
+<p>If you use Gmsh please cite <a class="reference external" href="https://gmsh.info/doc/preprints/gmsh_paper_preprint.pdf">C. Geuzaine and J.-F. Remacle. Gmsh: a three-dimensional finite element mesh generator with built-in pre- and post-processing facilities. Int. J. Numer. Methods Eng., 79(11), pp. 1309-1331, 2009</a>.
+You can also cite additional <a class="reference external" href="https://gmsh.info/#References">references</a> for specific features and algorithms.</p>
 <br> 
 <br>
 <hr style="margin-right: 0px; margin-bottom: 4px; margin-left: 0px; margin-top: -24px; border:2px solid  #d9d9d9 "></hr>
