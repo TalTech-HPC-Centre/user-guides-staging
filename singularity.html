@@ -66,8 +66,8 @@
 <li class="toctree-l3"><a class="reference internal" href="#hints"><em>Hints</em></a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#example-interactive-pytorch-job-with-gpu">Example: Interactive PyTorch job (with GPU)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#example-interactive-tensorflow-job-without-gpu">Example: Interactive TensorFlow job (without GPU)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#example-interactive-pytorch-job-without-and-with-gpu">Example: Interactive PyTorch job (without and with GPU)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#example-interactive-tensorflow-job-without-and-with-gpu">Example: Interactive TensorFlow job  (without and with GPU)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#example-job-for-opendronemap-odm">Example job for OpenDroneMap (ODM)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#obtaining-and-building-singularity-containers">Obtaining and Building Singularity Containers</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#from-container-registries">From Container Registries</a></li>
@@ -174,10 +174,16 @@ Converting from Docker.io, see
 --><hr style="margin-right: 0px; margin-bottom: 4px; margin-left: 0px; margin-top: -24px; border:2px solid  #d9d9d9 "></hr>
 <hr style="margin: 4px 0px; border:1px solid  #d9d9d9 "></hr></section>
 </section>
-<section id="example-interactive-pytorch-job-with-gpu">
-<h2>Example: Interactive PyTorch job (with GPU)<a class="headerlink" href="#example-interactive-pytorch-job-with-gpu" title="Permalink to this heading"></a></h2>
+<section id="example-interactive-pytorch-job-without-and-with-gpu">
+<h2>Example: Interactive PyTorch job (without and with GPU)<a class="headerlink" href="#example-interactive-pytorch-job-without-and-with-gpu" title="Permalink to this heading"></a></h2>
 <hr class="docutils" />
 <p>Start an interactive session on amp, make the modules available and run the docker image in singularity:</p>
+<p>Without GPU:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">srun</span> <span class="o">-</span><span class="n">t</span> <span class="mi">1</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span> <span class="o">--</span><span class="n">gres</span><span class="o">=</span><span class="n">gpu</span><span class="p">:</span><span class="mi">1</span> <span class="o">--</span><span class="n">pty</span> <span class="n">bash</span>
+<span class="n">singularity</span> <span class="n">exec</span> <span class="n">docker</span><span class="p">:</span><span class="o">//</span><span class="n">pytorch</span><span class="o">/</span><span class="n">pytorch</span> <span class="n">python</span>
+</pre></div>
+</div>
+<p>With GPU:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">srun</span> <span class="o">-</span><span class="n">t</span> <span class="mi">1</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span> <span class="o">-</span><span class="n">p</span> <span class="n">gpu</span> <span class="o">--</span><span class="n">gres</span><span class="o">=</span><span class="n">gpu</span><span class="p">:</span><span class="mi">1</span> <span class="o">--</span><span class="n">pty</span> <span class="n">bash</span>
 <span class="n">singularity</span> <span class="n">exec</span> <span class="o">--</span><span class="n">nv</span> <span class="n">docker</span><span class="p">:</span><span class="o">//</span><span class="n">pytorch</span><span class="o">/</span><span class="n">pytorch</span> <span class="n">python</span>
 </pre></div>
@@ -196,13 +202,23 @@ Converting from Docker.io, see
 <br>
 <hr style="margin-right: 0px; margin-bottom: 4px; margin-left: 0px; margin-top: -24px; border:2px solid  #d9d9d9 "></hr>
 <hr style="margin: 4px 0px; border:1px solid  #d9d9d9 "></hr></section>
-<section id="example-interactive-tensorflow-job-without-gpu">
-<h2>Example: Interactive TensorFlow job (without GPU)<a class="headerlink" href="#example-interactive-tensorflow-job-without-gpu" title="Permalink to this heading"></a></h2>
+<section id="example-interactive-tensorflow-job-without-and-with-gpu">
+<h2>Example: Interactive TensorFlow job  (without and with GPU)<a class="headerlink" href="#example-interactive-tensorflow-job-without-and-with-gpu" title="Permalink to this heading"></a></h2>
 <hr class="docutils" />
 <p>Start an interactive session on amp, make the modules available and run the docker image in singularity:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">srun</span> <span class="o">-</span><span class="n">t</span> <span class="mi">1</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span> <span class="o">-</span><span class="n">p</span> <span class="n">gpu</span> <span class="o">--</span><span class="n">pty</span> <span class="n">bash</span>
-<span class="n">source</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">lmod</span><span class="o">/</span><span class="n">lmod</span><span class="o">/</span><span class="n">init</span><span class="o">/</span><span class="n">bash</span>
+<p>Without GPU:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">srun</span> <span class="o">-</span><span class="n">t</span> <span class="mi">1</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span> <span class="o">--</span><span class="n">mem</span><span class="o">=</span><span class="mi">16</span><span class="n">G</span> <span class="o">--</span><span class="n">pty</span> <span class="n">bash</span>
 <span class="n">singularity</span> <span class="n">run</span> <span class="n">docker</span><span class="p">:</span><span class="o">//</span><span class="n">tensorflow</span><span class="o">/</span><span class="n">tensorflow</span>
+</pre></div>
+</div>
+<p>With GPU:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">srun</span> <span class="o">-</span><span class="n">t</span> <span class="mi">1</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span> <span class="o">-</span><span class="n">p</span> <span class="n">gpu</span> <span class="o">--</span><span class="n">mem</span><span class="o">=</span><span class="mi">16</span><span class="n">G</span> <span class="o">--</span><span class="n">pty</span> <span class="n">bash</span>
+<span class="n">singularity</span> <span class="n">run</span> <span class="o">--</span><span class="n">nv</span> <span class="n">docker</span><span class="p">:</span><span class="o">//</span><span class="n">tensorflow</span><span class="o">/</span><span class="n">tensorflow</span><span class="p">:</span><span class="n">latest</span><span class="o">-</span><span class="n">gpu</span>
+</pre></div>
+</div>
+<p>With GPU and jupyter:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">srun</span> <span class="o">-</span><span class="n">t</span> <span class="mi">1</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span> <span class="o">-</span><span class="n">p</span> <span class="n">gpu</span> <span class="o">--</span><span class="n">mem</span><span class="o">=</span><span class="mi">16</span><span class="n">G</span> <span class="o">--</span><span class="n">pty</span> <span class="n">bash</span>
+<span class="n">singularity</span> <span class="n">run</span> <span class="o">--</span><span class="n">nv</span> <span class="n">docker</span><span class="p">:</span><span class="o">//</span><span class="n">tensorflow</span><span class="o">/</span><span class="n">tensorflow</span><span class="p">:</span><span class="n">latest</span><span class="o">-</span><span class="n">gpu</span><span class="o">-</span><span class="n">jupyter</span>
 </pre></div>
 </div>
 <p>inside the container run</p>
