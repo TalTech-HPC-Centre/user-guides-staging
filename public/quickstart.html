@@ -180,7 +180,7 @@
 <p>By accessing the cluster, the user gets into his home directory or <code class="docutils literal notranslate"><span class="pre">$HOME</span></code> (<code class="docutils literal notranslate"><span class="pre">/gpfs/mariana/home/$USER/</span></code>).</p>
 <p>In the home directory, the user can create, delete, and overwrite files and perform calculations (if slurm script does not force program to use <code class="docutils literal notranslate"><span class="pre">$SCRATCH</span></code> directory). The home directory is limited in size of 500 GB and backups are performed once per week.</p>
 <p>The home directory can be accessed from console or by GUI programs, but it cannot be mounted. For mounting was created special <code class="docutils literal notranslate"><span class="pre">smbhome</span></code> and <code class="docutils literal notranslate"><span class="pre">smbgroup</span></code> folders (<code class="docutils literal notranslate"><span class="pre">/gpfs/mariana/smbhome/$USER/</span></code> and <code class="docutils literal notranslate"><span class="pre">/gpfs/mariana/smbgroup/</span></code>, respectively). More about <code class="docutils literal notranslate"><span class="pre">smb</span></code> folders can be found <a class="reference external" href="https://docs-staging.hpc.taltech.ee/quickstart.html#smb-cifs-exported-filesystems">here</a>.</p>
-<p>Some programs and scripts suppose that files will be transfer to <code class="docutils literal notranslate"><span class="pre">$SCRATCH</span></code> directory at compute node and calculations will be done there. If job will be killed due to the time limit back transfer will not occur. In this case, user needs to know at which node this job was running (see <code class="docutils literal notranslate"><span class="pre">slurm-$job_id.stat</span></code>), to connect to exactly this node (in example it is green11). <code class="docutils literal notranslate"><span class="pre">$SCRATCH</span></code> directory will be in <code class="docutils literal notranslate"><span class="pre">/state/partition1/</span></code> and corresponds to jobID number.</p>
+<p>Some programs and scripts suppose that files will be transfer to <code class="docutils literal notranslate"><span class="pre">$SCRATCH</span></code> directory at compute node and calculations will be done there. If job will be killed, for example due  to the time limit back transfer will not occur. In this case, user needs to know at which node this job was running (see <code class="docutils literal notranslate"><span class="pre">slurm-$job_id.stat</span></code>), to connect to exactly this node (in example it is green11). <code class="docutils literal notranslate"><span class="pre">$SCRATCH</span></code> directory will be in <code class="docutils literal notranslate"><span class="pre">/state/partition1/</span></code> and corresponds to jobID number.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">srun</span> <span class="o">-</span><span class="n">w</span> <span class="n">green11</span> <span class="o">--</span><span class="n">pty</span> <span class="n">bash</span>
 <span class="n">cd</span> <span class="o">/</span><span class="n">state</span><span class="o">/</span><span class="n">partition1</span><span class="o">/</span>
 </pre></div>
@@ -194,7 +194,7 @@
 <h2>Running jobs with the SLURM<a class="headerlink" href="#running-jobs-with-the-slurm" title="Permalink to this heading"></a></h2>
 <hr class="docutils" />
 <p>SLURM is a management and job scheduling system at Linux clusters. SLURM quick reference can be found <a class="reference external" href="https://slurm.schedmd.com/pdfs/summary.pdf">here</a>.</p>
-<p>Examples of slurm scripts are usually given on the program’s page with some recommendations for optimal use of resources for this particular program. List of the programs installed at HPC is given on our <a class="reference internal" href="software.html"><span class="doc">software page</span></a>. At <a class="reference external" href="https://hpc.pages.taltech.ee/user-guides/software.html">software page</a> or program’s page also can be found information about licenses, since for programs installed at HPC have varying licence agreement. o use some licensed programs (for example, Gaussian), the user must be added to the appropriate group. For this contact us email (hpcsupport&#64;taltech.ee) or <a class="reference external" href="https://portal.taltech.ee/v2">Taltech portal</a>.</p>
+<p>Examples of slurm scripts are usually given on the program’s page with some recommendations for optimal use of resources for this particular program. List of the programs installed at HPC is given on our <a class="reference internal" href="software.html"><span class="doc">software page</span></a>. At software page or program’s page also can be found information about licenses, since programs installed at HPC have varying licence agreement. To use some licensed programs (for example, Gaussian), the user must be added to the appropriate group. For this contact us by email (hpcsupport&#64;taltech.ee) or <a class="reference external" href="https://taltech.atlassian.net/servicedesk/customer/portal/18">Taltech portal</a>.</p>
 <div class="simple1">
 The most often used SLURM commands are:<ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">srun</span></code> - to start a session or an application (in real time)</p></li>
@@ -215,8 +215,6 @@ The most often used SLURM commands are:<ul class="simple">
 <li><p><strong>common partition</strong> –  <strong>default time</strong> is 10 min and <strong>max time limit</strong> is 8 days.</p></li>
 <li><p><strong>long partition</strong> – <strong>default time</strong> is 10 min and <strong>time limit</strong> 15 days.</p></li>
 <li><p><strong>green-ib partition</strong> – <strong>default time</strong> is 10 min and <strong>max time limit</strong> is 8 days</p></li>
-<li><p><strong>gray-ib partition</strong> – <strong>default time</strong> is 10 min and <strong>max time limit</strong> is 8 days</p></li>
-<li><p><strong>mem1tb partition</strong> – <strong>default time</strong> is 10 min and <strong>max time limit</strong> is 8 days</p></li>
 <li><p><strong>gpu partition</strong> – <strong>default time</strong> is 10 min and <strong>max time limit</strong> is 5 days</p></li>
 </ul>
  </div> 
@@ -255,7 +253,7 @@ mpirun -n 28 ./hello_mpi 				### run program
 </div>
 <p>In this example are listed some of the more common submission parameters. There are many more possible job-submission options, moreover, some of the options listed above  are not useful to apply together. An explanation of the variables used inside SLURM/SBATCH can be found <a class="reference external" href="https://slurm.schedmd.com/sbatch.html#lbAJ">here</a>. In contrast to e.g. GridEngine, SLURM allows fine-grained resource requests, using parameters like <code class="docutils literal notranslate"><span class="pre">--ntasks-per-core</span></code> or <code class="docutils literal notranslate"><span class="pre">--ntasks-per-node</span></code>.</p>
 <div class="simple1"> 
- <a href="https://hpc.pages.taltech.ee/user-guides/slurm_example.html">An example script for submitting</a>:<ul class="simple">
+ <a href="https://docs-staging.hpc.taltech.ee/slurm_example.html">An example script for submitting</a>:<ul class="simple">
 <li><p>a single process job</p></li>
 <li><p>an OpenMP parallel job</p></li>
 <li><p>an MPI parallel job (OpenFOAM)</p></li>
@@ -280,6 +278,7 @@ Some useful online resources:<ul class="simple">
 <li><p><a class="reference external" href="https://slurm.schedmd.com/pdfs/summary.pdf">SLURM Quick Reference (Cheat Sheet)</a></p></li>
 </ul>
  </div>  <br>
+<br>
 <br>
 <hr style="margin-right: 0px; margin-bottom: 4px; margin-left: 0px; margin-top: -24px; border:2px solid  #d9d9d9 "></hr>
 <hr style="margin: 4px 0px; border:1px solid  #d9d9d9 "></hr></section>
