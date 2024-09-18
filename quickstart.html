@@ -211,10 +211,11 @@ The most often used SLURM commands are:<ul class="simple">
 <p>Requesting resources with SLURM can be done either with parameters to <code class="docutils literal notranslate"><span class="pre">srun</span></code> or in a batch script invoked by <code class="docutils literal notranslate"><span class="pre">sbatch</span></code>.</p>
 <div class="simple1">The following defaults are used if not otherwise specified:<ul class="simple">
 <li><p><strong>default memory</strong> – is 1 GB/thread (for larger jobs request more memory)</p></li>
-<li><p><strong>short partition</strong> – <strong>default time limit</strong> is 10 min and  <strong>max time limit</strong> is 4 hours (longer jobs need to be submitted to partitions common or one of the infiniBand partitions)</p></li>
+<li><p><strong>short partition</strong> – <strong>default time limit</strong> is 10 min and  <strong>max time limit</strong> is 4 hours (longer jobs need to be submitted to partitions common, green-ib or gpu partitions)</p></li>
 <li><p><strong>common partition</strong> –  <strong>default time</strong> is 10 min and <strong>max time limit</strong> is 8 days.</p></li>
 <li><p><strong>long partition</strong> – <strong>default time</strong> is 10 min and <strong>time limit</strong> 15 days.</p></li>
 <li><p><strong>green-ib partition</strong> – <strong>default time</strong> is 10 min and <strong>max time limit</strong> is 8 days</p></li>
+<li><p><strong>bigmem partition</strong>  – <strong>default time</strong> is 10 min and <strong>max time limit</strong> is 8 days</p></li>
 <li><p><strong>gpu partition</strong> – <strong>default time</strong> is 10 min and <strong>max time limit</strong> is 5 days</p></li>
 </ul>
  </div> 
