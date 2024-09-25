@@ -59,6 +59,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#freecad">FreeCAD</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#salome">Salome</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#brl-cad">BRL-CAD</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#blender">Blender</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#gmsh">Gmsh</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#netgen">Netgen</a></li>
 </ul>
@@ -224,6 +225,10 @@ More about CAD and meshing options on our HPC can be found <a class="reference i
 <h4>BRL-CAD<a class="headerlink" href="#brl-cad" title="Permalink to this heading"></a></h4>
 <p><a class="reference external" href="https://brlcad.org/">BRL-CAD</a> is a CAD software that has been in development since 1979 and is open-source since 2004. It is based on CSG modeling. BRL-CAD does not provide volume meshing, however, the CSG geometry can be exported to BREP (boundary representation, like STL, OBJ, STEP, IGES, PLY), the g-* tols are for this, while the *-g tools are for importing. More about BRL-CAD on our HPC can be found <a class="reference external" href="https://docs.hpc.taltech.ee//engineering/cad-mesh.html#brl-cad">here</a>.</p>
 </section>
+<section id="blender">
+<h4>Blender<a class="headerlink" href="#blender" title="Permalink to this heading"></a></h4>
+<p>[Blender]{https://blender.org} is a 3D modeling software developed for computer animation (movie production).</p>
+<!-- #### OpenSCAD --></section>
 <section id="gmsh">
 <h4>Gmsh<a class="headerlink" href="#gmsh" title="Permalink to this heading"></a></h4>
 <p><a class="reference external" href="https://gmsh.info/">Gmsh</a> is an open source 3D finite element mesh generator with a built-in CAD engine and post-processor. More about Gmsh on our HPC can be found <a class="reference external" href="https://docs.hpc.taltech.ee/engineering/cad-mesh.html#gmsh">here</a>.</p>
@@ -437,7 +442,7 @@ Packages for Python can be installed by the users themselves using pip (python2)
 <section id="visualization-software">
 <h2>Visualization software<a class="headerlink" href="#visualization-software" title="Permalink to this heading"></a></h2>
 <hr class="docutils" />
-<ul class="simple">
+<ul>
 <li><p><a class="reference external" href="https://www.paraview.org/">ParaView</a> (<strong>all nodes</strong> spack module paraview)</p></li>
 <li><p><a class="reference external" href="https://visit-dav.github.io/visit-website/">VisIt</a> (<strong>all nodes</strong> spack module visit)</p></li>
 <li><p><a class="reference external" href="https://www.hlrs.de/solutions/types-of-computing/visualization/covise">COVISE</a> (<strong>viz</strong>: run <code class="docutils literal notranslate"><span class="pre">/usr/local/covise/bin/covise</span></code>)</p></li>
@@ -445,7 +450,7 @@ Packages for Python can be installed by the users themselves using pip (python2)
 <li><p>GNUplot  (<strong>all nodes</strong> )</p></li>
 <li><p><a class="reference external" href="http://www.opendx.org/">OpenDX</a> (<strong>currently not available</strong> will come soon)</p></li>
 <li><p>Software for computational chemistry:</p>
-<ul>
+<ul class="simple">
 <li><p><a class="reference external" href="https://www.theochem.ru.nl/molden/">Molden</a></p></li>
 <li><p><a class="reference external" href="https://avogadro.cc/">Avogadro</a></p></li>
 <li><p><a class="reference external" href="http://jmol.sourceforge.net/">JMol</a></p></li>
@@ -453,6 +458,11 @@ Packages for Python can be installed by the users themselves using pip (python2)
 <li><p><a class="reference external" href="http://www.openrasmol.org/">RasMol</a></p></li>
 </ul>
 </li>
+<li><p>Software for movie animation</p>
+<ul class="simple">
+<li><p>Blender</p></li>
+</ul>
+ <!-- - Aqsis, OpenMoonRay --></li>
 </ul>
 <br>
 <br><p>The recommended way is now to use a desktop session in OnDemand, see also the <a class="reference internal" href="visualization.html"><span class="doc">visualization</span></a> page on how to start these and on GPU acceleration.</p>
