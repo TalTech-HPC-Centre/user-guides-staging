@@ -165,7 +165,7 @@
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="n">sbatch</span> <span class="n">orca</span><span class="o">.</span><span class="n">slurm</span>
 </pre></div>
 </div>
-<p><em><strong>NB!</strong></em> <em>More cores does not mean faster!!! See <a class="reference external" href="https://hpc.pages.taltech.ee/user-guides/chemistry/orca.html#benchmarks-for-parallel-jobs">benchmarks</a>.</em><br /><em><strong>NB!</strong></em> To ORCA parallel run full path name is needed. Single core calculations can be performed with just <code class="docutils literal notranslate"><span class="pre">orca</span></code> command.</p>
+<p><em><strong>NB!</strong></em> <em>More cores does not mean faster!!! See <a class="reference external" href="https://docs.hpc.taltech.ee/chemistry/orca.html#benchmarks-for-parallel-jobs">benchmarks</a>.</em><br /><em><strong>NB!</strong></em> To ORCA parallel run full path name is needed. Single core calculations can be performed with just <code class="docutils literal notranslate"><span class="pre">orca</span></code> command.</p>
 </li>
 <li><p>Check results using <a class="reference internal" href="visualization.html"><span class="doc">visualization software</span></a>.</p></li>
 </ol>
@@ -295,7 +295,7 @@ rm -rf  $SCRATCH
 </section>
 <section id="time">
 <h3>Time<a class="headerlink" href="#time" title="Permalink to this heading"></a></h3>
-<p>Time limits depend on time partition used, see <a class="reference external" href="https://hpc.pages.taltech.ee/user-guides/index.html#hardware-specification">taltech user-guides</a>. Therefore, it is recommended to request more time than is usually needed for calculation.</p>
+<p>Time limits depend on time partition used, see <a class="reference external" href="https://docs.hpc.taltech.ee/index.html#hardware-specification">taltech user-guides</a>. Therefore, it is recommended to request more time than is usually needed for calculation.</p>
 <p>If job was killed due to the time limit, this will be written in the end of  <code class="docutils literal notranslate"><span class="pre">slurm-JOBID.out</span></code> file “error: *** JOB 317255 ON green23 CANCELLED AT 2023-08-11T22:28:01 DUE TO TIME LIMIT *** “</p>
 <p>In this case some files including checkpoint file <code class="docutils literal notranslate"><span class="pre">gbw</span></code> will not be copied back to the working directory. To copy files user need to run interactive session to connect to the node where calculations were done. The node number is written in both <code class="docutils literal notranslate"><span class="pre">slurm-JOBID.stat</span></code> and <code class="docutils literal notranslate"><span class="pre">slurm-JOBID.out</span></code>. In example error message it was green23.</p>
 <p>Interactive session is started by the command:</p>

@@ -126,7 +126,7 @@ Contact to <code class="docutils literal notranslate"><span class="pre">hpcsuppo
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sbatch</span> <span class="n">gaussian</span><span class="o">.</span><span class="n">slurm</span>
 </pre></div>
 </div>
-<p><em><strong>NB!</strong></em> <em>More cores does not mean faster!!! See <a class="reference external" href="https://hpc.pages.taltech.ee/user-guides/chemistry/gaussian.html#benchmarks-for-parallel-jobs">benchmarks</a>.</em></p>
+<p><em><strong>NB!</strong></em> <em>More cores does not mean faster!!! See <a class="reference external" href="https://docs.hpc.taltech.ee/chemistry/gaussian.html#benchmarks-for-parallel-jobs">benchmarks</a>.</em></p>
 </li>
 <li><p>Check results using <a class="reference internal" href="visualization.html"><span class="doc">visualization software</span></a>.</p></li>
 </ol>
@@ -160,7 +160,7 @@ Contact to <code class="docutils literal notranslate"><span class="pre">hpcsuppo
 <section id="parallel-jobs">
 <h4>Parallel jobs<a class="headerlink" href="#parallel-jobs" title="Permalink to this heading"></a></h4>
 <p>To run multiple processors/cores job  a number of cores should be specified. The number of cores can be defined via the <code class="docutils literal notranslate"><span class="pre">-p</span></code> flag (e.g. -p=4) in command line of <code class="docutils literal notranslate"><span class="pre">slurm</span></code> script or by adding the <code class="docutils literal notranslate"><span class="pre">%NprocShared</span></code> keyword into  Gaussian input file (e.g. %NprocShared=4). For more information see <a class="reference external" href="https://gaussian.com/running/">Gaussian manual</a>. The number of processors requested should correspond to the number of processors requested in <code class="docutils literal notranslate"><span class="pre">slurm</span></code> script.</p>
-<p><em><strong>NB!</strong></em> <em>More cores does not mean faster!!! See <a class="reference external" href="https://hpc.pages.taltech.ee/user-guides/chemistry/gaussian.html#benchmarks-for-parallel-jobs">benchmarks</a>.</em></p>
+<p><em><strong>NB!</strong></em> <em>More cores does not mean faster!!! See <a class="reference external" href="https://docs.hpc.taltech.ee/chemistry/gaussian.html#benchmarks-for-parallel-jobs">benchmarks</a>.</em></p>
 <p>Example of <code class="docutils literal notranslate"><span class="pre">slurm</span></code> script:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>#!/bin/bash
 
@@ -205,7 +205,7 @@ rm -rf  $SCRATCH
 </section>
 <section id="memory">
 <h3>Memory<a class="headerlink" href="#memory" title="Permalink to this heading"></a></h3>
-<p>The default dynamic memory requested by Gaussian is frequently too small for successful job termination. Herein, if amount of memory requested is insufficient, the job will crash. There is no golden rule for memory requests. Usually, for common calculations (e.g. optimization, frequency etc.)  2 GB per 1 core is sufficient. This can be done by the <code class="docutils literal notranslate"><span class="pre">-m</span></code> flag in the command line (e.g. -m=48gb) or by adding the <code class="docutils literal notranslate"><span class="pre">%Mem</span></code> keyword in Gaussian input file (e.g. %Mem=2GB). For more information see <a class="reference external" href="https://gaussian.com/running/">Gaussian manual</a> and <a class="reference external" href="https://hpc.pages.taltech.ee/user-guides/index.html#hardware-specification">taltech user-guides</a>.</p>
+<p>The default dynamic memory requested by Gaussian is frequently too small for successful job termination. Herein, if amount of memory requested is insufficient, the job will crash. There is no golden rule for memory requests. Usually, for common calculations (e.g. optimization, frequency etc.)  2 GB per 1 core is sufficient. This can be done by the <code class="docutils literal notranslate"><span class="pre">-m</span></code> flag in the command line (e.g. -m=48gb) or by adding the <code class="docutils literal notranslate"><span class="pre">%Mem</span></code> keyword in Gaussian input file (e.g. %Mem=2GB). For more information see <a class="reference external" href="https://gaussian.com/running/">Gaussian manual</a> and <a class="reference external" href="https://docs.hpc.taltech.ee/index.html#hardware-specification">taltech user-guides</a>.</p>
 <p>However, there are calculations that require more memory (e.g TD-DFT, large SCF calculations, etc.). Data from a <code class="docutils literal notranslate"><span class="pre">slurm-JOBID.stat</span></code> file can be useful to determine the amount of memory required for a computation. In <code class="docutils literal notranslate"><span class="pre">slurm-JOBID.stat</span></code> file the efficiency of memory utilization is shown.</p>
 <p>Bad example:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Memory</span> <span class="n">Utilized</span><span class="p">:</span> <span class="mf">3.08</span> <span class="n">GB</span> 
@@ -220,7 +220,7 @@ rm -rf  $SCRATCH
 </section>
 <section id="time">
 <h3>Time<a class="headerlink" href="#time" title="Permalink to this heading"></a></h3>
-<p>Time limits depend on <a class="reference external" href="https://hpc.pages.taltech.ee/user-guides/index.html#hardware-specification">time partition</a> used. If calculation time exceeds the time limit requested in the <code class="docutils literal notranslate"><span class="pre">slurm</span></code> script, the job will be killed, and in the end of <code class="docutils literal notranslate"><span class="pre">slurm-JOBID.out</span></code> will be written “error: *** JOB 317255 ON green23 CANCELLED AT 2023-08-11T22:28:01 DUE TO TIME LIMIT *** “</p>
+<p>Time limits depend on <a class="reference external" href="https://docs.hpc.taltech.ee/index.html#hardware-specification">time partition</a> used. If calculation time exceeds the time limit requested in the <code class="docutils literal notranslate"><span class="pre">slurm</span></code> script, the job will be killed, and in the end of <code class="docutils literal notranslate"><span class="pre">slurm-JOBID.out</span></code> will be written “error: *** JOB 317255 ON green23 CANCELLED AT 2023-08-11T22:28:01 DUE TO TIME LIMIT *** “</p>
 <p>Therefore, it is recommended to request more time than is usually needed for calculation and create checkpoint files (by <code class="docutils literal notranslate"><span class="pre">%chk=job.chk</span></code> line in input file) that allows to restart job.</p>
 </section>
 <section id="using-gpus">
