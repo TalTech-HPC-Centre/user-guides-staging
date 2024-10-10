@@ -62,7 +62,11 @@
 <li class="toctree-l3"><a class="reference internal" href="#available-visualization-software-on-compute-nodes"><em>Available Visualization software on compute nodes</em></a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#ondemand-desktop-on-gpu-nodes-hardware-rendering">OnDemand Desktop on GPU nodes (hardware rendering)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ondemand-desktop-on-gpu-nodes-hardware-rendering">OnDemand Desktop on GPU nodes (hardware rendering)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#paraview-with-egl-acceleration"><em>ParaView with EGL acceleration</em></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#starccm-with-hardware-rendering"><em>StarCCM+ with hardware rendering</em></a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#in-situ-visualization-in-preparation"><em>In-situ visualization (in preparation)</em></a></li>
 </ul>
 </li>
@@ -138,9 +142,29 @@
 <p>Requires of course to be submitted to a GPU node and a GPU to be reserved. The nodes are configured in a way that requires EGL rendering, and therefore may require other modules to be loaded (e.g. ParaView).</p>
 <p>Otherwise the Desktop works as the regular (software rendering) one, see above.</p>
 <p>Please note that for most applications software rendering is fast enough, only heavy visulalization, like volume visualization in ParaView, COVISE, VisIt, VMD, Star-CCM+ and Ansys may require the GPU rendering.</p>
+<section id="paraview-with-egl-acceleration">
+<h3><em>ParaView with EGL acceleration</em><a class="headerlink" href="#paraview-with-egl-acceleration" title="Permalink to this heading"></a></h3>
+<p>It is not possible to have EGL rendering and the OpenGL GUI compiled together, therefore the EGL accelerated <code class="docutils literal notranslate"><span class="pre">pvserver</span></code> and the OpenGL GUI come from different modules and can run on different compute nodes.</p>
+<p>The startup procedure for EGL accelerated rendering is the same as for use of ParaView in distributed mode.</p>
+<ol class="simple">
+<li><p>Start an OnDemand desktop on a GPU node and request a GPU</p></li>
+<li><p>Open 2 XTerms</p></li>
+<li><p>in Xterm 1: <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">load</span> <span class="pre">rocky8-spack</span> <span class="pre">paraview/5.12.1-gcc-10.3.0-dotq</span></code> and start the ParaView GUI <code class="docutils literal notranslate"><span class="pre">paraview</span></code></p></li>
+<li><p>in Xterm 2: <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">load</span> <span class="pre">rocky8</span> <span class="pre">paraview/5.12.1-egl</span></code> and start the ParaView server <code class="docutils literal notranslate"><span class="pre">pvserver</span></code> (alternatively, you could ssh into base and start a separate job on a gpu node with srun or sbatch)</p></li>
+<li><p>in GUI select “Connect” and connect to either localhost:11111 or the gpu node the pvserver runs on, use “manual” connect, then choose “connect”.</p></li>
+</ol>
+<p>A similar procedure can also be used to connect a client running on your desktop computer to the pvserver on the compute node.</p>
+<p>For more explanations, see (ParaView WIKI)[https://www.paraview.org/Wiki/Reverse_connection_and_port_forwarding].</p>
+</section>
+<section id="starccm-with-hardware-rendering">
+<h3><em>StarCCM+ with hardware rendering</em><a class="headerlink" href="#starccm-with-hardware-rendering" title="Permalink to this heading"></a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>vglrun starccm+ -clientldpreload /usr/lib64/libvglfaker.so -graphics native -rgpu auto  -power -fabric TCP -podkey $YOURPODKEY ...
+</pre></div>
+</div>
 <br>
 <hr style="margin-right: 0px; margin-bottom: 4px; margin-left: 0px; margin-top: -24px; border:2px solid  #d9d9d9 "></hr>
 <hr style="margin: 4px 0px; border:1px solid  #d9d9d9 "></hr></section>
+</section>
 <section id="in-situ-visualization-in-preparation">
 <h2><em>In-situ visualization (in preparation)</em><a class="headerlink" href="#in-situ-visualization-in-preparation" title="Permalink to this heading"></a></h2>
 <p>In-situ visualization creates the visualization during the simulation instead of during the postprocesssing phase. The simulation code needs to be connected to in-situ visualization libraries. e.g. Catalyst (ParaView), LibSim (VisIt) and Ascent.</p>
