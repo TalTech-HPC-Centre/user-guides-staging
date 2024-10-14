@@ -58,8 +58,8 @@
 <li class="toctree-l1"><a class="reference internal" href="performance.html">Performance</a></li>
 <li class="toctree-l1"><a class="reference internal" href="profiling.html">Profiling</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Visualization</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#ondemand-desktop-on-any-node-software-rendering">OnDemand Desktop on any node (software rendering)</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#running-jobs">Running jobs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ondemand-desktop-on-any-node-software-rendering">OnDemand Desktop on any node (software rendering)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#running-jobs">Running jobs</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#available-visualization-software-on-compute-nodes"><em>Available Visualization software on compute nodes</em></a></li>
 </ul>
 </li>
@@ -111,28 +111,30 @@
 <p>OnDemand is a graphical user interface that allows access to HPC via a web browser. Within the OnDemand environment users can access to a HPC files, submit jobs to a cluster, monitor jobs and HPS resources, run interactive applications like Jupyter.</p>
 <p>The default desktop environment is xfce, which is configurable, lightweight and fast.</p>
 <p><img alt="ondemand-1" src="_images/ondemand-1.png" /></p>
+<br>
+<hr style="margin-right: 0px; margin-bottom: 4px; margin-left: 0px; margin-top: -24px; border:2px solid  #d9d9d9 "></hr>
+<hr style="margin: 4px 0px; border:1px solid  #d9d9d9 "></hr></section>
 <section id="running-jobs">
-<h3>Running jobs<a class="headerlink" href="#running-jobs" title="Permalink to this heading"></a></h3>
+<h2>Running jobs<a class="headerlink" href="#running-jobs" title="Permalink to this heading"></a></h2>
+<hr class="docutils" />
 <p>The menu only contain very few programs from the operating system. However, <strong>all installed software can be open an XTerminal</strong> using the module system as you would from the command-line. To do that</p>
 <ol>
-<li><p>Choose <strong>TalTech HPC Desktop</strong>.</p>
-<p>Set up and launch an interactive desktop (1 core and 1 GB of memory is usually enough if no calculations are planned).</p>
-<p><img alt="ondemand-2" src="_images/ondemand-2.png" /></p>
-<p><em><strong>NB!</strong></em> <em>Check and your account.</em></p>
+<li><p>Choose <strong>TalTech HPC Desktop</strong>.</p></li>
+<li><p>Set up and launch an interactive desktop (1 core and 1 GB of memory is usually enough if no calculations are planned).</p>
+ <div style="width:65%; height:!65%; margin-left: auto; margin-right: auto;"> <p><img alt="ondemand-2" src="_images/ondemand-2.png" /></p>
+ </div><p><em><strong>NB!</strong></em> <em>Check and your account.</em></p>
 </li>
 <li><p>Firstly, your request will be put into a queue and this picture will appear.</p>
-<p><img alt="ondemand-3" src="_images/ondemand-3.png" /></p>
-</li>
+ <div style="width:65%; height:!65%; margin-left: auto; margin-right: auto;"> <p><img alt="ondemand-3" src="_images/ondemand-3.png" /></p>
+ </div></li>
 <li><p>When needed resources will become available, your session will start and this picture will appear.</p>
-<p><img alt="ondemand-4" src="_images/ondemand-4.png" /></p>
-</li>
-<li><p>To start interactive desktop press “Launch TalTech HPC Desktop”</p>
-<p>NB: Do not use quality settings “Compression 0” and/or “Image Quality 9”, this will cause a zlib error message. The message box can be removed by reloading the browser tab.</p>
-<p><img alt="bestsettings" src="_images/ondemand-best-quality-settings.png" />
-<img alt="error" src="_images/ondemand-zlib-error.png" /></p>
-</li>
+<p>We recommend to use default settings for “Compression” and/or “Image Quality”, unless you require high-quality screenshots.</p>
+ <div style="width:65%; height:!65%; margin-left: auto; margin-right: auto;"> <p><img alt="ondemand-4" src="_images/ondemand-4.png" /></p>
+ </div><p><em><strong>NB!</strong></em> <em>Do not use quality settings “Compression 0” and/or “Image Quality 9”, this will cause a zlib error message. The message box can be removed by reloading the browser tab.</em></p>
+ <div style="width:50%; height:!50%; margin-left: auto; margin-right: auto;"> <p><img alt="error" src="_images/ondemand-zlib-error.png" /></p>
+ </div></li>
+<li><p>To start interactive desktop press “Launch TalTech HPC Desktop”</p></li>
 </ol>
-</section>
 <section id="available-visualization-software-on-compute-nodes">
 <h3><em>Available Visualization software on compute nodes</em><a class="headerlink" href="#available-visualization-software-on-compute-nodes" title="Permalink to this heading"></a></h3>
 <ul class="simple">
