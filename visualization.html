@@ -60,7 +60,7 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Visualization</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#ondemand-desktop-on-any-node-software-rendering">OnDemand Desktop on any node (software rendering)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#running-jobs">Running jobs</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#available-visualization-software-on-compute-nodes"><em>Available Visualization software on compute nodes</em></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#available-visualization-software-on-compute-nodes"><em>Available visualization software on compute nodes</em></a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#ondemand-desktop-on-gpu-nodes-hardware-rendering">OnDemand Desktop on GPU nodes (hardware rendering)</a><ul>
@@ -102,7 +102,7 @@
              
   <section id="visualization">
 <h1>Visualization<a class="headerlink" href="#visualization" title="Permalink to this heading"></a></h1>
-<p>The recommended way of doing visualizations is now using the <strong>desktop session</strong> on (ondemand.hpc.taltech.ee)[https://ondemand.hpc.taltech.ee].</p>
+<p>The recommended way of doing visualizations is now using the <strong>desktop session</strong> on <a class="reference external" href="https://ondemand.hpc.taltech.ee">https://ondemand.hpc.taltech.ee</a>.</p>
 <br>
 <hr style="margin-right: 0px; margin-bottom: 4px; margin-left: 0px; margin-top: -24px; border:2px solid  #d9d9d9 "></hr>
 <hr style="margin: 4px 0px; border:1px solid  #d9d9d9 "></hr><section id="ondemand-desktop-on-any-node-software-rendering">
@@ -119,24 +119,37 @@
 <hr class="docutils" />
 <p>The menu only contain very few programs from the operating system. However, <strong>all installed software can be open an XTerminal</strong> using the module system as you would from the command-line. To do that</p>
 <ol>
-<li><p>Choose <strong>TalTech HPC Desktop</strong>.</p></li>
+<li><p>Choose “TalTech HPC Desktop”.</p></li>
 <li><p>Set up and launch an interactive desktop (1 core and 1 GB of memory is usually enough if no calculations are planned).</p>
  <div style="width:65%; height:!65%; margin-left: auto; margin-right: auto;"> <p><img alt="ondemand-2" src="_images/ondemand-2.png" /></p>
  </div><p><em><strong>NB!</strong></em> <em>Check and your account.</em></p>
 </li>
 <li><p>Firstly, your request will be put into a queue and this picture will appear.</p>
- <div style="width:65%; height:!65%; margin-left: auto; margin-right: auto;"> <p><img alt="ondemand-3" src="_images/ondemand-3.png" /></p>
+ <div style="width:85%; height:!85%; margin-left: auto; margin-right: auto;"> <p><img alt="ondemand-3" src="_images/ondemand-3.png" /></p>
  </div></li>
 <li><p>When needed resources will become available, your session will start and this picture will appear.</p>
-<p>We recommend to use default settings for “Compression” and/or “Image Quality”, unless you require high-quality screenshots.</p>
- <div style="width:65%; height:!65%; margin-left: auto; margin-right: auto;"> <p><img alt="ondemand-4" src="_images/ondemand-4.png" /></p>
+<p>We recommend to use default settings for “Compression” and “Image Quality”, unless you require high-quality screenshots.</p>
+ <div style="width:85%; height:!85%; margin-left: auto; margin-right: auto;"> <p><img alt="ondemand-4" src="_images/ondemand-4.png" /></p>
  </div><p><em><strong>NB!</strong></em> <em>Do not use quality settings “Compression 0” and/or “Image Quality 9”, this will cause a zlib error message. The message box can be removed by reloading the browser tab.</em></p>
- <div style="width:50%; height:!50%; margin-left: auto; margin-right: auto;"> <p><img alt="error" src="_images/ondemand-zlib-error.png" /></p>
+ <div style="width:85%; height:!85%; margin-left: auto; margin-right: auto;"> <p><img alt="error" src="_images/ondemand-zlib-error.png" /></p>
  </div></li>
-<li><p>To start interactive desktop press “Launch TalTech HPC Desktop”</p></li>
+<li><p>To start interactive desktop press “Launch TalTech HPC Desktop”</p>
+<p>Will appear your HPC Desktop, where user can open XTerminal.</p>
+ <div style="width:60%; height:!60%; margin-left: auto; margin-right: auto;"> <p><img alt="ondemand-5" src="visualization/ondemand-5.png" /></p>
+ </div></li>
+<li><p>To start interactive desktop press “Launch TalTech HPC Desktop”</p>
+<p>Load environment and program needed and start vizualization. More detailed instructions on environment and program loading are given below.</p>
+ <div style="width:65%; height:!65%; margin-left: auto; margin-right: auto;"> <p><img alt="ondemand-6" src="visualization/ondemand-6.png" /></p>
+ </div></li>
 </ol>
 <section id="available-visualization-software-on-compute-nodes">
-<h3><em>Available Visualization software on compute nodes</em><a class="headerlink" href="#available-visualization-software-on-compute-nodes" title="Permalink to this heading"></a></h3>
+<h3><em>Available visualization software on compute nodes</em><a class="headerlink" href="#available-visualization-software-on-compute-nodes" title="Permalink to this heading"></a></h3>
+<p>Program from a list below and its environment can be loaded by:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">load</span> <span class="n">rocky8</span><span class="o">-</span><span class="n">spack</span>
+<span class="n">module</span> <span class="n">load</span> <span class="o">&lt;</span><span class="n">program</span> <span class="n">name</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p><em>where <strong>programe is in lowercase letters</strong></em></p>
 <ul class="simple">
 <li><p>ParaView</p></li>
 <li><p>VisIt</p></li>
@@ -154,7 +167,8 @@
 <li><p>Ospray (raytracer)</p></li>
 <li><p>PoVray (raytracer)</p></li>
 </ul>
-<br><br>
+<br><p>Programs are run by corresponding names in lowercase letters: <strong>paraview</strong> / <strong>visit</strong> / <strong>vmd</strong>.</p>
+<br>
 <hr style="margin-right: 0px; margin-bottom: 4px; margin-left: 0px; margin-top: -24px; border:2px solid  #d9d9d9 "></hr>
 <hr style="margin: 4px 0px; border:1px solid  #d9d9d9 "></hr></section>
 </section>
