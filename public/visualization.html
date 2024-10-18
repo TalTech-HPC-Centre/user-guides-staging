@@ -60,7 +60,10 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Visualization</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#ondemand-desktop-on-any-node-software-rendering">OnDemand Desktop on any node (software rendering)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#running-jobs">Running jobs</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#available-visualization-software-on-compute-nodes"><em>Available visualization software on compute nodes</em></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#available-visualization-software-on-compute-nodes"><em>Available visualization software on compute nodes</em></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#gaussview">GaussView</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#ondemand-desktop-on-gpu-nodes-hardware-rendering">OnDemand Desktop on GPU nodes (hardware rendering)</a><ul>
@@ -168,9 +171,18 @@
 <li><p>PoVray (raytracer)</p></li>
 </ul>
 <br><p>Programs are run by corresponding names in lowercase letters: <strong>paraview</strong> / <strong>visit</strong> / <strong>vmd</strong>.</p>
+<section id="gaussview">
+<h4>GaussView<a class="headerlink" href="#gaussview" title="Permalink to this heading"></a></h4>
+<p>GaussView can be started by commands:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">load</span> <span class="n">rocky8</span><span class="o">/</span><span class="nb">all</span>
+<span class="n">module</span> <span class="n">load</span> <span class="n">gaussview</span>
+<span class="n">gview</span><span class="o">.</span><span class="n">sh</span> <span class="o">&lt;</span><span class="n">job</span> <span class="n">name</span><span class="o">&gt;</span>
+</pre></div>
+</div>
 <br>
 <hr style="margin-right: 0px; margin-bottom: 4px; margin-left: 0px; margin-top: -24px; border:2px solid  #d9d9d9 "></hr>
 <hr style="margin: 4px 0px; border:1px solid  #d9d9d9 "></hr></section>
+</section>
 </section>
 <section id="ondemand-desktop-on-gpu-nodes-hardware-rendering">
 <h2>OnDemand Desktop on GPU nodes (hardware rendering)<a class="headerlink" href="#ondemand-desktop-on-gpu-nodes-hardware-rendering" title="Permalink to this heading"></a></h2>
