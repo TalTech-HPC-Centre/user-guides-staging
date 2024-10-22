@@ -58,10 +58,9 @@
 <li class="toctree-l1"><a class="reference internal" href="performance.html">Performance</a></li>
 <li class="toctree-l1"><a class="reference internal" href="profiling.html">Profiling</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Visualization</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#ondemand-desktop-on-any-node-software-rendering">OnDemand Desktop on any node (software rendering)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#running-jobs">Running jobs</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#ondemand-desktop-on-any-node-and-cpu">OnDemand Desktop on any node and CPU</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#available-visualization-software-on-compute-nodes"><em>Available visualization software on compute nodes</em></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#gaussview">GaussView</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#gaussview-avogadro">GaussView &amp; Avogadro</a></li>
 </ul>
 </li>
 </ul>
@@ -106,23 +105,18 @@
   <section id="visualization">
 <h1>Visualization<a class="headerlink" href="#visualization" title="Permalink to this heading"></a></h1>
 <p>The recommended way of doing visualizations is now using the <strong>desktop session</strong> on <a class="reference external" href="https://ondemand.hpc.taltech.ee">https://ondemand.hpc.taltech.ee</a>.</p>
-<br>
-<hr style="margin-right: 0px; margin-bottom: 4px; margin-left: 0px; margin-top: -24px; border:2px solid  #d9d9d9 "></hr>
-<hr style="margin: 4px 0px; border:1px solid  #d9d9d9 "></hr><section id="ondemand-desktop-on-any-node-software-rendering">
-<h2>OnDemand Desktop on any node (software rendering)<a class="headerlink" href="#ondemand-desktop-on-any-node-software-rendering" title="Permalink to this heading"></a></h2>
-<hr class="docutils" />
 <p>OnDemand is a graphical user interface that allows access to HPC via a web browser. Within the OnDemand environment users can access to a HPC files, submit jobs to a cluster, monitor jobs and HPS resources, run interactive applications like Jupyter.</p>
 <p>The default desktop environment is xfce, which is configurable, lightweight and fast.</p>
-<p><img alt="ondemand-1" src="_images/ondemand-1.png" /></p>
 <br>
 <hr style="margin-right: 0px; margin-bottom: 4px; margin-left: 0px; margin-top: -24px; border:2px solid  #d9d9d9 "></hr>
-<hr style="margin: 4px 0px; border:1px solid  #d9d9d9 "></hr></section>
-<section id="running-jobs">
-<h2>Running jobs<a class="headerlink" href="#running-jobs" title="Permalink to this heading"></a></h2>
+<hr style="margin: 4px 0px; border:1px solid  #d9d9d9 "></hr><section id="ondemand-desktop-on-any-node-and-cpu">
+<h2>OnDemand Desktop on any node and CPU<a class="headerlink" href="#ondemand-desktop-on-any-node-and-cpu" title="Permalink to this heading"></a></h2>
 <hr class="docutils" />
-<p>The menu only contain very few programs from the operating system. However, <strong>all installed software can be open an XTerminal</strong> using the module system as you would from the command-line. To do that</p>
+<p>The menu only contain very few programs from the operating system. However, <strong>all installed software can be open an XTerminal</strong> using the module system as you would from the command-line. To do that:</p>
 <ol>
-<li><p>Choose “TalTech HPC Desktop”.</p></li>
+<li><p>Choose “TalTech HPC Desktop”.</p>
+ <div style="width:85%; height:!85%; margin-left: auto; margin-right: auto;"> <p><img alt="ondemand-1" src="_images/ondemand-1.png" /></p>
+ </div></li>
 <li><p>Set up and launch an interactive desktop (1 core and 1 GB of memory is usually enough if no calculations are planned).</p>
  <div style="width:65%; height:!65%; margin-left: auto; margin-right: auto;"> <p><img alt="ondemand-2" src="_images/ondemand-2.png" /></p>
  </div><p><em><strong>NB!</strong></em> <em>Check and your account.</em></p>
@@ -138,11 +132,11 @@
  </div></li>
 <li><p>To start interactive desktop press “Launch TalTech HPC Desktop”</p>
 <p>Will appear your HPC Desktop, where user can open XTerminal.</p>
- <div style="width:60%; height:!60%; margin-left: auto; margin-right: auto;"> <p><img alt="ondemand-5" src="visualization/ondemand-5.png" /></p>
+ <div style="width:85%; height:!85%; margin-left: auto; margin-right: auto;"> <p><img alt="ondemand-5" src="_images/ondemand-5.png" /></p>
  </div></li>
 <li><p>To start interactive desktop press “Launch TalTech HPC Desktop”</p>
 <p>Load environment and program needed and start vizualization. More detailed instructions on environment and program loading are given below.</p>
- <div style="width:65%; height:!65%; margin-left: auto; margin-right: auto;"> <p><img alt="ondemand-6" src="visualization/ondemand-6.png" /></p>
+ <div style="width:65%; height:!65%; margin-left: auto; margin-right: auto;"> <p><img alt="ondemand-6" src="_images/ondemand-6.png" /></p>
  </div></li>
 </ol>
 <section id="available-visualization-software-on-compute-nodes">
@@ -152,7 +146,7 @@
 <span class="n">module</span> <span class="n">load</span> <span class="o">&lt;</span><span class="n">program</span> <span class="n">name</span><span class="o">&gt;</span>
 </pre></div>
 </div>
-<p><em>where <strong>programe is in lowercase letters</strong></em></p>
+<p><em>where <strong>program</strong> must be written in <strong>lowercase letters</strong></em></p>
 <ul class="simple">
 <li><p>ParaView</p></li>
 <li><p>VisIt</p></li>
@@ -161,8 +155,7 @@
 <li><p>Py-MayaVi</p></li>
 </ul>
 <!-- -   OpenDX --><ul class="simple">
-<li><p>RasMol</p></li>
-<li><p>VESTA</p></li>
+<li><p>Molden</p></li>
 </ul>
 <!-- -   VAPOR --><ul class="simple">
 <li><p>VMD</p></li>
@@ -171,12 +164,18 @@
 <li><p>PoVray (raytracer)</p></li>
 </ul>
 <br><p>Programs are run by corresponding names in lowercase letters: <strong>paraview</strong> / <strong>visit</strong> / <strong>vmd</strong>.</p>
-<section id="gaussview">
-<h4>GaussView<a class="headerlink" href="#gaussview" title="Permalink to this heading"></a></h4>
+<section id="gaussview-avogadro">
+<h4>GaussView &amp; Avogadro<a class="headerlink" href="#gaussview-avogadro" title="Permalink to this heading"></a></h4>
 <p>GaussView can be started by commands:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">load</span> <span class="n">rocky8</span><span class="o">/</span><span class="nb">all</span>
 <span class="n">module</span> <span class="n">load</span> <span class="n">gaussview</span>
 <span class="n">gview</span><span class="o">.</span><span class="n">sh</span> <span class="o">&lt;</span><span class="n">job</span> <span class="n">name</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>To run Avogadro:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">load</span> <span class="n">rocky8</span><span class="o">/</span><span class="nb">all</span>
+<span class="n">module</span> <span class="n">load</span> <span class="n">avogadro</span>
+<span class="n">avogadro</span> <span class="o">&lt;</span><span class="n">job</span> <span class="n">name</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 <br>
